@@ -12,7 +12,7 @@ class Main {
                 try (ResultSet rs = stmt.executeQuery("SELECT 'Hello World!'")) {
                     //position result to first
                     rs.first();
-                    System.out.println(rs.getString(1)); //result is "Hello World!"
+                    System.out.println(rs.getString(1)); //result is "Hello World!";
                 }
             }
         }

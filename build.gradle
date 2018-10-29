@@ -17,6 +17,8 @@ dependencies {
 }
 
 task execute(type: JavaExec) {
+	group = 'other'
+    description = 'run Main class'
     main = 'com.db.auction.Main'
     classpath = sourceSets.main.runtimeClasspath
 }

@@ -1,9 +1,11 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'com.db'
 version '1.0-SNAPSHOT'
+mainClassName  = "com.db.auction.Main"
 
 sourceCompatibility = 1.8
 
@@ -11,14 +13,26 @@ repositories {
     mavenCentral()
 }
 
+jar {
+    manifest.attributes(
+            'Title' : 'Auction',
+            'Main-Class' : mainClassName,
+            'Version' : version
+    )
+    from {
+        configurations.compile.collect {it.isDirectory()? it : zipTree(it)}
+    }
+}
+
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    implementation 'org.mariadb.jdbc:mariadb-java-client:2.3.0'
+    compile 'org.mariadb.jdbc:mariadb-java-client:2.3.0'
 }
 
 task execute(type: JavaExec) {
-	group = 'other'
+    group = 'other'
     description = 'run Main class'
-    main = 'com.db.auction.Main'
+    main = mainClassName
     classpath = sourceSets.main.runtimeClasspath
 }

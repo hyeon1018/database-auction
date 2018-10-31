@@ -27,12 +27,5 @@ jar {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile 'org.mariadb.jdbc:mariadb-java-client:2.3.0'
-}
-
-task execute(type: JavaExec) {
-    group = 'other'
-    description = 'run Main class'
-    main = mainClassName
-    classpath = sourceSets.main.runtimeClasspath
+    compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.3.0'
 }

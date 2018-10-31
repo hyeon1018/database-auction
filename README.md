@@ -9,6 +9,7 @@
 ## How to build
 ```sh
 gradle build
+gradel run #run Mainclass
 ```
 
 ##

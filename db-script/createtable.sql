@@ -1,3 +1,10 @@
+/*
+ 1. 11.26. user_id 12 -> 20 글자로 확장함.
+ 2. gender 제약 조건 추가함 (씨발 개 좆같았다 후..)
+ 3. deal, item auto increment primary key 추가
+ */
+
+
 ALTER TABLE `Address`
 DROP FOREIGN KEY address_FK;
 
@@ -26,7 +33,7 @@ DROP TABLE `User`;
 
 CREATE TABLE `User`
 (
-    `user_id`    VARCHAR(12) NOT NULL
+    `user_id`    VARCHAR(20) NOT NULL
  COMMENT 'user_id',
     `user_pw`    VARCHAR(25)
  COMMENT 'user_pw',
@@ -45,15 +52,15 @@ ALTER TABLE `User`
  ADD CONSTRAINT `엔터티1_PK1` PRIMARY KEY ( `user_id` );
  
 ALTER TABLE user
- ADD CONSTRAINT `user_ck1` CHECK (GENDER IN ('MALE', 'FEMALE'));
+ ADD CONSTRAINT `user_ck1` CHECK (GENDER IN ('MALE', 'FEMALE'));	-- 내용 추가.
 
 DROP TABLE `Favorite`;
 
 CREATE TABLE `Favorite`
 (
-    `seller_user_id`    VARCHAR(12) NOT NULL
+    `seller_user_id`    VARCHAR(20) NOT NULL
  COMMENT 'seller_user_id',
-    `user_id`    VARCHAR(12) NOT NULL
+    `user_id`    VARCHAR(20) NOT NULL
  COMMENT 'user_id'
 )
  COMMENT = 'Favorite';
@@ -74,7 +81,7 @@ DROP TABLE `Account`;
 
 CREATE TABLE `Account`
 (
-    `user_id`    VARCHAR(12) NOT NULL
+    `user_id`    VARCHAR(20) NOT NULL
  COMMENT 'user_id',
     `bank`    VARCHAR(25) NOT NULL
  COMMENT 'bank',
@@ -95,7 +102,7 @@ DROP TABLE `Card`;
 
 CREATE TABLE `Card`
 (
-    `user_id`    VARCHAR(12) NOT NULL
+    `user_id`    VARCHAR(20) NOT NULL
  COMMENT 'user_id',
     `card_company`    VARCHAR(25) NOT NULL
  COMMENT 'card_company',
@@ -116,7 +123,7 @@ DROP TABLE `Address`;
 
 CREATE TABLE `Address`
 (
-    `user_id`    VARCHAR(12) NOT NULL
+    `user_id`    VARCHAR(20) NOT NULL
  COMMENT 'user_id',
     `address_alias`    VARCHAR(25) NOT NULL
  COMMENT 'address_alias',
@@ -168,9 +175,9 @@ DROP TABLE `Item`;
 
 CREATE TABLE `Item`
 (
-    `item_id`    INTEGER(20) NOT NULL AUTO_INCREMENT PRIMARY KEY
+    `item_id`    INTEGER(20) NOT NULL AUTO_INCREMENT PRIMARY KEY	-- 내용 추가
  COMMENT 'item_id',
-    `user_id`    VARCHAR(12) NOT NULL
+    `user_id`    VARCHAR(20) NOT NULL
  COMMENT 'user_id',
     `category`    VARCHAR(25) NOT NULL
  COMMENT 'category',
@@ -204,9 +211,9 @@ DROP TABLE `Deal`;
 
 CREATE TABLE `Deal`
 (
-    `deal_id`    INTEGER(25) NOT NULL AUTO_INCREMENT PRIMARY KEY
+    `deal_id`    INTEGER(25) NOT NULL AUTO_INCREMENT PRIMARY KEY	-- 내용 추가
  COMMENT 'deal_id',
-    `user_id`    VARCHAR(12)
+    `user_id`    VARCHAR(20)
  COMMENT 'user_id',
     `address_alias`    VARCHAR(25) NOT NULL
  COMMENT 'address_alias',
@@ -236,7 +243,7 @@ CREATE TABLE `Bid`
 (
     `item_id`    INTEGER (20) NOT NULL
  COMMENT 'item_id',
-    `user_id`    VARCHAR(12) NOT NULL
+    `user_id`    VARCHAR(20) NOT NULL
  COMMENT 'user_id',
     `join_time`    DATETIME NOT NULL
  COMMENT 'join_time',

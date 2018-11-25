@@ -34,7 +34,7 @@ CREATE TABLE `User`
  COMMENT 'name',
     `age`    INTEGER(3)
  COMMENT 'age',
-    `gender`    VARCHAR(6)
+    `gender`    VARCHAR(6) 
  COMMENT 'gender',
     `phone_number`    DECIMAL(12) NOT NULL
  COMMENT 'phone_number'
@@ -43,7 +43,9 @@ CREATE TABLE `User`
 
 ALTER TABLE `User`
  ADD CONSTRAINT `엔터티1_PK1` PRIMARY KEY ( `user_id` );
-
+ 
+ALTER TABLE user
+ ADD CONSTRAINT `user_ck1` CHECK (GENDER IN ('MALE', 'FEMALE'));
 
 DROP TABLE `Favorite`;
 
@@ -166,7 +168,7 @@ DROP TABLE `Item`;
 
 CREATE TABLE `Item`
 (
-    `item_id`    VARCHAR(20) NOT NULL
+    `item_id`    INTEGER(20) NOT NULL AUTO_INCREMENT PRIMARY KEY
  COMMENT 'item_id',
     `user_id`    VARCHAR(12) NOT NULL
  COMMENT 'user_id',
@@ -190,9 +192,6 @@ CREATE TABLE `Item`
  COMMENT = 'Item';
 
 ALTER TABLE `Item`
- ADD CONSTRAINT `엔터티1_PK3` PRIMARY KEY ( `item_id` );
-
-ALTER TABLE `Item`
  ADD CONSTRAINT `item_FK` FOREIGN KEY ( `user_id` )
  REFERENCES User (`user_id` );
 
@@ -205,13 +204,13 @@ DROP TABLE `Deal`;
 
 CREATE TABLE `Deal`
 (
-    `deal_id`    VARCHAR(25) NOT NULL
+    `deal_id`    INTEGER(25) NOT NULL AUTO_INCREMENT PRIMARY KEY
  COMMENT 'deal_id',
     `user_id`    VARCHAR(12)
  COMMENT 'user_id',
     `address_alias`    VARCHAR(25) NOT NULL
  COMMENT 'address_alias',
-    `item_id`    VARCHAR(20) NOT NULL
+    `item_id`    INTEGER(20) NOT NULL
  COMMENT 'item_id',
     `item_point`    NUMERIC(2,1)
  COMMENT 'item_point',
@@ -221,9 +220,6 @@ CREATE TABLE `Deal`
  COMMENT 'state'
 )
  COMMENT = 'Deal';
-
-ALTER TABLE `Deal`
- ADD CONSTRAINT `엔터티1_PK` PRIMARY KEY ( `deal_id` );
 
 ALTER TABLE `Deal`
  ADD CONSTRAINT `deal_FK` FOREIGN KEY ( `user_id` )
@@ -238,7 +234,7 @@ DROP TABLE `Bid`;
 
 CREATE TABLE `Bid`
 (
-    `item_id`    VARCHAR(20) NOT NULL
+    `item_id`    INTEGER (20) NOT NULL
  COMMENT 'item_id',
     `user_id`    VARCHAR(12) NOT NULL
  COMMENT 'user_id',
@@ -265,7 +261,7 @@ DROP TABLE `Image`;
 
 CREATE TABLE `Image`
 (
-    `item_id`    VARCHAR(20) NOT NULL
+    `item_id`    INTEGER (20) NOT NULL
  COMMENT 'item_id',
     `dir`    VARCHAR(1000) NOT NULL
  COMMENT 'dir'

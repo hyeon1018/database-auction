@@ -209,7 +209,7 @@ CREATE TABLE `Deal`
  COMMENT 'item_point',
     `time`    DATETIME NOT NULL
  COMMENT 'time',
-    `state`    VARCHAR(20) NOT NULL
+    `state`    VARCHAR(20) NOT NULL DEFAULT '결제 완료'
  COMMENT 'state'
 )
  COMMENT = 'Deal';

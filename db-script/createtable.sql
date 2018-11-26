@@ -28,7 +28,7 @@ CREATE TABLE `User`
 (
     `user_id`    VARCHAR(20) NOT NULL
  COMMENT 'user_id',
-    `user_pw`    VARCHAR(25)
+    `user_pw`    VARCHAR(40)
  COMMENT 'user_pw',
     `name`    VARCHAR(25)
  COMMENT 'name',

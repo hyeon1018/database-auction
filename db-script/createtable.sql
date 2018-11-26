@@ -1,10 +1,3 @@
-/*
- 1. 11.26. user_id 12 -> 20 글자로 확장함.
- 2. gender 제약 조건 추가함 (씨발 개 좆같았다 후..)
- 3. deal, item auto increment primary key 추가
- */
-
-
 ALTER TABLE `Address`
 DROP FOREIGN KEY address_FK;
 
@@ -41,8 +34,9 @@ CREATE TABLE `User`
  COMMENT 'name',
     `age`    INTEGER(3)
  COMMENT 'age',
-    `gender`    VARCHAR(6) 
- COMMENT 'gender',
+    `gender`    VARCHAR(6)
+ COMMENT 'gender'
+ CHECK (`gender` in ("Male", "Female")),
     `phone_number`    DECIMAL(12) NOT NULL
  COMMENT 'phone_number'
 )
@@ -50,9 +44,6 @@ CREATE TABLE `User`
 
 ALTER TABLE `User`
  ADD CONSTRAINT `엔터티1_PK1` PRIMARY KEY ( `user_id` );
- 
-ALTER TABLE user
- ADD CONSTRAINT `user_ck1` CHECK (GENDER IN ('MALE', 'FEMALE'));	-- 내용 추가.
 
 DROP TABLE `Favorite`;
 
@@ -175,7 +166,7 @@ DROP TABLE `Item`;
 
 CREATE TABLE `Item`
 (
-    `item_id`    INTEGER(20) NOT NULL AUTO_INCREMENT PRIMARY KEY	-- 내용 추가
+    `item_id`    INTEGER(20) NOT NULL AUTO_INCREMENT PRIMARY KEY
  COMMENT 'item_id',
     `user_id`    VARCHAR(20) NOT NULL
  COMMENT 'user_id',
@@ -211,7 +202,7 @@ DROP TABLE `Deal`;
 
 CREATE TABLE `Deal`
 (
-    `deal_id`    INTEGER(25) NOT NULL AUTO_INCREMENT PRIMARY KEY	-- 내용 추가
+    `deal_id`    INTEGER(25) NOT NULL AUTO_INCREMENT PRIMARY KEY
  COMMENT 'deal_id',
     `user_id`    VARCHAR(20)
  COMMENT 'user_id',

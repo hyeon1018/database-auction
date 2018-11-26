@@ -38,7 +38,7 @@ CREATE TABLE `User`
     `gender`    VARCHAR(6)
  COMMENT 'gender'
  CHECK (`gender` in ("Male", "Female")),
-    `phone_number`    DECIMAL(12) NOT NULL
+    `phone_number`    VARCHAR(20) NOT NULL
  COMMENT 'phone_number'
 )
  COMMENT = 'User';
@@ -161,13 +161,13 @@ DROP TABLE `Item`;
 
 CREATE TABLE `Item`
 (
-    `item_id`    INTEGER(20) NOT NULL AUTO_INCREMENT PRIMARY KEY
+    `item_id`    DECIMAL(20) NOT NULL AUTO_INCREMENT PRIMARY KEY
  COMMENT 'item_id',
     `user_id`    VARCHAR(20) NOT NULL
  COMMENT 'user_id',
     `category`    VARCHAR(25) NOT NULL
  COMMENT 'category',
-    `price`    INTEGER(20)
+    `price`    DECIMAL(20)
  COMMENT 'price',
     `deal_type`    VARCHAR(20)
  COMMENT 'deal_type',
@@ -177,7 +177,7 @@ CREATE TABLE `Item`
  COMMENT 'item_info',
     `total_item_point`    NUMERIC(2,1)
  COMMENT 'total_item_point',
-    `report_count`    INTEGER(12)
+    `report_count`    DECIMAL(12)
  COMMENT 'report_count',
     `expire_time`    DATETIME
  COMMENT 'expire_time'
@@ -197,13 +197,13 @@ DROP TABLE `Deal`;
 
 CREATE TABLE `Deal`
 (
-    `deal_id`    INTEGER(25) NOT NULL AUTO_INCREMENT PRIMARY KEY
+    `deal_id`    DECIMAL(25) NOT NULL AUTO_INCREMENT PRIMARY KEY
  COMMENT 'deal_id',
     `user_id`    VARCHAR(20)
  COMMENT 'user_id',
     `address_alias`    VARCHAR(25) NOT NULL
  COMMENT 'address_alias',
-    `item_id`    INTEGER(20) NOT NULL
+    `item_id`    DECIMAL(20) NOT NULL
  COMMENT 'item_id',
     `item_point`    NUMERIC(2,1)
  COMMENT 'item_point',
@@ -227,13 +227,13 @@ DROP TABLE `Bid`;
 
 CREATE TABLE `Bid`
 (
-    `item_id`    INTEGER (20) NOT NULL
+    `item_id`    DECIMAL (20) NOT NULL
  COMMENT 'item_id',
     `user_id`    VARCHAR(20) NOT NULL
  COMMENT 'user_id',
     `join_time`    DATETIME NOT NULL
  COMMENT 'join_time',
-    `join_price`    INTEGER(20)
+    `join_price`    DECIMAL(20)
  COMMENT 'join_price'
 )
  COMMENT = 'Bid';
@@ -254,7 +254,7 @@ DROP TABLE `Image`;
 
 CREATE TABLE `Image`
 (
-    `item_id`    INTEGER (20) NOT NULL
+    `item_id`    DECIMAL (20) NOT NULL
  COMMENT 'item_id',
     `dir`    VARCHAR(1000) NOT NULL
  COMMENT 'dir'

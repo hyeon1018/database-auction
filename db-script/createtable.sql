@@ -33,7 +33,8 @@ CREATE TABLE `User`
     `name`    VARCHAR(25)
  COMMENT 'name',
     `age`    INTEGER(3)
- COMMENT 'age',
+ COMMENT 'age'
+ CHECK (`age` > 0 ),
     `gender`    VARCHAR(6)
  COMMENT 'gender'
  CHECK (`gender` in ("Male", "Female")),
@@ -119,13 +120,7 @@ CREATE TABLE `Address`
     `address_alias`    VARCHAR(25) NOT NULL
  COMMENT 'address_alias',
     `address`    VARCHAR(25)
- COMMENT 'address',
-    `zip_codes`    VARCHAR(6)
- COMMENT 'zip_codes',
-    `city`    VARCHAR(25)
- COMMENT 'city',
-    `street`    VARCHAR(25)
- COMMENT 'street'
+ COMMENT 'address'
 )
  COMMENT = 'Address';
 

@@ -1,7 +1,9 @@
 package com.db.auction.gui;
 
+import com.db.auction.Database;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 import javax.swing.*;
 import javax.swing.border.*;
 /*
@@ -14,6 +16,11 @@ import javax.swing.border.*;
 public class LoginMenu {
     public LoginMenu() {
         initComponents();
+        try{
+            Database.initConnection();
+        }catch (SQLException se){
+            // TODO - Exception Hadling
+        }
         mainFrame.setVisible(true);
         // inputId.setTransferHandler(null) <- 복붙 방지
     }
@@ -34,7 +41,11 @@ public class LoginMenu {
     private void loginButtonActionPerformed(ActionEvent e) {
         // TODO 로그인 버튼 입력
         // TODO JTextField는 .getText(), JPasswordField는 String.Valueof(inputPw.getPassword())
-        msgLabel.setText("login pressed");
+        if(Database.isValidUser(inputId.getText(), String.valueOf(inputPw.getPassword()))){
+               msgLabel.setText("Login\nUser name : " + inputId.getText());
+        }else{
+            msgLabel.setText("Wrong User");
+        }
         msgDialog.setVisible(true);
     }
 

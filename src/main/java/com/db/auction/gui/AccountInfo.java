@@ -9,6 +9,11 @@ import javax.swing.border.*;
 
 public class AccountInfo {
 
+    public AccountInfo(){
+        initComponents();
+        regDialog.setVisible(true);
+    }
+
     private void createButtonActionPerformed(ActionEvent e) {
         String userId = cInputId.getText();
         String userPw = String.valueOf(cInputPw.getPassword());
@@ -23,14 +28,14 @@ public class AccountInfo {
             Database.addAddress(userId, "기본배송지", address);
 
             JOptionPane.showMessageDialog(regDialog, "User created", "Complete", JOptionPane.INFORMATION_MESSAGE);
+
+            regDialog.dispose();
         }else{
             JOptionPane.showMessageDialog(regDialog, "Please check input", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        // TODO 계정 생성 시 수행해야 하는 것
-    } //button 값은 genderBtnGroup.getSelection().getActionCommand() // Male, Female 출력
+    }
 
     private void regDialogWindowClosing(WindowEvent e) {
-        loginButton.setEnabled(true);
         regDialog.dispose();
         e.getWindow().dispose();
     }

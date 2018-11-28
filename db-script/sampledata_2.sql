@@ -43,7 +43,7 @@ insert into Address values("rladmsgml", "집", "05693 서울시 송파구 가락
 insert into Address values("wkdtmddnjs", "집", "02253 서울시 동대문구 사가정로 65 래미안아파트");
 insert into Address values("rkdwjdah", "집", "48257 부산광역시 수영구 장대골로57번가길 16 광안리치빌 A동");
 insert into Address values("wjddbghks", "집", "06267 서울시 강남구 강남대로 238 스카이솔라빌딩");
-insert into Address values("tlstkdlaekd", "집", "15831 경기도 군포시 당산로 129 안양빌딩);
+insert into Address values("tlstkdlaekd", "집", "15831 경기도 군포시 당산로 129 안양빌딩");
 insert into Address values("dltn", "집", "06280 서울시 강남구 남부순환로 2909 여천빌딩");
 insert into Address values("wkdejrcjf", "집", "01011 서울시 강북구 4.19로 4 심플렉스빌딩");
 insert into Address values("dlackdwjd", "집", "26420 강원도 원주시 백간길 80 벽산아파트");

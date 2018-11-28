@@ -1,0 +1,174 @@
+JFDML JFormDesigner: "6.0.4.1.172" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "regDialog"
+			"title": "Register"
+			"defaultCloseOperation": 0
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowClosing", "regDialogWindowClosing", true ) )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) {
+				"autoSize": false
+			} ) {
+				name: "regPanel"
+				"preferredSize": new java.awt.Dimension( 500, 320 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "cIdLabel"
+					"text": "ID"
+					"font": new java.awt.Font( "나눔고딕", 1, 20 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 40
+					"y": 30
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "cInputId"
+					"font": new java.awt.Font( "굴림", 0, 18 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 95
+					"y": 30
+					"width": 120
+					"height": 30
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "cPwLabel"
+					"text": "PW"
+					"font": new java.awt.Font( "나눔고딕", 1, 20 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 245
+					"y": 30
+				} )
+				add( new FormComponent( "javax.swing.JPasswordField" ) {
+					name: "cInputPw"
+					"font": new java.awt.Font( "굴림", 0, 18 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 300
+					"y": 30
+					"width": 120
+					"height": 30
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "cNameLabel"
+					"text": "이름"
+					"font": new java.awt.Font( "나눔고딕", 1, 20 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 40
+					"y": 75
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "cInputName"
+					"font": new java.awt.Font( "굴림", 0, 18 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 95
+					"y": 75
+					"width": 120
+					"height": 30
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "cAgeLabel"
+					"text": "나이"
+					"font": new java.awt.Font( "나눔고딕", 1, 20 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 245
+					"y": 75
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "cInputAge"
+					"font": new java.awt.Font( "굴림", 0, 18 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 300
+					"y": 75
+					"width": 50
+					"height": 30
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "cGenderLabel"
+					"text": "성별"
+					"font": new java.awt.Font( "나눔고딕", 1, 20 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 40
+					"y": 120
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "cSelectMale"
+					"text": "남성"
+					"actionCommand": "Male"
+					"font": new java.awt.Font( "굴림", 0, 14 )
+					"$buttonGroup": new FormReference( "genderBtnGroup" )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 90
+					"y": 120
+				} )
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "cSelectFemale"
+					"text": "여성"
+					"actionCommand": "Female"
+					"font": new java.awt.Font( "굴림", 0, 14 )
+					"$buttonGroup": new FormReference( "genderBtnGroup" )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 145
+					"y": 120
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "cPhoneLabel"
+					"text": "전화번호"
+					"font": new java.awt.Font( "나눔고딕", 1, 20 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 210
+					"y": 120
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "cInputPhone"
+					"font": new java.awt.Font( "굴림", 0, 18 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 300
+					"y": 120
+					"width": 160
+					"height": 30
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "cAddrLabel"
+					"text": "주소"
+					"font": new java.awt.Font( "나눔고딕", 1, 20 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 40
+					"y": 165
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "createButton"
+					"text": "등록"
+					"font": new java.awt.Font( "나눔고딕", 1, 20 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "createButtonActionPerformed", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 220
+					"y": 235
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "AddrScroll"
+					add( new FormComponent( "javax.swing.JTextArea" ) {
+						name: "cInputAddr"
+						"font": new java.awt.Font( "굴림", 0, 18 )
+					} )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 95
+					"y": 170
+					"width": 365
+					"height": 50
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 500, 320 )
+			"location": new java.awt.Point( 35, 5 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "genderBtnGroup"
+			auxiliary() {
+				"JavaCodeGenerator.variableLocal": false
+			}
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 40, 340 )
+		} )
+	}
+}

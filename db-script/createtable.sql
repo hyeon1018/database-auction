@@ -119,7 +119,7 @@ CREATE TABLE `Address`
  COMMENT 'user_id',
     `address_alias`    VARCHAR(25) NOT NULL
  COMMENT 'address_alias',
-    `address`    VARCHAR(25)
+    `address`    VARCHAR(100)
  COMMENT 'address'
 )
  COMMENT = 'Address';
@@ -170,7 +170,8 @@ CREATE TABLE `Item`
     `price`    DECIMAL(20)
  COMMENT 'price',
     `deal_type`    VARCHAR(20)
- COMMENT 'deal_type',
+ COMMENT 'deal_type'
+ CHECK (`deal_type` in ("Sell", "Bid")),
     `delivery_fee`    VARCHAR(20)
  COMMENT 'delivery_fee',
     `item_info`    VARCHAR(2000)
@@ -180,7 +181,10 @@ CREATE TABLE `Item`
     `report_count`    DECIMAL(12)
  COMMENT 'report_count',
     `expire_time`    DATETIME
- COMMENT 'expire_time'
+ COMMENT 'expire_time',
+ CONSTRAINT `expire_time_check` CHECK (
+    (deal_type = "Bid" AND expire_time IS NOT NULL)
+    OR (deal_type = "SELL" AND expire_time IS NULL))
 )
  COMMENT = 'Item';
 

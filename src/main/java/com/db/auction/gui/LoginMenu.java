@@ -6,6 +6,7 @@ import java.awt.event.*;
 import java.sql.SQLException;
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.xml.crypto.Data;
 /*
  * Created by JFormDesigner on Tue Nov 27 11:04:30 KST 2018
  */
@@ -62,7 +63,24 @@ public class LoginMenu {
     } // TODO 25자 이상 입력 못하도록 함
 
     private void createButtonActionPerformed(ActionEvent e) {
-        msgLabel.setText("create pressed");
+        String userId = cInputId.getText();
+        String userPw = String.valueOf(cInputPw.getPassword());
+        String name = cInputName.getText();
+        int age = Integer.parseInt(cInputAge.getText());
+        String gender = genderBtnGroup.getSelection().getActionCommand();
+        String phoneNumber = cInputPhone.getText();
+        String address = cInputAddr.getText();
+
+        if(userId.length() > 0 && userPw.length() > 0 && name.length() > 0 && phoneNumber.length() > 0 && address.length() > 0) {
+            Database.regiesterUser(userId, userPw, name, age, gender, phoneNumber);
+            Database.addAddress(userId, "기본배송지", address);
+
+            msgLabel.setText("create User");
+        }else{
+            msgLabel.setText("Please check input");
+        }
+
+
         msgDialog.setVisible(true);
         // TODO 계정 생성 시 수행해야 하는 것
     } //button 값은 genderBtnGroup.getSelection().getActionCommand() // Male, Female 출력
@@ -371,7 +389,7 @@ public class LoginMenu {
         }
 
         //---- genderBtnGroup ----
-        ButtonGroup genderBtnGroup = new ButtonGroup();
+        genderBtnGroup = new ButtonGroup();
         genderBtnGroup.add(cSelectMale);
         genderBtnGroup.add(cSelectFemale);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -409,5 +427,6 @@ public class LoginMenu {
     private JDialog msgDialog;
     private JPanel msgPanel;
     private JLabel msgLabel;
+    private ButtonGroup genderBtnGroup;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

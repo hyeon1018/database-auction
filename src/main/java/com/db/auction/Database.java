@@ -1,6 +1,8 @@
 package com.db.auction;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
     static Connection  connection = null;
@@ -60,5 +62,21 @@ public class Database {
         }catch (SQLException se){
             se.printStackTrace();
         }
+    }
+
+    public static String[] getCategorys(){
+        String getCategorySQL = "SELECT * FROM Category;";
+        ResultSet rs;
+        List<String> categorys = new ArrayList<>();
+        try(PreparedStatement pstat = connection.prepareStatement(getCategorySQL)){
+            rs = pstat.executeQuery();
+            while(rs.next()){
+                categorys.add(rs.getString(1));
+            }
+        }catch (SQLException se){
+            se.printStackTrace();
+        }
+
+        return categorys.stream().toArray(String[]::new);
     }
 }

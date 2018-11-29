@@ -5,9 +5,12 @@
 package com.db.auction.gui;
 
 import com.db.auction.Database;
+import com.db.auction.ImageFTP;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.*;
 
 /**
@@ -28,22 +31,25 @@ public class registerItemFrame extends JFrame {
             categoryComboBox.addItem(cate[i]);
 
         }
-        imageList.setModel(dirListModel);
+        imageList.setModel(imageListModel);
     }
 
     private void submitButtonListener(MouseEvent e) {
-        // TODO Query.
-        System.out.println("User : " + currentUser);
-        System.out.println("Category : " + categoryComboBox.getSelectedItem());
-        System.out.println("Price : " + priceField.getText());
-        System.out.println("Shiping Price : " + shippingPriceField.getText());
-        System.out.println("Deal Type : " + dealTypeGroup.getSelection().getActionCommand());
-        System.out.println("Image : " + currentUser);
-        System.out.println("Info : " + itemInfoText.getText());
-        //1. query-item
-        //2. upload with time + index.*
-        //3. query-image
-        //4. goto 2;
+        Database.insertItem(currentUser, categoryComboBox.getSelectedItem().toString(), Integer.parseInt(priceField.getText()),
+                dealTypeGroup.getSelection().getActionCommand(), Integer.parseInt(shippingPriceField.getText()), itemInfoText.getText());
+        int lastId = Database.getLastInsertId();
+
+        for(int i = 0 ; i < imageListModel.getSize(); i++){
+            try {
+                File image = new File(imageListModel.get(i));
+                ImageFTP.UploadImage(image.getAbsolutePath(), image.getName());
+                Database.insertImage(String.valueOf(lastId), String.valueOf(lastId) + "_" + image.getName());
+            }catch(IOException ioe){
+                ioe.printStackTrace();
+            }
+        }
+        //Close this Frame
+        this.dispose();
     }
 
     private void registerImageButtonListener(MouseEvent e) {
@@ -51,12 +57,14 @@ public class registerItemFrame extends JFrame {
         JFileChooser jFileChooser = new JFileChooser();
         int rtn = jFileChooser.showOpenDialog(this);
         if(rtn == JFileChooser.APPROVE_OPTION){
-            dirListModel.addElement(jFileChooser.getSelectedFile().getAbsolutePath());
+            imageListModel.addElement(jFileChooser.getSelectedFile().getAbsolutePath());
         }
     }
 
     private void deleteImageButtonListener(MouseEvent e) {
-        dirListModel.remove(imageList.getSelectedIndex());
+        if(imageList.getSelectedIndex() != -1) {
+            imageListModel.remove(imageList.getSelectedIndex());
+        }
     }
 
     private void initComponents() {
@@ -207,7 +215,7 @@ public class registerItemFrame extends JFrame {
     }
 
     private String currentUser;
-    private DefaultListModel<String> dirListModel = new DefaultListModel<>();
+    private DefaultListModel<String> imageListModel = new DefaultListModel<>();
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Kim Dohyeon

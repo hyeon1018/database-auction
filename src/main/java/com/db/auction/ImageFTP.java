@@ -1,4 +1,4 @@
-package com.db.auction.gui;
+package com.db.auction;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;

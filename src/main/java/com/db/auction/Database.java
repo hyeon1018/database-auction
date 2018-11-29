@@ -1,6 +1,8 @@
 package com.db.auction;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
     static Connection  connection = null;
@@ -10,6 +12,20 @@ public class Database {
                 "jdbc:mariadb://ec2-13-209-35-117.ap-northeast-2.compute.amazonaws.com/auction",
                 "auction",
                 "konkuk14*4");
+    }
+
+    public static int getLastInsertId(){
+        int lastId = 0;
+        try(PreparedStatement pstat = connection.prepareStatement("SELECT LAST_INSERT_ID()")) {
+            ResultSet rs = pstat.executeQuery();
+            if(rs.first()){
+                lastId = rs.getInt(1);
+            }
+
+        } catch (SQLException se){
+            se.printStackTrace();
+        }
+        return lastId;
     }
 
     public static boolean isValidUser(String userId, String userPw){
@@ -59,6 +75,56 @@ public class Database {
             pstat.execute();
         }catch (SQLException se){
             se.printStackTrace();
+        }
+    }
+
+    public static String[] getCategorys(){
+        String getCategorySQL = "SELECT * FROM Category;";
+        ResultSet rs;
+        List<String> categorys = new ArrayList<>();
+        try(PreparedStatement pstat = connection.prepareStatement(getCategorySQL)){
+            rs = pstat.executeQuery();
+            while(rs.next()){
+                categorys.add(rs.getString(1));
+            }
+        }catch (SQLException se){
+            se.printStackTrace();
+        }
+
+        return categorys.stream().toArray(String[]::new);
+    }
+
+    public static void insertItem(String userId, String category, int price, String deal_type, int deliveryFee, String itemInfo){
+        String expriedTime;
+        if(deal_type.equals("Bid")){
+            expriedTime = "DATE_ADD(NOW(), INTERVAL 7 DAY)";
+        }else{
+            expriedTime = "NULL";
+        }
+
+        String insertItemSQL = "INSERT INTO Item(user_id, category, price, deal_type, delivery_fee, item_info, expire_time)" +
+                               "VALUES(?, ?, ?, ?, ?, ?," + expriedTime + ");";
+        try(PreparedStatement pstat = connection.prepareStatement(insertItemSQL)){
+            pstat.setString(1, userId);
+            pstat.setString(2, category);
+            pstat.setInt(3, price);
+            pstat.setString(4, deal_type);
+            pstat.setInt(5, deliveryFee);
+            pstat.setString(6, itemInfo);
+            pstat.execute();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void insertImage(String itemId, String imagedir){
+        String insertItemSQL = "INSERT INTO Image VALUES(?, ?);";
+        try(PreparedStatement pstat = connection.prepareStatement(insertItemSQL)){
+            pstat.setString(1, itemId);
+            pstat.setString(2, imagedir);
+            pstat.execute();
+        }catch (SQLException e){
+            e.printStackTrace();
         }
     }
 }

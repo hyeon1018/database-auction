@@ -27,21 +27,16 @@ public class LoginMenu {
     }
 
     private void mainFrameWindowClosing(WindowEvent e) {
-        // TODO 로그인 창 X를 눌러서 프로그램 끝나기 전에 수행할 코드 입력
         mainFrame.setVisible(false);
         e.getWindow().dispose();
         System.exit(0);
     }
 
     private void registerLabelMouseClicked(MouseEvent e) {
-        loginButton.setEnabled(false);
-        regDialog.setVisible(true);
-        // TODO 사용자 등록 버튼 대용 / 클릭 시 수행
+        new AccountInfo();
     }
 
     private void loginButtonActionPerformed(ActionEvent e) {
-        // TODO 로그인 버튼 입력
-        // TODO JTextField는 .getText(), JPasswordField는 String.Valueof(inputPw.getPassword())
         if(Database.isValidUser(inputId.getText(), String.valueOf(inputPw.getPassword()))){
             JOptionPane.showMessageDialog(mainFrame, "Login User name: " + inputId.getText(), "Login", JOptionPane.INFORMATION_MESSAGE);
         }else{
@@ -53,13 +48,13 @@ public class LoginMenu {
         if(inputId.getText().length() >= 12){
             e.consume();
         }
-    } // TODO 12자 이상 입력 못하도록 함
+    }
 
     private void inputPwKeyTyped(KeyEvent e) {
         if(inputPw.getPassword().length >= 25){
             e.consume();
         }
-    } // TODO 25자 이상 입력 못하도록 함
+    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents

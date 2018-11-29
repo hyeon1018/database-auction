@@ -28,4 +28,5 @@ jar {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.3.0'
+    compile group: 'commons-net', name: 'commons-net', version: '3.6'
 }

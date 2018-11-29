@@ -1,29 +1,54 @@
 package com.db.auction.gui;
 
+import com.db.auction.Database;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.Date;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.border.*;
 
 public class Search {
 
-    public Search(){
+    public Search(String userId){
+        currentUser = userId;
+        initComponents();
+        initData();
+        searchFrame.setVisible(true);
+    }
 
+    private void initData(){
+        //set ComboBox data with query result.
+        String cate [] = Database.getCategorys();
+        for(int i = 0; i < cate.length; i++){
+            categoryComboBox.addItem(cate[i]);
+        }
     }
 
     private void searchBtnActionPerformed(ActionEvent e) {
-        // TODO 검색할 정보 입력 후 검색 실행
+        //Check Input.
+        String deal_tyep = typeComboBox.getSelectedItem().toString();
+        String category = categoryComboBox.getSelectedItem().toString();
+        int minPrice = inputMin.getText().length() > 0 ? Integer.parseInt(inputMin.getText()) : 0;
+        int maxPrice = inputMax.getText().length() > 0 ? Integer.parseInt(inputMax.getText()) : 0;
+        String keyword = inputInfo.getText();
+        String user = inputUser.getText();
+        Date expireDate = inputDate.getText().length() > 0 ? Date.valueOf(inputDate.getText()) : null;
+
+        List<String []> result = Database.searchItemList(deal_tyep, category, minPrice, maxPrice, keyword, user, expireDate);
+        new SearchResult(currentUser, result);
+        searchFrame.dispose();
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+        // Generated using JFormDesigner Evaluation license - Kim Dohyeon
         searchFrame = new JFrame();
         searchPanel = new JPanel();
         typeLabel = new JLabel();
         typeComboBox = new JComboBox<>();
         categoryLabel = new JLabel();
-        inputCategory = new JTextField();
         priceLabel = new JLabel();
         inputMin = new JTextField();
         rangeLabel = new JLabel();
@@ -36,6 +61,7 @@ public class Search {
         inputDate = new JTextField();
         searchBtn = new JButton();
         dateExLabel = new JLabel();
+        categoryComboBox = new JComboBox();
 
         //======== searchFrame ========
         {
@@ -75,8 +101,6 @@ public class Search {
                 categoryLabel.setFont(new Font("\ub098\ub214\uace0\ub515", Font.BOLD, 16));
                 searchPanel.add(categoryLabel);
                 categoryLabel.setBounds(new Rectangle(new Point(260, 20), categoryLabel.getPreferredSize()));
-                searchPanel.add(inputCategory);
-                inputCategory.setBounds(310, 20, 80, 25);
 
                 //---- priceLabel ----
                 priceLabel.setText("\uac00\uaca9");
@@ -130,6 +154,8 @@ public class Search {
                 dateExLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.PLAIN, 14));
                 searchPanel.add(dateExLabel);
                 dateExLabel.setBounds(new Rectangle(new Point(385, 145), dateExLabel.getPreferredSize()));
+                searchPanel.add(categoryComboBox);
+                categoryComboBox.setBounds(310, 20, 80, 25);
 
                 { // compute preferred size
                     Dimension preferredSize = new Dimension();
@@ -152,14 +178,15 @@ public class Search {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
+    String currentUser;
+
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+    // Generated using JFormDesigner Evaluation license - Kim Dohyeon
     private JFrame searchFrame;
     private JPanel searchPanel;
     private JLabel typeLabel;
     private JComboBox<String> typeComboBox;
     private JLabel categoryLabel;
-    private JTextField inputCategory;
     private JLabel priceLabel;
     private JTextField inputMin;
     private JLabel rangeLabel;
@@ -172,5 +199,6 @@ public class Search {
     private JTextField inputDate;
     private JButton searchBtn;
     private JLabel dateExLabel;
+    private JComboBox categoryComboBox;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

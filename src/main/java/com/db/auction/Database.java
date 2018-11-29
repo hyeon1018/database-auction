@@ -128,10 +128,36 @@ public class Database {
         }
     }
 
-    public static List<String []> getItemList(){
+    public static List<String []> searchItemList(String deal_type, String category, int minPrice, int maxPrice, String keyword, String user, Date expired){
+
         List<String []> itemList = new ArrayList<>();
         String itemListSQL = "SELECT deal_type, item_id, category, price, item_info, user_id, expire_time FROM Item";
+        if(!deal_type.equals("")){
+            itemListSQL += " WHERE deal_type = '" + deal_type + "'";
+        }
+        if(!category.equals("")){
+            itemListSQL += " AND category = '" + category + "'";
+        }
+        if(minPrice > 0){
+            itemListSQL += " AND price >=" + String.valueOf(minPrice);
+        }
+        if(maxPrice > 0){
+            itemListSQL += " AND price <=" + String.valueOf(maxPrice);
+        }
+        if(!keyword.equals("")){
+            itemListSQL += " AND item_info LIKE '%" + keyword + "%'";
+        }
+        if(!user.equals("")){
+            itemListSQL += " AND user_id ='" + user + "'";
+        }
+        if(expired != null){
+            itemListSQL += " AND expire_time < ?";
+        }
         try(PreparedStatement pstat = connection.prepareStatement(itemListSQL)){
+            System.out.println(itemListSQL);
+            if(expired != null) {
+                pstat.setDate(1, expired);
+            }
             ResultSet rs = pstat.executeQuery();
             while(rs.next()){
                 String[] data = new String[7];
@@ -149,5 +175,5 @@ public class Database {
         }
 
         return itemList;
-    };
+    }
 }

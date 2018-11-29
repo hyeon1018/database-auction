@@ -38,14 +38,6 @@ new FormModel {
 					"x": 260
 					"y": 20
 				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "inputCategory"
-				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 310
-					"y": 20
-					"width": 80
-					"height": 25
-				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "priceLabel"
 					"text": "가격"
@@ -143,6 +135,14 @@ new FormModel {
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 385
 					"y": 145
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "categoryComboBox"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 80
+					"height": 25
+					"x": 310
+					"y": 20
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"

@@ -1,0 +1,130 @@
+JFDML JFormDesigner: "6.0.4.1.172" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "mainMenu"
+			"title": "Auction System"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+				name: "mainPanel"
+				"preferredSize": new java.awt.Dimension( 700, 620 )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "listScroll"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "itemTable"
+						"preferredScrollableViewportSize": new java.awt.Dimension( 630, 420 )
+						"selectionMode": 1
+						"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector, new java.util.Vector {
+							add( "유형" )
+							add( "물품 ID" )
+							add( "분류" )
+							add( "가격" )
+							add( "물품 정보" )
+							add( "사용자" )
+							add( "마감일" )
+						}, new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						}, new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						}, new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						} )
+					} )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 35
+					"y": 140
+					"width": 630
+					"height": 420
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "titleLabel"
+					"text": "Auction DB System"
+					"font": new java.awt.Font( "맑은 고딕", 1, 24 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 35
+					"y": 25
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "accountLabel"
+					"text": "ID (Name)"
+					"font": new java.awt.Font( "맑은 고딕", 1, 14 )
+					"horizontalAlignment": 4
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "accountLabelMouseClicked", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 505
+					"y": 30
+					"width": 159
+					"height": 25
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "searchBtn"
+					"text": "검색"
+					"font": new java.awt.Font( "맑은 고딕", 1, 16 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "searchBtnActionPerformed", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 65
+					"y": 80
+					"width": 120
+					"height": 40
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "sellListBtn"
+					"text": "판매 목록"
+					"font": new java.awt.Font( "맑은 고딕", 1, 16 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sellListBtnActionPerformed", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 215
+					"y": 80
+					"width": 120
+					"height": 40
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "buyListBtn"
+					"text": "구매 이력"
+					"font": new java.awt.Font( "맑은 고딕", 1, 16 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "buyListBtnActionPerformed", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 365
+					"y": 80
+					"width": 120
+					"height": 40
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "regItemBtn"
+					"text": "물품 등록"
+					"font": new java.awt.Font( "맑은 고딕", 1, 16 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "regItemBtnActionPerformed", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 515
+					"y": 80
+					"width": 120
+					"height": 40
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 700, 620 )
+		} )
+	}
+}

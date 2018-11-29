@@ -91,6 +91,7 @@ public class RegisterItemFrame extends JFrame {
 
         //======== this ========
         setResizable(false);
+        setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         Container contentPane = getContentPane();
         contentPane.setLayout(null);
         contentPane.add(categoryComboBox);

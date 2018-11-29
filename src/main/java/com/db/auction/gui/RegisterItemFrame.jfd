@@ -7,6 +7,7 @@ new FormModel {
 			name: "this"
 			"$sizePolicy": 1
 			"resizable": false
+			"modalExclusionType": enum java.awt.Dialog$ModalExclusionType APPLICATION_EXCLUDE
 			add( new FormComponent( "javax.swing.JComboBox" ) {
 				name: "categoryComboBox"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {

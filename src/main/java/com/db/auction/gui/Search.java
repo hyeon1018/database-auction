@@ -1,0 +1,176 @@
+package com.db.auction.gui;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
+
+public class Search {
+
+    public Search(){
+
+    }
+
+    private void searchBtnActionPerformed(ActionEvent e) {
+        // TODO 검색할 정보 입력 후 검색 실행
+    }
+
+    private void initComponents() {
+        // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
+        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+        searchFrame = new JFrame();
+        searchPanel = new JPanel();
+        typeLabel = new JLabel();
+        typeComboBox = new JComboBox<>();
+        categoryLabel = new JLabel();
+        inputCategory = new JTextField();
+        priceLabel = new JLabel();
+        inputMin = new JTextField();
+        rangeLabel = new JLabel();
+        inputMax = new JTextField();
+        infoLabel = new JLabel();
+        inputInfo = new JTextField();
+        userLabel = new JLabel();
+        inputUser = new JTextField();
+        expirationLabel = new JLabel();
+        inputDate = new JTextField();
+        searchBtn = new JButton();
+        dateExLabel = new JLabel();
+
+        //======== searchFrame ========
+        {
+            searchFrame.setTitle("Search");
+            Container searchFrameContentPane = searchFrame.getContentPane();
+            searchFrameContentPane.setLayout(new BorderLayout());
+
+            //======== searchPanel ========
+            {
+                searchPanel.setPreferredSize(new Dimension(510, 270));
+
+                // JFormDesigner evaluation mark
+                searchPanel.setBorder(new javax.swing.border.CompoundBorder(
+                    new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+                        "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+                        javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+                        java.awt.Color.red), searchPanel.getBorder())); searchPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
+
+                searchPanel.setLayout(null);
+
+                //---- typeLabel ----
+                typeLabel.setText("\ud310\ub9e4 \uc720\ud615");
+                typeLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 16));
+                searchPanel.add(typeLabel);
+                typeLabel.setBounds(new Rectangle(new Point(30, 20), typeLabel.getPreferredSize()));
+
+                //---- typeComboBox ----
+                typeComboBox.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "Sell",
+                    "Bid"
+                }));
+                searchPanel.add(typeComboBox);
+                typeComboBox.setBounds(120, 20, 50, 25);
+
+                //---- categoryLabel ----
+                categoryLabel.setText("\ubd84\ub958");
+                categoryLabel.setFont(new Font("\ub098\ub214\uace0\ub515", Font.BOLD, 16));
+                searchPanel.add(categoryLabel);
+                categoryLabel.setBounds(new Rectangle(new Point(260, 20), categoryLabel.getPreferredSize()));
+                searchPanel.add(inputCategory);
+                inputCategory.setBounds(310, 20, 80, 25);
+
+                //---- priceLabel ----
+                priceLabel.setText("\uac00\uaca9");
+                priceLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 16));
+                searchPanel.add(priceLabel);
+                priceLabel.setBounds(new Rectangle(new Point(30, 60), priceLabel.getPreferredSize()));
+                searchPanel.add(inputMin);
+                inputMin.setBounds(85, 60, 100, 25);
+
+                //---- rangeLabel ----
+                rangeLabel.setText("~");
+                rangeLabel.setFont(new Font("\uad74\ub9bc", Font.BOLD, 16));
+                searchPanel.add(rangeLabel);
+                rangeLabel.setBounds(new Rectangle(new Point(205, 65), rangeLabel.getPreferredSize()));
+                searchPanel.add(inputMax);
+                inputMax.setBounds(240, 60, 100, 25);
+
+                //---- infoLabel ----
+                infoLabel.setText("\ubb3c\ud488 \uc815\ubcf4");
+                infoLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 16));
+                searchPanel.add(infoLabel);
+                infoLabel.setBounds(new Rectangle(new Point(30, 105), infoLabel.getPreferredSize()));
+                searchPanel.add(inputInfo);
+                inputInfo.setBounds(120, 105, 355, 25);
+
+                //---- userLabel ----
+                userLabel.setText("\uc0ac\uc6a9\uc790");
+                userLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 16));
+                searchPanel.add(userLabel);
+                userLabel.setBounds(new Rectangle(new Point(30, 145), userLabel.getPreferredSize()));
+                searchPanel.add(inputUser);
+                inputUser.setBounds(100, 145, 90, 25);
+
+                //---- expirationLabel ----
+                expirationLabel.setText("\ub9c8\uac10\uc77c");
+                expirationLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 16));
+                searchPanel.add(expirationLabel);
+                expirationLabel.setBounds(new Rectangle(new Point(220, 145), expirationLabel.getPreferredSize()));
+                searchPanel.add(inputDate);
+                inputDate.setBounds(290, 145, 90, 25);
+
+                //---- searchBtn ----
+                searchBtn.setText("\uac80\uc0c9");
+                searchBtn.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 16));
+                searchBtn.addActionListener(e -> searchBtnActionPerformed(e));
+                searchPanel.add(searchBtn);
+                searchBtn.setBounds(205, 185, 100, searchBtn.getPreferredSize().height);
+
+                //---- dateExLabel ----
+                dateExLabel.setText("YYYY-MM-DD");
+                dateExLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.PLAIN, 14));
+                searchPanel.add(dateExLabel);
+                dateExLabel.setBounds(new Rectangle(new Point(385, 145), dateExLabel.getPreferredSize()));
+
+                { // compute preferred size
+                    Dimension preferredSize = new Dimension();
+                    for(int i = 0; i < searchPanel.getComponentCount(); i++) {
+                        Rectangle bounds = searchPanel.getComponent(i).getBounds();
+                        preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
+                        preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
+                    }
+                    Insets insets = searchPanel.getInsets();
+                    preferredSize.width += insets.right;
+                    preferredSize.height += insets.bottom;
+                    searchPanel.setMinimumSize(preferredSize);
+                    searchPanel.setPreferredSize(preferredSize);
+                }
+            }
+            searchFrameContentPane.add(searchPanel, BorderLayout.CENTER);
+            searchFrame.pack();
+            searchFrame.setLocationRelativeTo(searchFrame.getOwner());
+        }
+        // JFormDesigner - End of component initialization  //GEN-END:initComponents
+    }
+
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
+    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+    private JFrame searchFrame;
+    private JPanel searchPanel;
+    private JLabel typeLabel;
+    private JComboBox<String> typeComboBox;
+    private JLabel categoryLabel;
+    private JTextField inputCategory;
+    private JLabel priceLabel;
+    private JTextField inputMin;
+    private JLabel rangeLabel;
+    private JTextField inputMax;
+    private JLabel infoLabel;
+    private JTextField inputInfo;
+    private JLabel userLabel;
+    private JTextField inputUser;
+    private JLabel expirationLabel;
+    private JTextField inputDate;
+    private JButton searchBtn;
+    private JLabel dateExLabel;
+    // JFormDesigner - End of variables declaration  //GEN-END:variables
+}

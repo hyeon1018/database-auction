@@ -1,0 +1,155 @@
+JFDML JFormDesigner: "6.0.4.1.172" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "searchFrame"
+			"title": "Search"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+				name: "searchPanel"
+				"preferredSize": new java.awt.Dimension( 510, 270 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "typeLabel"
+					"text": "판매 유형"
+					"font": new java.awt.Font( "맑은 고딕", 1, 16 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 30
+					"y": 20
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "typeComboBox"
+					"model": new javax.swing.DefaultComboBoxModel {
+						selectedItem: "Sell"
+						addElement( "Sell" )
+						addElement( "Bid" )
+					}
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 120
+					"y": 20
+					"height": 25
+					"width": 50
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "categoryLabel"
+					"text": "분류"
+					"font": new java.awt.Font( "나눔고딕", 1, 16 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 260
+					"y": 20
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "inputCategory"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 310
+					"y": 20
+					"width": 80
+					"height": 25
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "priceLabel"
+					"text": "가격"
+					"font": new java.awt.Font( "맑은 고딕", 1, 16 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 30
+					"y": 60
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "inputMin"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 85
+					"y": 60
+					"width": 100
+					"height": 25
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "rangeLabel"
+					"text": "~"
+					"font": new java.awt.Font( "굴림", 1, 16 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 205
+					"y": 65
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "inputMax"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 240
+					"y": 60
+					"width": 100
+					"height": 25
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "infoLabel"
+					"text": "물품 정보"
+					"font": new java.awt.Font( "맑은 고딕", 1, 16 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 30
+					"y": 105
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "inputInfo"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 120
+					"y": 105
+					"width": 355
+					"height": 25
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "userLabel"
+					"text": "사용자"
+					"font": new java.awt.Font( "맑은 고딕", 1, 16 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 30
+					"y": 145
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "inputUser"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 100
+					"y": 145
+					"width": 90
+					"height": 25
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "expirationLabel"
+					"text": "마감일"
+					"font": new java.awt.Font( "맑은 고딕", 1, 16 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 220
+					"y": 145
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "inputDate"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 290
+					"y": 145
+					"width": 90
+					"height": 25
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "searchBtn"
+					"text": "검색"
+					"font": new java.awt.Font( "맑은 고딕", 1, 16 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "searchBtnActionPerformed", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 205
+					"y": 185
+					"width": 100
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "dateExLabel"
+					"text": "YYYY-MM-DD"
+					"font": new java.awt.Font( "맑은 고딕", 0, 14 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 385
+					"y": 145
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 510, 270 )
+		} )
+	}
+}

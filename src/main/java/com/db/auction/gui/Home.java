@@ -84,6 +84,7 @@ public class Home {
         //======== mainMenu ========
         {
             mainMenu.setTitle("Auction System");
+            mainMenu.setResizable(false);
             Container mainMenuContentPane = mainMenu.getContentPane();
             mainMenuContentPane.setLayout(new BorderLayout());
 
@@ -150,7 +151,7 @@ public class Home {
                 titleLabel.setBounds(new Rectangle(new Point(35, 25), titleLabel.getPreferredSize()));
 
                 //---- accountLabel ----
-                accountLabel.setText("ID (Name)");
+                accountLabel.setText("ID");
                 accountLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 14));
                 accountLabel.setHorizontalAlignment(SwingConstants.RIGHT);
                 accountLabel.addMouseListener(new MouseAdapter() {
@@ -212,7 +213,7 @@ public class Home {
                 }
             }
             mainMenuContentPane.add(mainPanel, BorderLayout.CENTER);
-            mainMenu.pack();
+            mainMenu.setSize(700, 620);
             mainMenu.setLocationRelativeTo(mainMenu.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents

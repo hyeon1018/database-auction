@@ -1,15 +1,11 @@
 package com.db.auction.gui;
 
-import com.db.auction.Database;
-
 import java.awt.*;
 import java.awt.event.*;
-import java.util.List;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
-import javax.xml.crypto.Data;
 
 public class Home {
     public Home(String userId){
@@ -17,16 +13,14 @@ public class Home {
         setTable();
         mainMenu.setVisible(true);
 
+
         currentUser = userId;
         accountLabel.setText(currentUser);
     }
 
     private void setTable(){
         DefaultTableModel model = (DefaultTableModel) itemTable.getModel();
-        List<String []> itemList = Database.getItemList();
-        for(String[] item : itemList){
-            model.addRow(item);
-        }
+        model.addRow(new Object[]{"Column 1", "Column 2", "Column 3"});
         //deal_type item_id category price item_info user_id expire_time
         //TODO 테이블 row 추가
 
@@ -60,9 +54,13 @@ public class Home {
         new RegisterItemFrame(currentUser);
     }
 
+    private void button1ActionPerformed(ActionEvent e) {
+        // TODO 물품 목록 새로고침
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Kim Dohyeon
+        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
         mainMenu = new JFrame();
         mainPanel = new JPanel();
         listScroll = new JScrollPane();
@@ -73,6 +71,7 @@ public class Home {
         sellListBtn = new JButton();
         buyListBtn = new JButton();
         regItemBtn = new JButton();
+        button1 = new JButton();
 
         //======== mainMenu ========
         {
@@ -157,31 +156,38 @@ public class Home {
 
                 //---- searchBtn ----
                 searchBtn.setText("\uac80\uc0c9");
-                searchBtn.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 16));
+                searchBtn.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 15));
                 searchBtn.addActionListener(e -> searchBtnActionPerformed(e));
                 mainPanel.add(searchBtn);
-                searchBtn.setBounds(65, 80, 120, 40);
+                searchBtn.setBounds(35, 80, 100, 40);
 
                 //---- sellListBtn ----
                 sellListBtn.setText("\ud310\ub9e4 \ubaa9\ub85d");
-                sellListBtn.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 16));
+                sellListBtn.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 15));
                 sellListBtn.addActionListener(e -> sellListBtnActionPerformed(e));
                 mainPanel.add(sellListBtn);
-                sellListBtn.setBounds(215, 80, 120, 40);
+                sellListBtn.setBounds(165, 80, 100, 40);
 
                 //---- buyListBtn ----
                 buyListBtn.setText("\uad6c\ub9e4 \uc774\ub825");
-                buyListBtn.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 16));
+                buyListBtn.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 15));
                 buyListBtn.addActionListener(e -> buyListBtnActionPerformed(e));
                 mainPanel.add(buyListBtn);
-                buyListBtn.setBounds(365, 80, 120, 40);
+                buyListBtn.setBounds(300, 80, 100, 40);
 
                 //---- regItemBtn ----
                 regItemBtn.setText("\ubb3c\ud488 \ub4f1\ub85d");
-                regItemBtn.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 16));
+                regItemBtn.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 15));
                 regItemBtn.addActionListener(e -> regItemBtnActionPerformed(e));
                 mainPanel.add(regItemBtn);
-                regItemBtn.setBounds(515, 80, 120, 40);
+                regItemBtn.setBounds(435, 80, 100, 40);
+
+                //---- button1 ----
+                button1.setText("\uc0c8\ub85c\uace0\uce68");
+                button1.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 15));
+                button1.addActionListener(e -> button1ActionPerformed(e));
+                mainPanel.add(button1);
+                button1.setBounds(565, 80, 100, 40);
 
                 { // compute preferred size
                     Dimension preferredSize = new Dimension();
@@ -207,7 +213,7 @@ public class Home {
     String currentUser;
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Kim Dohyeon
+    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
     private JFrame mainMenu;
     private JPanel mainPanel;
     private JScrollPane listScroll;
@@ -218,5 +224,6 @@ public class Home {
     private JButton sellListBtn;
     private JButton buyListBtn;
     private JButton regItemBtn;
+    private JButton button1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

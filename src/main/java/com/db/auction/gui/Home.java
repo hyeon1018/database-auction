@@ -85,6 +85,7 @@ public class Home {
         {
             mainMenu.setTitle("Auction System");
             mainMenu.setResizable(false);
+            mainMenu.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
             Container mainMenuContentPane = mainMenu.getContentPane();
             mainMenuContentPane.setLayout(new BorderLayout());
 

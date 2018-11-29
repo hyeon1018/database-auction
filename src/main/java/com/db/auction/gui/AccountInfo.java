@@ -67,6 +67,7 @@ public class AccountInfo {
         {
             regDialog.setTitle("Register");
             regDialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            regDialog.setResizable(false);
             regDialog.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosing(WindowEvent e) {
@@ -188,7 +189,7 @@ public class AccountInfo {
                 AddrScroll.setBounds(95, 170, 365, 50);
             }
             regDialogContentPane.add(regPanel, BorderLayout.CENTER);
-            regDialog.pack();
+            regDialog.setSize(500, 320);
             regDialog.setLocationRelativeTo(regDialog.getOwner());
         }
 

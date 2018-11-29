@@ -35,6 +35,8 @@ public class SearchResult {
         //======== resultFrame ========
         {
             resultFrame.setTitle("Search Result");
+            resultFrame.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
+            resultFrame.setResizable(false);
             Container resultFrameContentPane = resultFrame.getContentPane();
             resultFrameContentPane.setLayout(new BorderLayout());
 
@@ -109,7 +111,7 @@ public class SearchResult {
                 }
             }
             resultFrameContentPane.add(resultPanel, BorderLayout.CENTER);
-            resultFrame.pack();
+            resultFrame.setSize(675, 495);
             resultFrame.setLocationRelativeTo(resultFrame.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents

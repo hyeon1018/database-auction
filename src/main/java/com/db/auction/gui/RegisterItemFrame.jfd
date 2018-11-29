@@ -6,6 +6,7 @@ new FormModel {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 			name: "this"
 			"$sizePolicy": 1
+			"resizable": false
 			add( new FormComponent( "javax.swing.JComboBox" ) {
 				name: "categoryComboBox"
 			}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {

@@ -6,6 +6,9 @@ new FormModel {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "searchFrame"
 			"title": "Search"
+			"resizable": false
+			"$sizePolicy": 1
+			"modalExclusionType": enum java.awt.Dialog$ModalExclusionType APPLICATION_EXCLUDE
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 				name: "searchPanel"
 				"preferredSize": new java.awt.Dimension( 510, 270 )

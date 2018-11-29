@@ -8,6 +8,7 @@ new FormModel {
 			"title": "Auction System"
 			"$sizePolicy": 1
 			"resizable": false
+			"modalExclusionType": enum java.awt.Dialog$ModalExclusionType APPLICATION_EXCLUDE
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 				name: "mainPanel"
 				"preferredSize": new java.awt.Dimension( 700, 620 )

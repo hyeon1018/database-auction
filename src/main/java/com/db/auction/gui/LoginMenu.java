@@ -149,7 +149,7 @@ public class LoginMenu {
                 registerLabel.setBounds(250, 85, 95, registerLabel.getPreferredSize().height);
             }
             mainFrameContentPane.add(mainPanel, BorderLayout.CENTER);
-            mainFrame.pack();
+            mainFrame.setSize(400, 160);
             mainFrame.setLocationRelativeTo(mainFrame.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents

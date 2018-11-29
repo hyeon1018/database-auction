@@ -68,7 +68,7 @@ public class RegisterItemFrame extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Kim Dohyeon
+        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
         categoryComboBox = new JComboBox();
         JLabel label3 = new JLabel();
         JLabel label4 = new JLabel();
@@ -90,6 +90,7 @@ public class RegisterItemFrame extends JFrame {
         dealTypeGroup = new ButtonGroup();
 
         //======== this ========
+        setResizable(false);
         Container contentPane = getContentPane();
         contentPane.setLayout(null);
         contentPane.add(categoryComboBox);
@@ -217,7 +218,7 @@ public class RegisterItemFrame extends JFrame {
     private DefaultListModel<String> imageListModel = new DefaultListModel<>();
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Kim Dohyeon
+    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
     private JComboBox categoryComboBox;
     private JTextField priceField;
     private JTextField shippingPriceField;

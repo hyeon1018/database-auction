@@ -1,37 +1,39 @@
 package com.db.auction.gui;
 
+import com.db.auction.Database;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
 
 public class Home {
     public Home(String userId){
         initComponents();
         setTable();
+        itemTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                itemTableMouseClicked(e);
+            }
+        });
+
         mainMenu.setVisible(true);
-
-
         currentUser = userId;
         accountLabel.setText(currentUser);
+
     }
 
     private void setTable(){
         DefaultTableModel model = (DefaultTableModel) itemTable.getModel();
-        model.addRow(new Object[]{"Column 1", "Column 2", "Column 3"});
-        //deal_type item_id category price item_info user_id expire_time
-        //TODO 테이블 row 추가
-
-        itemTable.getSelectionModel().addListSelectionListener((new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if(itemTable.getSelectedRow() > -1 ){
-                    //TODO row에 대한 상품 정보 창으로 연결
-                }
-            }
-        }));
+        while(model.getRowCount() > 0){
+            model.removeRow(0);
+        }
+        List<String []> itemList = Database.getItemList();
+        for(String[] item : itemList){
+            model.addRow(item);
+        }
     }
 
     private void accountLabelMouseClicked(MouseEvent e) {
@@ -55,7 +57,13 @@ public class Home {
     }
 
     private void refreshBtnActionPerformed(ActionEvent e) {
-        // TODO 물품 목록 새로고침
+        setTable();
+    }
+
+    private void itemTableMouseClicked(MouseEvent e){
+        if(e.getClickCount() == 2){
+            System.out.println(itemTable.getSelectedRow());
+        }
     }
 
     private void initComponents() {

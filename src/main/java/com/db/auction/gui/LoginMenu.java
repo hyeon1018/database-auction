@@ -5,8 +5,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.SQLException;
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.xml.crypto.Data;
 /*
  * Created by JFormDesigner on Tue Nov 27 11:04:30 KST 2018
  */

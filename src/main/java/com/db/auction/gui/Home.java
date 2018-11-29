@@ -54,7 +54,7 @@ public class Home {
         new RegisterItemFrame(currentUser);
     }
 
-    private void button1ActionPerformed(ActionEvent e) {
+    private void refreshBtnActionPerformed(ActionEvent e) {
         // TODO 물품 목록 새로고침
     }
 
@@ -71,7 +71,7 @@ public class Home {
         sellListBtn = new JButton();
         buyListBtn = new JButton();
         regItemBtn = new JButton();
-        button1 = new JButton();
+        refreshBtn = new JButton();
 
         //======== mainMenu ========
         {
@@ -182,12 +182,12 @@ public class Home {
                 mainPanel.add(regItemBtn);
                 regItemBtn.setBounds(435, 80, 100, 40);
 
-                //---- button1 ----
-                button1.setText("\uc0c8\ub85c\uace0\uce68");
-                button1.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 15));
-                button1.addActionListener(e -> button1ActionPerformed(e));
-                mainPanel.add(button1);
-                button1.setBounds(565, 80, 100, 40);
+                //---- refreshBtn ----
+                refreshBtn.setText("\uc0c8\ub85c\uace0\uce68");
+                refreshBtn.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 15));
+                refreshBtn.addActionListener(e -> refreshBtnActionPerformed(e));
+                mainPanel.add(refreshBtn);
+                refreshBtn.setBounds(565, 80, 100, 40);
 
                 { // compute preferred size
                     Dimension preferredSize = new Dimension();
@@ -224,6 +224,6 @@ public class Home {
     private JButton sellListBtn;
     private JButton buyListBtn;
     private JButton regItemBtn;
-    private JButton button1;
+    private JButton refreshBtn;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

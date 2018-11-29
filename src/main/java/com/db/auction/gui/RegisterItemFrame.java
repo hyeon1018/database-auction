@@ -16,8 +16,8 @@ import javax.swing.*;
 /**
  * @author Kim Dohyeon
  */
-public class registerItemFrame extends JFrame {
-    public registerItemFrame(String currentUser) {
+public class RegisterItemFrame extends JFrame {
+    public RegisterItemFrame(String currentUser) {
         this.currentUser = currentUser;
         initComponents();
         initData();

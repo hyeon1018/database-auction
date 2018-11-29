@@ -3,17 +3,19 @@ package com.db.auction.gui;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
-import javax.swing.table.TableColumn;
 
 public class Home {
-    public Home(){
+    public Home(String userId){
         initComponents();
         setTable();
-        accountLabel.setText(/*사용자 id + "( "+ 사용자 name + " )"*/"");
+        mainMenu.setVisible(true);
+
+
+        currentUser = userId;
+        accountLabel.setText(currentUser);
     }
 
     private void setTable(){
@@ -49,7 +51,7 @@ public class Home {
     }
 
     private void regItemBtnActionPerformed(ActionEvent e) {
-        // TODO 물품 등록 창으로 연결
+        new RegisterItemFrame(currentUser);
     }
 
     private void initComponents() {
@@ -170,6 +172,8 @@ public class Home {
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
+
+    String currentUser;
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Yu Hwan Jung

@@ -21,18 +21,43 @@ public class registerItemFrame extends JFrame {
         this.setVisible(true);
     }
 
-    private void button3MouseClicked(MouseEvent e) {
-        // TODO Query.
-    }
-
     private void initData(){
         //set Combobox data with query result.
         String cate [] = Database.getCategorys();
         for(int i = 0; i < cate.length; i++){
             categoryComboBox.addItem(cate[i]);
+
+        }
+        imageList.setModel(dirListModel);
+    }
+
+    private void submitButtonListener(MouseEvent e) {
+        // TODO Query.
+        System.out.println("User : " + currentUser);
+        System.out.println("Category : " + categoryComboBox.getSelectedItem());
+        System.out.println("Price : " + priceField.getText());
+        System.out.println("Shiping Price : " + shippingPriceField.getText());
+        System.out.println("Deal Type : " + dealTypeGroup.getSelection().getActionCommand());
+        System.out.println("Image : " + currentUser);
+        System.out.println("Info : " + itemInfoText.getText());
+        //1. query-item
+        //2. upload with time + index.*
+        //3. query-image
+        //4. goto 2;
+    }
+
+    private void registerImageButtonListener(MouseEvent e) {
+        // TODO add your code here
+        JFileChooser jFileChooser = new JFileChooser();
+        int rtn = jFileChooser.showOpenDialog(this);
+        if(rtn == JFileChooser.APPROVE_OPTION){
+            dirListModel.addElement(jFileChooser.getSelectedFile().getAbsolutePath());
         }
     }
 
+    private void deleteImageButtonListener(MouseEvent e) {
+        dirListModel.remove(imageList.getSelectedIndex());
+    }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
@@ -44,17 +69,18 @@ public class registerItemFrame extends JFrame {
         JLabel label5 = new JLabel();
         shippingPriceField = new JTextField();
         JLabel label6 = new JLabel();
-        radioButton1 = new JRadioButton();
-        radioButton2 = new JRadioButton();
+        JRadioButton radioButton1 = new JRadioButton();
+        JRadioButton radioButton2 = new JRadioButton();
         JLabel label7 = new JLabel();
         scrollPane1 = new JScrollPane();
-        list1 = new JList<>();
-        button1 = new JButton();
-        button2 = new JButton();
+        imageList = new JList<>();
+        registerImageButton = new JButton();
+        deleteImageGroup = new JButton();
         JLabel label8 = new JLabel();
         scrollPane2 = new JScrollPane();
-        editorPane1 = new JEditorPane();
-        button3 = new JButton();
+        itemInfoText = new JEditorPane();
+        submitButton = new JButton();
+        dealTypeGroup = new ButtonGroup();
 
         //======== this ========
         Container contentPane = getContentPane();
@@ -88,11 +114,13 @@ public class registerItemFrame extends JFrame {
 
         //---- radioButton1 ----
         radioButton1.setText("\ud310\ub9e4");
+        radioButton1.setActionCommand("Sell");
         contentPane.add(radioButton1);
         radioButton1.setBounds(80, 100, 75, 30);
 
         //---- radioButton2 ----
         radioButton2.setText("\uacbd\ub9e4");
+        radioButton2.setActionCommand("Bid");
         contentPane.add(radioButton2);
         radioButton2.setBounds(155, 100, 70, 30);
 
@@ -103,20 +131,32 @@ public class registerItemFrame extends JFrame {
 
         //======== scrollPane1 ========
         {
-            scrollPane1.setViewportView(list1);
+            scrollPane1.setViewportView(imageList);
         }
         contentPane.add(scrollPane1);
         scrollPane1.setBounds(30, 160, 330, 70);
 
-        //---- button1 ----
-        button1.setText("\ub4f1\ub85d");
-        contentPane.add(button1);
-        button1.setBounds(240, 135, 60, 25);
+        //---- registerImageButton ----
+        registerImageButton.setText("\ub4f1\ub85d");
+        registerImageButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                registerImageButtonListener(e);
+            }
+        });
+        contentPane.add(registerImageButton);
+        registerImageButton.setBounds(240, 135, 60, 25);
 
-        //---- button2 ----
-        button2.setText("\uc0ad\uc81c");
-        contentPane.add(button2);
-        button2.setBounds(300, 135, 60, 25);
+        //---- deleteImageGroup ----
+        deleteImageGroup.setText("\uc0ad\uc81c");
+        deleteImageGroup.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                deleteImageButtonListener(e);
+            }
+        });
+        contentPane.add(deleteImageGroup);
+        deleteImageGroup.setBounds(300, 135, 60, 25);
 
         //---- label8 ----
         label8.setText("\uc81c\ud488 \uc124\uba85");
@@ -126,23 +166,23 @@ public class registerItemFrame extends JFrame {
         //======== scrollPane2 ========
         {
 
-            //---- editorPane1 ----
-            editorPane1.setText("[\uc81c\ud488\uc124\uba85]");
-            scrollPane2.setViewportView(editorPane1);
+            //---- itemInfoText ----
+            itemInfoText.setText("[\uc81c\ud488\uc124\uba85]");
+            scrollPane2.setViewportView(itemInfoText);
         }
         contentPane.add(scrollPane2);
         scrollPane2.setBounds(30, 265, 325, 140);
 
-        //---- button3 ----
-        button3.setText("\uc81c\ud488 \ub4f1\ub85d");
-        button3.addMouseListener(new MouseAdapter() {
+        //---- submitButton ----
+        submitButton.setText("\uc81c\ud488 \ub4f1\ub85d");
+        submitButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                button3MouseClicked(e);
+                submitButtonListener(e);
             }
         });
-        contentPane.add(button3);
-        button3.setBounds(265, 415, 90, 30);
+        contentPane.add(submitButton);
+        submitButton.setBounds(265, 415, 90, 30);
 
         { // compute preferred size
             Dimension preferredSize = new Dimension();
@@ -159,24 +199,28 @@ public class registerItemFrame extends JFrame {
         }
         setSize(400, 500);
         setLocationRelativeTo(getOwner());
+
+        //---- dealTypeGroup ----
+        dealTypeGroup.add(radioButton1);
+        dealTypeGroup.add(radioButton2);
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
-
     private String currentUser;
+    private DefaultListModel<String> dirListModel = new DefaultListModel<>();
+
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Kim Dohyeon
     private JComboBox categoryComboBox;
     private JTextField priceField;
     private JTextField shippingPriceField;
-    private JRadioButton radioButton1;
-    private JRadioButton radioButton2;
     private JScrollPane scrollPane1;
-    private JList<String> list1;
-    private JButton button1;
-    private JButton button2;
+    private JList<String> imageList;
+    private JButton registerImageButton;
+    private JButton deleteImageGroup;
     private JScrollPane scrollPane2;
-    private JEditorPane editorPane1;
-    private JButton button3;
+    private JEditorPane itemInfoText;
+    private JButton submitButton;
+    private ButtonGroup dealTypeGroup;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

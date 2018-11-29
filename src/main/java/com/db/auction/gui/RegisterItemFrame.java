@@ -53,7 +53,6 @@ public class RegisterItemFrame extends JFrame {
     }
 
     private void registerImageButtonListener(MouseEvent e) {
-        // TODO add your code here
         JFileChooser jFileChooser = new JFileChooser();
         int rtn = jFileChooser.showOpenDialog(this);
         if(rtn == JFileChooser.APPROVE_OPTION){

@@ -1,11 +1,15 @@
 package com.db.auction.gui;
 
+import com.db.auction.Database;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
+import javax.xml.crypto.Data;
 
 public class Home {
     public Home(String userId){
@@ -13,14 +17,16 @@ public class Home {
         setTable();
         mainMenu.setVisible(true);
 
-
         currentUser = userId;
         accountLabel.setText(currentUser);
     }
 
     private void setTable(){
         DefaultTableModel model = (DefaultTableModel) itemTable.getModel();
-        model.addRow(new Object[]{"Column 1", "Column 2", "Column 3"});
+        List<String []> itemList = Database.getItemList();
+        for(String[] item : itemList){
+            model.addRow(item);
+        }
         //deal_type item_id category price item_info user_id expire_time
         //TODO 테이블 row 추가
 
@@ -56,7 +62,7 @@ public class Home {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+        // Generated using JFormDesigner Evaluation license - Kim Dohyeon
         mainMenu = new JFrame();
         mainPanel = new JPanel();
         listScroll = new JScrollPane();
@@ -99,7 +105,32 @@ public class Home {
                         new String[] {
                             "\uc720\ud615", "\ubb3c\ud488 ID", "\ubd84\ub958", "\uac00\uaca9", "\ubb3c\ud488 \uc815\ubcf4", "\uc0ac\uc6a9\uc790", "\ub9c8\uac10\uc77c"
                         }
-                    ));
+                    ) {
+                        boolean[] columnEditable = new boolean[] {
+                            false, false, false, false, false, false, false
+                        };
+                        @Override
+                        public boolean isCellEditable(int rowIndex, int columnIndex) {
+                            return columnEditable[columnIndex];
+                        }
+                    });
+                    {
+                        TableColumnModel cm = itemTable.getColumnModel();
+                        cm.getColumn(0).setMaxWidth(40);
+                        cm.getColumn(0).setPreferredWidth(40);
+                        cm.getColumn(1).setMaxWidth(60);
+                        cm.getColumn(1).setPreferredWidth(60);
+                        cm.getColumn(2).setMaxWidth(30);
+                        cm.getColumn(2).setPreferredWidth(30);
+                        cm.getColumn(3).setMaxWidth(70);
+                        cm.getColumn(3).setPreferredWidth(70);
+                        cm.getColumn(4).setMaxWidth(1000);
+                        cm.getColumn(4).setPreferredWidth(100);
+                        cm.getColumn(5).setMaxWidth(80);
+                        cm.getColumn(5).setPreferredWidth(80);
+                        cm.getColumn(6).setMaxWidth(70);
+                        cm.getColumn(6).setPreferredWidth(70);
+                    }
                     listScroll.setViewportView(itemTable);
                 }
                 mainPanel.add(listScroll);
@@ -176,7 +207,7 @@ public class Home {
     String currentUser;
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+    // Generated using JFormDesigner Evaluation license - Kim Dohyeon
     private JFrame mainMenu;
     private JPanel mainPanel;
     private JScrollPane listScroll;

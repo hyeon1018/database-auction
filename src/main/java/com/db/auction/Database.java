@@ -127,4 +127,27 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    public static List<String []> getItemList(){
+        List<String []> itemList = new ArrayList<>();
+        String itemListSQL = "SELECT deal_type, item_id, category, price, item_info, user_id, expire_time FROM Item";
+        try(PreparedStatement pstat = connection.prepareStatement(itemListSQL)){
+            ResultSet rs = pstat.executeQuery();
+            while(rs.next()){
+                String[] data = new String[7];
+                data[0] = rs.getString(1);
+                data[1] = String.valueOf(rs.getInt(2));
+                data[2] = rs.getString(3);
+                data[3] = String.valueOf(rs.getInt(4));
+                data[4] = rs.getString(5);
+                data[5] = rs.getString(6);
+                data[6] = (rs.getDate(7) != null ? rs.getDate(7).toString():"");
+                itemList.add(data);
+            }
+        }catch (SQLException se){
+            se.printStackTrace();
+        }
+
+        return itemList;
+    };
 }

@@ -197,4 +197,35 @@ public class Database {
 
         return itemList;
     }
+
+    public static List<String []>  getLogListbyBuyer(String user_id){
+        List<String []> LogList = new ArrayList<>();
+        String LogListbyBuyerSQL = "WITH my_address AS (SELECT address, address_alias FROM Address WHERE user_id = ?)," +
+                "my_deal AS (SELECT time, item_id, state, address_alias FROM Deal WHERE user_id = ?)," +
+                "item_dealer AS (SELECT item_id, user_id, name, phone_number, price FROM Item JOIN User USING (user_id))" +
+                "SELECT time, user_id, name, phone_number, item_id, price, address, state " +
+                "FROM item_dealer JOIN (my_deal JOIN my_address USING (address_alias)) USING (item_id)";
+        try(PreparedStatement pstat = connection.prepareStatement(LogListbyBuyerSQL)){
+            pstat.setString(1, user_id);
+            pstat.setString(2, user_id);
+            ResultSet rs = pstat.executeQuery();
+            while(rs.next()) {
+                String[] data = new String[8];
+                data[0] = rs.getDate(1).toString();
+                data[1] = rs.getString(2);
+                data[2] = rs.getString(3);
+                data[3] = rs.getString(4);
+                data[4] = String.valueOf(rs.getInt(5));
+                data[5] = String.valueOf(rs.getInt(6));
+                data[6] = rs.getString(7);
+                data[7] = rs.getString(8);
+                LogList.add(data);
+            }
+        }catch (SQLException se){
+            se.printStackTrace();
+        }
+
+        return LogList;
+        // 구매자가 구매 내역 조회하는 Query문.
+    }
 }

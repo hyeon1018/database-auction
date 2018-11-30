@@ -48,9 +48,7 @@ public class Home {
         // TODO 판매 목록 창으로 연결
     }
 
-    private void buyListBtnActionPerformed(ActionEvent e) {
-        // TODO 구매 목록 창으로 연결
-    }
+    private void buyListBtnActionPerformed(ActionEvent e) { new BuyerLog(currentUser); }
 
     private void regItemBtnActionPerformed(ActionEvent e) {
         new RegisterItemFrame(currentUser);

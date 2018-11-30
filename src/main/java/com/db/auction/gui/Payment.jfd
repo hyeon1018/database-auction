@@ -1,0 +1,158 @@
+JFDML JFormDesigner: "6.0.4.1.172" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "payFrame"
+			"$sizePolicy": 1
+			"title": "Payment"
+			"modalityType": enum java.awt.Dialog$ModalityType APPLICATION_MODAL
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
+				name: "payPanel"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "itemLabel"
+					"text": "구매 물품"
+					"font": new java.awt.Font( "맑은 고딕", 1, 14 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 25
+					"y": 25
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "payScroll"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "itemSelected"
+						"preferredScrollableViewportSize": new java.awt.Dimension( 630, 420 )
+						"selectionMode": 1
+						"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector, new java.util.Vector {
+							add( "유형" )
+							add( "물품 ID" )
+							add( "분류" )
+							add( "물품 정보" )
+							add( "사용자" )
+							add( "마감일" )
+						}, new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						}, new java.util.Vector {
+							add( false )
+							add( false )
+							add( null )
+							add( false )
+							add( false )
+							add( false )
+						}, new java.util.Vector {
+							add( new com.jformdesigner.model.SwingTableColumn( null, 40, 0, 40, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 60, 0, 60, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 40, 0, 40, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 100, 0, 1000, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 80, 0, 80, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 70, 0, 70, true ) )
+						} )
+						"rowSelectionAllowed": false
+					} )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 25
+					"y": 55
+					"width": 495
+					"height": 45
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "priceLabel"
+					"text": "가격:"
+					"font": new java.awt.Font( "맑은 고딕", 1, 14 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 385
+					"y": 110
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "totalPrice"
+					"text": "\\0"
+					"font": new java.awt.Font( "맑은 고딕", 1, 14 )
+					"horizontalAlignment": 4
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 415
+					"y": 110
+					"width": 105
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "addrLabel"
+					"text": "주소"
+					"font": new java.awt.Font( "맑은 고딕", 1, 14 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 25
+					"y": 125
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "addrComboBox"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 25
+					"y": 155
+					"width": 495
+					"height": 25
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "inputAddr"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 25
+					"y": 190
+					"width": 495
+					"height": 25
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "proceedBtn"
+					"text": "구매 진행"
+					"font": new java.awt.Font( "맑은 고딕", 1, 12 )
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "proceedBtnActionPerformed", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 420
+					"y": 250
+					"width": 100
+					"height": 30
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "methodLabel"
+					"text": "결제 수단"
+					"font": new java.awt.Font( "맑은 고딕", 1, 14 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 25
+					"y": 225
+				} )
+				add( new FormComponent( "javax.swing.JComboBox" ) {
+					name: "cardComboBox"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 25
+					"y": 255
+					"width": 100
+					"height": 25
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "cardNoLabel"
+					"text": "카드 번호"
+					"font": new java.awt.Font( "맑은 고딕", 1, 14 )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 135
+					"y": 225
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "inputCardNo"
+					"text": "0000 0000 0000 0000 00/00 000"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 135
+					"y": 255
+					"width": 200
+					"height": 25
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 550, 345 )
+		} )
+	}
+}

@@ -10,6 +10,7 @@ import com.db.auction.ImageFTP;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.xml.crypto.Data;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,7 +51,6 @@ public class itemViewFrame extends JFrame {
     }
 
     private void updateImage(){
-        //TODO update Image'
         imageLabel.setIcon(imageList.get(imageIndex));
         if(imageIndex <= 0){
             prevImageButton.setEnabled(false);
@@ -67,7 +67,6 @@ public class itemViewFrame extends JFrame {
     private void prevImageButtonActionPerformed(ActionEvent e) {
         imageIndex--;
         updateImage();
-
     }
 
     private void nextImageButtonActionPerformed(ActionEvent e) {
@@ -77,9 +76,11 @@ public class itemViewFrame extends JFrame {
 
     private void submitButtonActionPerformed(ActionEvent e) {
         if(dealTypeLabel.getText().equals("Bid")){
-            //TODO 입찰으로오오오오.
+            String bidPrice = JOptionPane.showInputDialog("입찰 금액을 작성해 주세요");
+            Database.bidItem(currentUser, currentItem, Integer.parseInt(bidPrice));
+            this.dispose();
         }else if(dealTypeLabel.getText().equals("Sell")){
-            //TODO 구매창으로오오오오오.
+            //TODO connect to dealFrame
         }
     }
 

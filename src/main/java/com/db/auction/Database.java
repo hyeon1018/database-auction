@@ -233,4 +233,16 @@ public class Database {
 
         return imageDirs;
     }
+
+    public static void bidItem(String userId, String itemId, int bidPrice){
+        String bidSQL = "INSERT INTO Bid Values(?,?,now(),?);";
+        try(PreparedStatement pstat = connection.prepareStatement(bidSQL)){
+            pstat.setInt(1, Integer.parseInt(itemId));
+            pstat.setString(2, userId);
+            pstat.setInt(3, bidPrice);
+            pstat.execute();
+        }catch (SQLException se){
+            se.printStackTrace();
+        }
+    }
 }

@@ -198,37 +198,6 @@ public class Database {
         return itemList;
     }
 
-    public static List<String []>  getLogListbyBuyer(String user_id){
-        List<String []> LogList = new ArrayList<>();
-        String LogListbyBuyerSQL = "WITH my_address AS (SELECT address, address_alias FROM Address WHERE user_id = ?)," +
-                "my_deal AS (SELECT time, item_id, state, address_alias FROM Deal WHERE user_id = ?)," +
-                "item_dealer AS (SELECT item_id, user_id, name, phone_number, price FROM Item JOIN User USING (user_id))" +
-                "SELECT time, user_id, name, phone_number, item_id, price, address, state " +
-                "FROM item_dealer JOIN (my_deal JOIN my_address USING (address_alias)) USING (item_id)";
-        try(PreparedStatement pstat = connection.prepareStatement(LogListbyBuyerSQL)){
-            pstat.setString(1, user_id);
-            pstat.setString(2, user_id);
-            ResultSet rs = pstat.executeQuery();
-            while(rs.next()) {
-                String[] data = new String[8];
-                data[0] = rs.getDate(1).toString();
-                data[1] = rs.getString(2);
-                data[2] = rs.getString(3);
-                data[3] = rs.getString(4);
-                data[4] = String.valueOf(rs.getInt(5));
-                data[5] = String.valueOf(rs.getInt(6));
-                data[6] = rs.getString(7);
-                data[7] = rs.getString(8);
-                LogList.add(data);
-            }
-        }catch (SQLException se){
-            se.printStackTrace();
-        }
-
-        return LogList;
-        // 구매자가 구매 내역 조회하는 Query문.
-    }
-
     public static List<String []>  getLogListbySeller(String user_id){
         List<String []> LogList = new ArrayList<>();
         String LogListbySellerSQL = "WITH item_deal (time, user_id, item_id, item_price, address_alias, state) AS" +
@@ -260,4 +229,81 @@ public class Database {
         // 판매자가 판매 내역 조회하는 Query문.
     }
 
+    public static List<String []>  getLogListbyBuyer(String user_id){
+        List<String []> LogList = new ArrayList<>();
+        String LogListbyBuyerSQL = "WITH my_address AS (SELECT address, address_alias FROM Address WHERE user_id = ?)," +
+                "my_deal AS (SELECT time, item_id, state, address_alias FROM Deal WHERE user_id = ?)," +
+                "item_dealer AS (SELECT item_id, user_id, name, phone_number, price FROM Item JOIN User USING (user_id))" +
+                "SELECT time, user_id, name, phone_number, item_id, price, address, state " +
+                "FROM item_dealer JOIN (my_deal JOIN my_address USING (address_alias)) USING (item_id)";
+        try(PreparedStatement pstat = connection.prepareStatement(LogListbyBuyerSQL)){
+            pstat.setString(1, user_id);
+            pstat.setString(2, user_id);
+            ResultSet rs = pstat.executeQuery();
+            while(rs.next()) {
+                String[] data = new String[8];
+                data[0] = rs.getDate(1).toString();
+                data[1] = rs.getString(2);
+                data[2] = rs.getString(3);
+                data[3] = rs.getString(4);
+                data[4] = String.valueOf(rs.getInt(5));
+                data[5] = String.valueOf(rs.getInt(6));
+                data[6] = rs.getString(7);
+                data[7] = rs.getString(8);
+                LogList.add(data);
+            }
+        }catch (SQLException se){
+            se.printStackTrace();
+        }
+        return LogList;
+        // 구매자가 구매 내역 조회하는 Query문.
+    }
+  
+      public static String [] getItemInfo(String itemId){
+        String [] data = new String [5];
+        String getItemInfoSQL = "SELECT deal_type, item_id, category, price, delivery_fee, item_info, user_id FROM Item Where item_id = ?";
+        try(PreparedStatement pstat = connection.prepareStatement(getItemInfoSQL)){
+            pstat.setInt(1, Integer.parseInt(itemId));
+            ResultSet rs = pstat.executeQuery();
+            if(rs.first()){
+                data[0] = rs.getString(7);
+                data[1] = rs.getString(1);
+                data[2] = String.valueOf(rs.getInt(4));
+                data[3] = String.valueOf(rs.getInt(5));
+                data[4] = rs.getString(6);
+            }
+        }catch (SQLException se){
+            se.printStackTrace();
+        }
+        return data;
+        
+    }
+
+    public static List<String> getImageDirs(String itemId){
+        List<String> imageDirs = new ArrayList<>();
+        String getImageDirsSQL = "SELECT dir FROM Image WHERE item_id = ?";
+        try(PreparedStatement pstat = connection.prepareStatement(getImageDirsSQL)){
+            pstat.setInt(1, Integer.parseInt(itemId));
+            ResultSet rs = pstat.executeQuery();
+            while(rs.next()){
+                imageDirs.add(rs.getString(1));
+            }
+        }catch(SQLException se){
+            se.printStackTrace();
+        }
+
+        return imageDirs;
+    }
+
+    public static void bidItem(String userId, String itemId, int bidPrice){
+        String bidSQL = "INSERT INTO Bid Values(?,?,now(),?);";
+        try(PreparedStatement pstat = connection.prepareStatement(bidSQL)){
+            pstat.setInt(1, Integer.parseInt(itemId));
+            pstat.setString(2, userId);
+            pstat.setInt(3, bidPrice);
+            pstat.execute();
+        }catch (SQLException se){
+            se.printStackTrace();
+        }
+    }
 }

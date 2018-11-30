@@ -42,7 +42,7 @@ public class RegisterItemFrame extends JFrame {
         for(int i = 0 ; i < imageListModel.getSize(); i++){
             try {
                 File image = new File(imageListModel.get(i));
-                ImageFTP.uploadImage(image.getAbsolutePath(), image.getName());
+                ImageFTP.uploadImage(image.getAbsolutePath(), lastId + "_" + image.getName());
                 Database.insertImage(String.valueOf(lastId), String.valueOf(lastId) + "_" + image.getName());
             }catch(IOException ioe){
                 ioe.printStackTrace();

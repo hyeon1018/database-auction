@@ -51,7 +51,9 @@ public class itemViewFrame extends JFrame {
     }
 
     private void updateImage(){
-        imageLabel.setIcon(imageList.get(imageIndex));
+        if(imageList.size() > 0) {
+            imageLabel.setIcon(imageList.get(imageIndex));
+        }
         if(imageIndex <= 0){
             prevImageButton.setEnabled(false);
         }else{

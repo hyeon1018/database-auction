@@ -60,7 +60,8 @@ public class Home {
 
     private void itemTableMouseClicked(MouseEvent e){
         if(e.getClickCount() == 2){
-            System.out.println(itemTable.getSelectedRow());
+            String selectedItemId = (String)itemTable.getValueAt(itemTable.getSelectedRow(), 1);
+            new itemViewFrame(currentUser, selectedItemId);
         }
     }
 

@@ -1,22 +1,36 @@
 package com.db.auction.gui;
 
+import com.db.auction.Database;
+
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.*;
+import java.util.List;
 import javax.swing.table.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class SearchResult {
 
-    public SearchResult(){
+    public SearchResult(String userId, List<String []> result){
+        initComponents();
+        currentUser = userId;
         resultTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 itemTableMouseClicked(e);
             }
         });
+        DefaultTableModel model = (DefaultTableModel) resultTable.getModel();
+        while(model.getRowCount() > 0){
+            model.removeRow(0);
+        }
+        for(String[] item : result){
+            model.addRow(item);
+        }
+
+        resultFrame.setVisible(true);
     }
+
 
     private void itemTableMouseClicked(MouseEvent e){
         if(e.getClickCount() == 2){
@@ -26,7 +40,7 @@ public class SearchResult {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+        // Generated using JFormDesigner Evaluation license - Kim Dohyeon
         resultFrame = new JDialog();
         resultPanel = new JPanel();
         resultScroll = new JScrollPane();
@@ -117,8 +131,10 @@ public class SearchResult {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
+    private String currentUser;
+
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+    // Generated using JFormDesigner Evaluation license - Kim Dohyeon
     private JDialog resultFrame;
     private JPanel resultPanel;
     private JScrollPane resultScroll;

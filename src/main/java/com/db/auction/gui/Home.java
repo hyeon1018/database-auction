@@ -30,7 +30,7 @@ public class Home {
         while(model.getRowCount() > 0){
             model.removeRow(0);
         }
-        List<String []> itemList = Database.getItemList();
+        List<String []> itemList = Database.searchItemList("", "", 0, 0, "", "", null);
         for(String[] item : itemList){
             model.addRow(item);
         }
@@ -41,7 +41,7 @@ public class Home {
     }
 
     private void searchBtnActionPerformed(ActionEvent e) {
-        // TODO 검색 창으로 연결
+        new Search(currentUser);
     }
 
     private void sellListBtnActionPerformed(ActionEvent e) {

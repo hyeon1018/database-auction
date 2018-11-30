@@ -1,13 +1,11 @@
 /*
- * Created by JFormDesigner on Fri Nov 30 01:56:19 KST 2018
+ * Created by JFormDesigner on Sat Dec 01 01:31:00 KST 2018
  */
 
 package com.db.auction.gui;
 
-import java.awt.event.*;
-import com.db.auction.Database;
 import java.awt.*;
-import java.util.List;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.border.*;
@@ -16,26 +14,13 @@ import javax.swing.table.*;
 /**
  * @author kangjungmo
  */
-public class BuyerLog extends JFrame {
-    public BuyerLog(String currentUser) {
-        this.currentUser = currentUser;
+public class SellerLog extends JFrame {
+    public SellerLog() {
         initComponents();
-        this.setVisible(true);
     }
 
     private void getLogButtonActionPerformed(ActionEvent e) {
-        getTable();;
-    }
-
-    private void getTable(){
-        DefaultTableModel logModel = (DefaultTableModel) LogTable.getModel();
-        while (logModel.getRowCount() > 0) {
-           logModel.removeRow(0);
-        }
-        List <String []> LogList = Database.getLogListbyBuyer(currentUser);
-        for(String[] log : LogList){
-            logModel.addRow(log);
-        }
+        // TODO add your code here
     }
 
     private void initComponents() {
@@ -50,7 +35,7 @@ public class BuyerLog extends JFrame {
         deleteLogButton = new JButton();
 
         //======== this ========
-        setTitle("BuyerDataLog");
+        setTitle("SellerDataLog");
         Container contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
@@ -126,8 +111,6 @@ public class BuyerLog extends JFrame {
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
-
-    private String currentUser;
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - kangjungmo

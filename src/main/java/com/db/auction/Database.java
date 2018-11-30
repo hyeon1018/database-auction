@@ -197,4 +197,40 @@ public class Database {
 
         return itemList;
     }
+
+    public static String [] getItemInfo(String itemId){
+        String [] data = new String [5];
+        String getItemInfoSQL = "SELECT deal_type, item_id, category, price, delivery_fee, item_info, user_id FROM Item Where item_id = ?";
+        try(PreparedStatement pstat = connection.prepareStatement(getItemInfoSQL)){
+            pstat.setInt(1, Integer.parseInt(itemId));
+            ResultSet rs = pstat.executeQuery();
+            if(rs.first()){
+                data[0] = rs.getString(7);
+                data[1] = rs.getString(1);
+                data[2] = String.valueOf(rs.getInt(4));
+                data[3] = String.valueOf(rs.getInt(5));
+                data[4] = rs.getString(6);
+            }
+        }catch (SQLException se){
+            se.printStackTrace();
+        }
+
+        return data;
+    }
+
+    public static List<String> getImageDirs(String itemId){
+        List<String> imageDirs = new ArrayList<>();
+        String getImageDirsSQL = "SELECT dir FROM Image WHERE item_id = ?";
+        try(PreparedStatement pstat = connection.prepareStatement(getImageDirsSQL)){
+            pstat.setInt(1, Integer.parseInt(itemId));
+            ResultSet rs = pstat.executeQuery();
+            while(rs.next()){
+                imageDirs.add(rs.getString(1));
+            }
+        }catch(SQLException se){
+            se.printStackTrace();
+        }
+
+        return imageDirs;
+    }
 }

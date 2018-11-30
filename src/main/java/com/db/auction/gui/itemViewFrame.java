@@ -4,17 +4,83 @@
 
 package com.db.auction.gui;
 
+import java.awt.event.*;
+import com.db.auction.Database;
+import com.db.auction.ImageFTP;
+
 import java.awt.*;
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Kim Dohyeon
  */
 public class itemViewFrame extends JFrame {
-    public itemViewFrame() {
+    public itemViewFrame(String userId, String itemId) {
         initComponents();
+        currentItem = itemId;
+        currentUser = userId;
 
+        this.updateData();
         this.setVisible(true);
+    }
+
+    private void updateData() {
+        String [] iteminfo = Database.getItemInfo(currentItem);
+        sellerLabel.setText(iteminfo[0]);
+        dealTypeLabel.setText(iteminfo[1]);
+        priceLabel.setText(iteminfo[2]);
+        shippingFeeLabel.setText(iteminfo[3]);
+        itemInfoPane.setText(iteminfo[4]);
+
+        List<String> imageDirs = Database.getImageDirs(currentItem);
+        imageList = new ArrayList<>();
+        for(String imageDir : imageDirs){
+            try {
+                imageList.add(ImageFTP.downloadImage(imageDir));
+            }catch (IOException ioe){
+
+            }
+        }
+        imageIndex = 0;
+        updateImage();
+    }
+
+    private void updateImage(){
+        //TODO update Image'
+        imageLabel.setIcon(imageList.get(imageIndex));
+        if(imageIndex <= 0){
+            prevImageButton.setEnabled(false);
+        }else{
+            prevImageButton.setEnabled(true);
+        }
+        if(imageIndex >= imageList.size() -1){
+            nextImageButton.setEnabled(false);
+        }else{
+            nextImageButton.setEnabled(true);
+        }
+    }
+
+    private void prevImageButtonActionPerformed(ActionEvent e) {
+        imageIndex--;
+        updateImage();
+
+    }
+
+    private void nextImageButtonActionPerformed(ActionEvent e) {
+        imageIndex++;
+        updateImage();
+    }
+
+    private void submitButtonActionPerformed(ActionEvent e) {
+        if(dealTypeLabel.getText().equals("Bid")){
+            //TODO 입찰으로오오오오.
+        }else if(dealTypeLabel.getText().equals("Sell")){
+            //TODO 구매창으로오오오오오.
+        }
     }
 
     private void initComponents() {
@@ -30,8 +96,8 @@ public class itemViewFrame extends JFrame {
         dealTypeLabel = new JLabel();
         priceLabel = new JLabel();
         shippingFeeLabel = new JLabel();
-        label9 = new JLabel();
-        prevImagaButton = new JButton();
+        imageLabel = new JLabel();
+        prevImageButton = new JButton();
         nextImageButton = new JButton();
         submitButton = new JButton();
 
@@ -86,23 +152,26 @@ public class itemViewFrame extends JFrame {
         contentPane.add(shippingFeeLabel);
         shippingFeeLabel.setBounds(100, 120, 245, 30);
 
-        //---- label9 ----
-        label9.setText("text");
-        contentPane.add(label9);
-        label9.setBounds(30, 305, 335, 150);
+        //---- imageLabel ----
+        imageLabel.setText("text");
+        contentPane.add(imageLabel);
+        imageLabel.setBounds(30, 305, 335, 150);
 
-        //---- prevImagaButton ----
-        prevImagaButton.setText("<");
-        contentPane.add(prevImagaButton);
-        prevImagaButton.setBounds(30, 465, 45, 30);
+        //---- prevImageButton ----
+        prevImageButton.setText("<");
+        prevImageButton.addActionListener(e -> prevImageButtonActionPerformed(e));
+        contentPane.add(prevImageButton);
+        prevImageButton.setBounds(30, 465, 45, 30);
 
         //---- nextImageButton ----
         nextImageButton.setText(">");
+        nextImageButton.addActionListener(e -> nextImageButtonActionPerformed(e));
         contentPane.add(nextImageButton);
         nextImageButton.setBounds(75, 465, 45, 30);
 
         //---- submitButton ----
         submitButton.setText("action");
+        submitButton.addActionListener(e -> submitButtonActionPerformed(e));
         contentPane.add(submitButton);
         submitButton.setBounds(270, 465, 97, 30);
 
@@ -112,6 +181,11 @@ public class itemViewFrame extends JFrame {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
+    private String currentUser;
+    private String currentItem;
+    private int imageIndex;
+    private List<ImageIcon> imageList;
+
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - Kim Dohyeon
     private JScrollPane scrollPane1;
@@ -120,8 +194,8 @@ public class itemViewFrame extends JFrame {
     private JLabel dealTypeLabel;
     private JLabel priceLabel;
     private JLabel shippingFeeLabel;
-    private JLabel label9;
-    private JButton prevImagaButton;
+    private JLabel imageLabel;
+    private JButton prevImageButton;
     private JButton nextImageButton;
     private JButton submitButton;
     // JFormDesigner - End of variables declaration  //GEN-END:variables

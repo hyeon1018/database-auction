@@ -44,9 +44,7 @@ public class Home {
         new Search(currentUser);
     }
 
-    private void sellListBtnActionPerformed(ActionEvent e) {
-        // TODO 판매 목록 창으로 연결
-    }
+    private void sellListBtnActionPerformed(ActionEvent e) { new SellerLog(currentUser); }
 
     private void buyListBtnActionPerformed(ActionEvent e) { new BuyerLog(currentUser); }
 

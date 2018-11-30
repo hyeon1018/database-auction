@@ -209,67 +209,6 @@ public class Database {
         return itemList;
     }
 
-    public static List<String []>  getLogListbySeller(String user_id){
-        List<String []> LogList = new ArrayList<>();
-        String LogListbySellerSQL = "WITH item_deal (time, user_id, item_id, item_price, address_alias, state) AS" +
-                "(SELECT time, Deal.user_id, item_id, price, address_alias, state FROM Deal Join Item USING (item_id) WHERE Item.user_id = ?)," +
-                "user_address AS (SELECT user_id, name, phone_number, address, address_alias FROM Address JOIN User USING(user_id))" +
-                "SELECT time, user_id, name, phone_number, item_id, item_price, address, state " +
-                "FROM item_deal JOIN user_address USING(user_id, address_alias)";
-
-        try(PreparedStatement pstat = connection.prepareStatement(LogListbySellerSQL)){
-            pstat.setString(1, user_id);
-            ResultSet rs = pstat.executeQuery();
-            while(rs.next()) {
-                String[] data = new String[8];
-                data[0] = rs.getDate(1).toString();
-                data[1] = rs.getString(2);
-                data[2] = rs.getString(3);
-                data[3] = rs.getString(4);
-                data[4] = String.valueOf(rs.getInt(5));
-                data[5] = String.valueOf(rs.getInt(6));
-                data[6] = rs.getString(7);
-                data[7] = rs.getString(8);
-                LogList.add(data);
-            }
-        }catch (SQLException se){
-            se.printStackTrace();
-        }
-
-        return LogList;
-        // 판매자가 판매 내역 조회하는 Query문.
-    }
-
-    public static List<String []>  getLogListbyBuyer(String user_id){
-        List<String []> LogList = new ArrayList<>();
-        String LogListbyBuyerSQL = "WITH my_address AS (SELECT address, address_alias FROM Address WHERE user_id = ?)," +
-                "my_deal AS (SELECT time, item_id, state, address_alias FROM Deal WHERE user_id = ?)," +
-                "item_dealer AS (SELECT item_id, user_id, name, phone_number, price FROM Item JOIN User USING (user_id))" +
-                "SELECT time, user_id, name, phone_number, item_id, price, address, state " +
-                "FROM item_dealer JOIN (my_deal JOIN my_address USING (address_alias)) USING (item_id)";
-        try(PreparedStatement pstat = connection.prepareStatement(LogListbyBuyerSQL)){
-            pstat.setString(1, user_id);
-            pstat.setString(2, user_id);
-            ResultSet rs = pstat.executeQuery();
-            while(rs.next()) {
-                String[] data = new String[8];
-                data[0] = rs.getDate(1).toString();
-                data[1] = rs.getString(2);
-                data[2] = rs.getString(3);
-                data[3] = rs.getString(4);
-                data[4] = String.valueOf(rs.getInt(5));
-                data[5] = String.valueOf(rs.getInt(6));
-                data[6] = rs.getString(7);
-                data[7] = rs.getString(8);
-                LogList.add(data);
-            }
-        }catch (SQLException se){
-            se.printStackTrace();
-        }
-        return LogList;
-        // 구매자가 구매 내역 조회하는 Query문.
-    }
-  
       public static String [] getItemInfo(String itemId){
         String [] data = new String [5];
         String getItemInfoSQL = "WITH item_list (deal_type, item_id, category, price, delivery_fee, item_info, user_id, expire_time) AS\n" +
@@ -329,4 +268,112 @@ public class Database {
             se.printStackTrace();
         }
     }
+
+    public static List<String []>  getLogListbyBuyer(String user_id){
+        List<String []> LogList = new ArrayList<>();
+        String LogListbyBuyerSQL = "WITH my_address AS (SELECT address, address_alias FROM Address WHERE user_id = ?), " +
+                "my_deal AS (SELECT time, item_id, state, address_alias, deal_id FROM Deal WHERE user_id = ?), " +
+                "item_dealer AS (SELECT item_id, user_id, name, phone_number, price FROM Item JOIN User USING (user_id)) " +
+                "SELECT time, deal_id, user_id, name, phone_number, item_id, price, address, state " +
+                "FROM item_dealer JOIN (my_deal JOIN my_address USING (address_alias)) USING (item_id) ";
+
+        try(PreparedStatement pstat = connection.prepareStatement(LogListbyBuyerSQL)){
+            pstat.setString(1, user_id);
+            pstat.setString(2, user_id);
+            ResultSet rs = pstat.executeQuery();
+            while(rs.next()) {
+                String[] data = new String[9];
+                data[0] = rs.getDate(1).toString();
+                data[1] = String.valueOf(rs.getInt(2));
+                data[2] = rs.getString(3);
+                data[3] = rs.getString(4);
+                data[4] = rs.getString(5);
+                data[5] = String.valueOf(rs.getInt(6));
+                data[6] = String.valueOf(rs.getInt(7));
+                data[7] = rs.getString(8);
+                data[8] = rs.getString(9);
+                LogList.add(data);
+            }
+        }catch (SQLException se){
+            se.printStackTrace();
+        }
+
+        return LogList;
+        // 구매자가 구매 내역 조회하는 Query문.
+    }
+
+    public static List<String []>  getLogListbySeller(String user_id){
+        List<String []> LogList = new ArrayList<>();
+        String LogListbySellerSQL = "WITH item_deal (time, user_id, item_id, item_price, address_alias, state, deal_id) AS " +
+                "(SELECT time, Deal.user_id, item_id, price, address_alias, state, deal_id " +
+                "FROM Deal Join Item USING (item_id) WHERE Item.user_id = ?), " +
+                "user_address AS (SELECT user_id, name, phone_number, address, address_alias FROM Address JOIN User USING(user_id)) " +
+                "SELECT time, deal_id, user_id, name, phone_number, item_id, item_price, address, state " +
+                "FROM item_deal JOIN user_address USING(user_id, address_alias) ";
+
+        try(PreparedStatement pstat = connection.prepareStatement(LogListbySellerSQL)){
+            pstat.setString(1, user_id);
+            ResultSet rs = pstat.executeQuery();
+            while(rs.next()) {
+                String[] data = new String[9];
+                data[0] = rs.getDate(1).toString();
+                data[1] = String.valueOf(rs.getInt(2));
+                data[2] = rs.getString(3);
+                data[3] = rs.getString(4);
+                data[4] = rs.getString(5);
+                data[5] = String.valueOf(rs.getInt(6));
+                data[6] = String.valueOf(rs.getInt(7));
+                data[7] = rs.getString(8);
+                data[8] = rs.getString(9);
+                LogList.add(data);
+            }
+        }catch (SQLException se){
+            se.printStackTrace();
+        }
+
+        return LogList;
+        // 판매자가 판매 내역 조회하는 Query문.
+    }
+
+    public static void DeleteLogList(int deal_id){
+        String DeleteLogListSQL = "DELETE FROM Deal WHERE deal_id = ?";
+        try(PreparedStatement pstat = connection.prepareStatement(DeleteLogListSQL)) {
+            pstat.setInt(1, deal_id);
+            pstat.execute();
+        }catch(SQLException se){
+            se.printStackTrace();
+        }
+        // 판매자 및 구매자가 자신의 판매/구매 내역을 삭제하는 Query문.
+    }
+
+    // TEST_START
+    public static List<String []>  getLogListTEST(String user_id){
+        List<String []> LogList = new ArrayList<>();
+        String LogListTestSQL = "SELECT item_id, price, user_id, name, phone_number, address, address_alias, gender, age " +
+                "FROM Item JOIN (User JOIN Address USING(user_id)) USING(user_id) " +
+                "WHERE user_id = ?";
+        try(PreparedStatement pstat = connection.prepareStatement(LogListTestSQL)){
+            pstat.setString(1, user_id);
+            ResultSet rs = pstat.executeQuery();
+            while(rs.next()) {
+                String[] data = new String[9];
+                data[0] = String.valueOf(rs.getInt(1));
+                data[1] = String.valueOf(rs.getInt(2));
+                data[2] = rs.getString(3);
+                data[3] = rs.getString(4);
+                data[4] = rs.getString(5);
+                data[5] = rs.getString(6);
+                data[6] = rs.getString(7);
+                data[7] = rs.getString(8);
+                data[8] = String.valueOf(rs.getInt(9));
+                LogList.add(data);
+            }
+        }catch (SQLException se){
+            se.printStackTrace();
+        }
+
+        return LogList;
+    }
+//TEST_END
+
 }

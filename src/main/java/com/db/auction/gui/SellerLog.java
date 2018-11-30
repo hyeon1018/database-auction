@@ -4,6 +4,8 @@
 
 package com.db.auction.gui;
 
+import com.db.auction.Database;
+import java.util.List;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -15,12 +17,35 @@ import javax.swing.table.*;
  * @author kangjungmo
  */
 public class SellerLog extends JFrame {
-    public SellerLog() {
+    public SellerLog(String currentUser) {
+        this.currentUser = currentUser;
         initComponents();
+        this.setVisible(true);
     }
 
     private void getLogButtonActionPerformed(ActionEvent e) {
-        // TODO add your code here
+            getTable();
+    }
+
+    private void getTable(){
+        DefaultTableModel logModel = (DefaultTableModel) LogTable.getModel();
+        while (logModel.getRowCount() > 0) {
+            logModel.removeRow(0);
+        }
+        List <String []> LogList = Database.getLogListbySeller(currentUser);    // getLogListBySeller 로 수정할 것.
+        for(String[] log : LogList){
+            logModel.addRow(log);
+        }
+    }
+
+    private void deleteLogButtonActionPerformed(ActionEvent e) {
+        DefaultTableModel logModel = (DefaultTableModel) LogTable.getModel();
+        row_index = LogTable.getSelectedRow();
+        if(row_index > -1) {
+            deal_id = Integer.parseInt((logModel.getValueAt(row_index, 1)).toString());
+            Database.DeleteLogList((deal_id));
+            logModel.removeRow(row_index);
+        }
     }
 
     private void initComponents() {
@@ -63,9 +88,22 @@ public class SellerLog extends JFrame {
                         new Object[][] {
                         },
                         new String[] {
-                            "\ub0a0\uc9dc", "\uc0ac\uc6a9\uc790 ID", "\uc774\ub984", "\uc5f0\ub77d\ucc98", "\ud310\ub9e4\uae00 \ubc88\ud638", "\uac00\uaca9", "\ubc30\uc1a1\uc9c0", "\uc0c1\ud0dc"
+                            "\ud310\ub9e4 \ub0a0\uc9dc", "\uac70\ub798\uae00 \ubc88\ud638", "\uad6c\ub9e4\uc790 ID", "\uad6c\ub9e4\uc790 \uc774\ub984", "\uad6c\ub9e4\uc790 \uc5f0\ub77d\ucc98", "\ud310\ub9e4\uae00 \ubc88\ud638", "\uac00\uaca9", "\ubc30\uc1a1\uc9c0", "\uc0c1\ud0dc"
                         }
                     ));
+                    {
+                        TableColumnModel cm = LogTable.getColumnModel();
+                        cm.getColumn(0).setPreferredWidth(200);
+                        cm.getColumn(1).setPreferredWidth(120);
+                        cm.getColumn(2).setPreferredWidth(120);
+                        cm.getColumn(3).setPreferredWidth(120);
+                        cm.getColumn(4).setPreferredWidth(150);
+                        cm.getColumn(5).setPreferredWidth(120);
+                        cm.getColumn(6).setPreferredWidth(100);
+                        cm.getColumn(7).setPreferredWidth(500);
+                        cm.getColumn(8).setPreferredWidth(120);
+                    }
+                    LogTable.addMouseListener(new MouseAdapter() {});
                     scrollPane1.setViewportView(LogTable);
                 }
 
@@ -100,6 +138,7 @@ public class SellerLog extends JFrame {
 
                 //---- deleteLogButton ----
                 deleteLogButton.setText("\uc0ad\uc81c");
+                deleteLogButton.addActionListener(e -> deleteLogButtonActionPerformed(e));
                 buttonBar.add(deleteLogButton, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 0, 0), 0, 0));
@@ -112,6 +151,8 @@ public class SellerLog extends JFrame {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
+    private String currentUser;
+    private int deal_id, row_index;
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner Evaluation license - kangjungmo
     private JPanel dialogPane;

@@ -10,8 +10,8 @@ new FormModel {
 				name: "dialogPane"
 				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {comp scrollPane1::l::374:x}"
-					"$verticalGroup": "par l {seq l {comp scrollPane1::::196:x, space :::p}}"
+					"$horizontalGroup": "par l {comp scrollPane1::l::674:x}"
+					"$verticalGroup": "par l {seq l {comp scrollPane1::::226:x, space :::p}}"
 				} ) {
 					name: "contentPanel"
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -23,7 +23,7 @@ new FormModel {
 								add( "사용자 ID" )
 								add( "이름" )
 								add( "연락처" )
-								add( "물품 게시글 번호" )
+								add( "판매글 번호" )
 								add( "가격" )
 								add( "배송지" )
 								add( "상태" )
@@ -90,7 +90,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 400, 300 )
+			"size": new java.awt.Dimension( 740, 330 )
 		} )
 	}
 }

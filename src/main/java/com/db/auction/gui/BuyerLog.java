@@ -78,7 +78,7 @@ public class BuyerLog extends JFrame {
                         new Object[][] {
                         },
                         new String[] {
-                            "\ub0a0\uc9dc", "\uc0ac\uc6a9\uc790 ID", "\uc774\ub984", "\uc5f0\ub77d\ucc98", "\ubb3c\ud488 \uac8c\uc2dc\uae00 \ubc88\ud638", "\uac00\uaca9", "\ubc30\uc1a1\uc9c0", "\uc0c1\ud0dc"
+                            "\ub0a0\uc9dc", "\uc0ac\uc6a9\uc790 ID", "\uc774\ub984", "\uc5f0\ub77d\ucc98", "\ud310\ub9e4\uae00 \ubc88\ud638", "\uac00\uaca9", "\ubc30\uc1a1\uc9c0", "\uc0c1\ud0dc"
                         }
                     ));
                     scrollPane1.setViewportView(LogTable);
@@ -88,12 +88,12 @@ public class BuyerLog extends JFrame {
                 contentPanel.setLayout(contentPanelLayout);
                 contentPanelLayout.setHorizontalGroup(
                     contentPanelLayout.createParallelGroup()
-                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
+                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
                 );
                 contentPanelLayout.setVerticalGroup(
                     contentPanelLayout.createParallelGroup()
                         .addGroup(contentPanelLayout.createSequentialGroup()
-                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
                             .addContainerGap())
                 );
             }

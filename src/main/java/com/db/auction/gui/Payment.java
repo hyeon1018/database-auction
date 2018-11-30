@@ -1,12 +1,33 @@
 package com.db.auction.gui;
 
+import com.db.auction.Database;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.*;
 
 public class Payment {
+
+    public Payment(){
+        initComponents();
+        initData();
+    }
+
+    private void initData(){
+        DefaultTableModel model = (DefaultTableModel) itemSelected.getModel();
+        while(model.getRowCount() > 0){
+            model.removeRow(0);
+        }
+        //TODO 선택한 물품 정보 row 추가
+
+        totalPrice.setText("\\ item price + delivery fee");
+        addrComboBox.addItem("address");
+
+        cardComboBox.addItem("card");
+    }
 
     private void proceedBtnActionPerformed(ActionEvent e) {
         // 결제 실패 / 완료 JOptionPane 메세지 후 창 dispose

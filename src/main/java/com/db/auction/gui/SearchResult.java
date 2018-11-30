@@ -34,7 +34,8 @@ public class SearchResult {
 
     private void itemTableMouseClicked(MouseEvent e){
         if(e.getClickCount() == 2){
-            System.out.println(resultTable.getSelectedRow());
+            String selectedItemId = (String)resultTable.getValueAt(resultTable.getSelectedRow(), 1);
+            new itemViewFrame(currentUser, selectedItemId);
         }
     }
 

@@ -131,7 +131,18 @@ public class Database {
     public static List<String []> searchItemList(String deal_type, String category, int minPrice, int maxPrice, String keyword, String user, Date expired){
 
         List<String []> itemList = new ArrayList<>();
-        String itemListSQL = "SELECT deal_type, item_id, category, price, item_info, user_id, expire_time FROM Item";
+        String itemListSQL = "WITH item_list (deal_type, item_id, category, price, item_info, user_id, expire_time) AS\n" +
+                "((SELECT deal_type, item_id, category, price, item_info, user_id, expire_time\n" +
+                "FROM Item\n" +
+                "WHERE deal_type = 'Sell')\n" +
+                "UNION\n" +
+                "(SELECT deal_type, item_id, category, max_price, item_info, user_id, expire_time\n" +
+                "FROM Item Join (SELECT item_id, max(join_price) as max_price\n" +
+                "FROM Bid\n" +
+                "GROUP BY item_id) item_price USING(item_id) \n" +
+                "WHERE deal_type = 'Bid'))\n" +
+                "SELECT *\n" +
+                "FROM item_list\n";
         itemListSQL += " WHERE price >= ?" ;
 
 
@@ -261,16 +272,28 @@ public class Database {
   
       public static String [] getItemInfo(String itemId){
         String [] data = new String [5];
-        String getItemInfoSQL = "SELECT deal_type, item_id, category, price, delivery_fee, item_info, user_id FROM Item Where item_id = ?";
+        String getItemInfoSQL = "WITH item_list (deal_type, item_id, category, price, delivery_fee, item_info, user_id, expire_time) AS\n" +
+                "((SELECT deal_type, item_id, category, price, delivery_fee, item_info, user_id, expire_time\n" +
+                "FROM Item\n" +
+                "WHERE deal_type = 'Sell')\n" +
+                "UNION\n" +
+                "(SELECT deal_type, item_id, category, max_price, delivery_fee, item_info, user_id, expire_time\n" +
+                "FROM Item Join (SELECT item_id, max(join_price) as max_price\n" +
+                "FROM Bid\n" +
+                "GROUP BY item_id) item_price USING(item_id) \n" +
+                "WHERE deal_type = 'Bid'))\n" +
+                "SELECT user_id, deal_type, price, delivery_fee, item_info \n" +
+                "FROM item_list\n" +
+                "WHERE item_id = ?;";
         try(PreparedStatement pstat = connection.prepareStatement(getItemInfoSQL)){
             pstat.setInt(1, Integer.parseInt(itemId));
             ResultSet rs = pstat.executeQuery();
             if(rs.first()){
-                data[0] = rs.getString(7);
-                data[1] = rs.getString(1);
-                data[2] = String.valueOf(rs.getInt(4));
-                data[3] = String.valueOf(rs.getInt(5));
-                data[4] = rs.getString(6);
+                data[0] = rs.getString(1);
+                data[1] = rs.getString(2);
+                data[2] = String.valueOf(rs.getInt(3));
+                data[3] = String.valueOf(rs.getInt(4));
+                data[4] = rs.getString(5);
             }
         }catch (SQLException se){
             se.printStackTrace();

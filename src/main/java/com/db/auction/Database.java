@@ -132,32 +132,53 @@ public class Database {
 
         List<String []> itemList = new ArrayList<>();
         String itemListSQL = "SELECT deal_type, item_id, category, price, item_info, user_id, expire_time FROM Item";
-        if(!deal_type.equals("")){
-            itemListSQL += " WHERE deal_type = '" + deal_type + "'";
-        }
-        if(!category.equals("")){
-            itemListSQL += " AND category = '" + category + "'";
-        }
-        if(minPrice > 0){
-            itemListSQL += " AND price >=" + String.valueOf(minPrice);
-        }
+        itemListSQL += " WHERE price >= ?" ;
+
+
         if(maxPrice > 0){
-            itemListSQL += " AND price <=" + String.valueOf(maxPrice);
+            itemListSQL += " AND price <= ?";;
+        }else{
+            itemListSQL += " AND 0 <= ?";
         }
-        if(!keyword.equals("")){
-            itemListSQL += " AND item_info LIKE '%" + keyword + "%'";
+
+        if(deal_type.equals("")){
+            itemListSQL += " AND \"\" = ?";
+        }else{
+            itemListSQL += " AND deal_type = ?";
         }
-        if(!user.equals("")){
-            itemListSQL += " AND user_id ='" + user + "'";
+
+        if(category.equals("")){
+            itemListSQL += " AND \"\" = ?";
+        }else{
+            itemListSQL += " AND category = ?";
         }
+
+        itemListSQL += " AND item_info LIKE ?";
+
+        if(user.equals("")){
+            itemListSQL += " AND \"\" = ? ";
+        }else {
+            itemListSQL += " AND user_id = ?";
+        }
+
         if(expired != null){
             itemListSQL += " AND expire_time < ?";
         }
+
+        itemListSQL += ";";
+
+
         try(PreparedStatement pstat = connection.prepareStatement(itemListSQL)){
-            System.out.println(itemListSQL);
-            if(expired != null) {
-                pstat.setDate(1, expired);
+            pstat.setInt(1, minPrice);
+            pstat.setInt(2, maxPrice);
+            pstat.setString(3, deal_type);
+            pstat.setString(4, category);
+            pstat.setString(5, "%" + keyword + "%");
+            pstat.setString(6, user);
+            if(expired != null){
+                pstat.setDate(7, expired);
             }
+
             ResultSet rs = pstat.executeQuery();
             while(rs.next()){
                 String[] data = new String[7];

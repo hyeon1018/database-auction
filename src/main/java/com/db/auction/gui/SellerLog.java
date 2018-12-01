@@ -46,6 +46,7 @@ public class SellerLog extends JFrame {
             Database.DeleteLogList((deal_id));
             logModel.removeRow(row_index);
         }
+        getTable();
     }
 
     private void initComponents() {

@@ -31,11 +31,11 @@ public class itemViewFrame extends JFrame {
 
     private void updateData() {
         String [] iteminfo = Database.getItemInfo(currentItem);
-        sellerLabel.setText(iteminfo[0]);
-        dealTypeLabel.setText(iteminfo[1]);
-        priceLabel.setText(iteminfo[2]);
-        shippingFeeLabel.setText(iteminfo[3]);
-        itemInfoPane.setText(iteminfo[4]);
+        sellerLabel.setText(iteminfo[6]);
+        dealTypeLabel.setText(iteminfo[0]);
+        priceLabel.setText(iteminfo[3]);
+        shippingFeeLabel.setText(iteminfo[4]);
+        itemInfoPane.setText(iteminfo[5]);
 
         List<String> imageDirs = Database.getImageDirs(currentItem);
         imageList = new ArrayList<>();
@@ -82,7 +82,8 @@ public class itemViewFrame extends JFrame {
             Database.bidItem(currentUser, currentItem, Integer.parseInt(bidPrice));
             this.dispose();
         }else if(dealTypeLabel.getText().equals("Sell")){
-            //TODO connect to dealFrame
+            new Payment(currentUser, currentItem);
+            this.dispose();
         }
     }
 

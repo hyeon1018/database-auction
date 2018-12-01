@@ -8,12 +8,16 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.*;
+import javax.xml.crypto.Data;
 
 public class Payment {
 
-    public Payment(){
+    public Payment(String userId, String itemId){
         initComponents();
+        currentUser = userId;
+        currentItem = itemId;
         initData();
+        payFrame.setVisible(true);
     }
 
     private void initData(){
@@ -21,21 +25,30 @@ public class Payment {
         while(model.getRowCount() > 0){
             model.removeRow(0);
         }
-        //TODO 선택한 물품 정보 row 추가
+        String [] info = Database.getItemInfo(currentItem);
+        String [] infoRow = {info[0], info[1], info[2], info[5], info[6], info[7]};
+        model.addRow(infoRow);
+        totalPrice.setText("\\ " + (Integer.parseInt(info[3]) + Integer.parseInt(info[4])));
 
-        totalPrice.setText("\\ item price + delivery fee");
-        addrComboBox.addItem("address");
+        List<String> addresses = Database.getAddresses(currentUser);
+        for(String address : addresses){
+            addrComboBox.addItem(address);
+        }
 
-        cardComboBox.addItem("card");
+        List<String> payments = Database.getPayments(currentUser);
+        for(String payment : payments){
+            cardComboBox.addItem(payment);
+        }
     }
 
     private void proceedBtnActionPerformed(ActionEvent e) {
-        // 결제 실패 / 완료 JOptionPane 메세지 후 창 dispose
+        Database.dealItem(currentUser, addrComboBox.getSelectedItem().toString().split("-")[0], currentItem);
+        payFrame.dispose();
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+        // Generated using JFormDesigner Evaluation license - Kim Dohyeon
         payFrame = new JDialog();
         payPanel = new JPanel();
         itemLabel = new JLabel();
@@ -45,12 +58,9 @@ public class Payment {
         totalPrice = new JLabel();
         addrLabel = new JLabel();
         addrComboBox = new JComboBox();
-        inputAddr = new JTextField();
         proceedBtn = new JButton();
         methodLabel = new JLabel();
         cardComboBox = new JComboBox();
-        cardNoLabel = new JLabel();
-        inputCardNo = new JTextField();
 
         //======== payFrame ========
         {
@@ -139,34 +149,21 @@ public class Payment {
                 addrLabel.setBounds(new Rectangle(new Point(25, 125), addrLabel.getPreferredSize()));
                 payPanel.add(addrComboBox);
                 addrComboBox.setBounds(25, 155, 495, 25);
-                payPanel.add(inputAddr);
-                inputAddr.setBounds(25, 190, 495, 25);
 
                 //---- proceedBtn ----
                 proceedBtn.setText("\uad6c\ub9e4 \uc9c4\ud589");
                 proceedBtn.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 12));
                 proceedBtn.addActionListener(e -> proceedBtnActionPerformed(e));
                 payPanel.add(proceedBtn);
-                proceedBtn.setBounds(420, 250, 100, 30);
+                proceedBtn.setBounds(420, 260, 100, 30);
 
                 //---- methodLabel ----
                 methodLabel.setText("\uacb0\uc81c \uc218\ub2e8");
                 methodLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 14));
                 payPanel.add(methodLabel);
-                methodLabel.setBounds(new Rectangle(new Point(25, 225), methodLabel.getPreferredSize()));
+                methodLabel.setBounds(new Rectangle(new Point(25, 195), methodLabel.getPreferredSize()));
                 payPanel.add(cardComboBox);
-                cardComboBox.setBounds(25, 255, 100, 25);
-
-                //---- cardNoLabel ----
-                cardNoLabel.setText("\uce74\ub4dc \ubc88\ud638");
-                cardNoLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 14));
-                payPanel.add(cardNoLabel);
-                cardNoLabel.setBounds(new Rectangle(new Point(135, 225), cardNoLabel.getPreferredSize()));
-
-                //---- inputCardNo ----
-                inputCardNo.setText("0000 0000 0000 0000 00/00 000");
-                payPanel.add(inputCardNo);
-                inputCardNo.setBounds(135, 255, 200, 25);
+                cardComboBox.setBounds(25, 220, 495, 25);
 
                 { // compute preferred size
                     Dimension preferredSize = new Dimension();
@@ -189,8 +186,11 @@ public class Payment {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
+    String currentUser;
+    String currentItem;
+
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+    // Generated using JFormDesigner Evaluation license - Kim Dohyeon
     private JDialog payFrame;
     private JPanel payPanel;
     private JLabel itemLabel;
@@ -200,11 +200,8 @@ public class Payment {
     private JLabel totalPrice;
     private JLabel addrLabel;
     private JComboBox addrComboBox;
-    private JTextField inputAddr;
     private JButton proceedBtn;
     private JLabel methodLabel;
     private JComboBox cardComboBox;
-    private JLabel cardNoLabel;
-    private JTextField inputCardNo;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

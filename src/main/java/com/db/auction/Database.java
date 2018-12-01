@@ -209,8 +209,12 @@ public class Database {
         return itemList;
     }
 
+    /**
+     * @param itemId
+     * @return String[] with deal_type, item_id, category, price, delivery_fee, item_info, user_id, expire_time
+     */
       public static String [] getItemInfo(String itemId){
-        String [] data = new String [5];
+        String [] data = new String [8];
         String getItemInfoSQL = "WITH item_list (deal_type, item_id, category, price, delivery_fee, item_info, user_id, expire_time) AS\n" +
                 "((SELECT deal_type, item_id, category, price, delivery_fee, item_info, user_id, expire_time\n" +
                 "FROM Item\n" +
@@ -221,7 +225,7 @@ public class Database {
                 "FROM Bid\n" +
                 "GROUP BY item_id) item_price USING(item_id) \n" +
                 "WHERE deal_type = 'Bid'))\n" +
-                "SELECT user_id, deal_type, price, delivery_fee, item_info \n" +
+                "SELECT * \n" +
                 "FROM item_list\n" +
                 "WHERE item_id = ?;";
         try(PreparedStatement pstat = connection.prepareStatement(getItemInfoSQL)){
@@ -229,16 +233,50 @@ public class Database {
             ResultSet rs = pstat.executeQuery();
             if(rs.first()){
                 data[0] = rs.getString(1);
-                data[1] = rs.getString(2);
-                data[2] = String.valueOf(rs.getInt(3));
+                data[1] = String.valueOf(rs.getInt(2));
+                data[2] = rs.getString(3);
                 data[3] = String.valueOf(rs.getInt(4));
-                data[4] = rs.getString(5);
+                data[4] = String.valueOf(rs.getInt(5));
+                data[5] = rs.getString(6);
+                data[6] = rs.getString(7);
+                data[7] = (rs.getDate(8) != null ? rs.getDate(8).toString() : null);
             }
         }catch (SQLException se){
             se.printStackTrace();
         }
         return data;
-        
+    }
+
+    public static List<String> getAddresses(String userId){
+          List<String> addresses = new ArrayList<>();
+          String getAdressesSQL = "SELECT address_alias, address FROM Address WHERE user_id = ?";
+          try(PreparedStatement ps = connection.prepareStatement(getAdressesSQL)){
+              ps.setString(1, userId);
+              ResultSet rs = ps.executeQuery();
+              while(rs.next()){
+                  addresses.add(rs.getString(1) + "-" + rs.getString(2));
+              }
+          }catch(SQLException se){
+              se.printStackTrace();
+          }
+
+          return addresses;
+    }
+
+    public static List<String> getPayments(String userId){
+          List<String> payments = new ArrayList<>();
+          String getPaymentsSQL = "WITH payments(user_id, idf_c, idf_n) AS (SELECT * FROM Card UNION SELECT * FROM Account)\n" +
+                  "SELECT idf_c, idf_n FROM payments WHERE user_id = ?;";
+          try(PreparedStatement ps = connection.prepareStatement(getPaymentsSQL)){
+              ps.setString(1, userId);
+              ResultSet rs = ps.executeQuery();
+              while(rs.next()){
+                  payments.add(rs.getString(1) + "-" + rs.getString(2));
+              }
+          }catch (SQLException se){
+              se.printStackTrace();
+          }
+          return payments;
     }
 
     public static List<String> getImageDirs(String itemId){
@@ -267,6 +305,18 @@ public class Database {
         }catch (SQLException se){
             se.printStackTrace();
         }
+    }
+
+    public static void dealItem(String userId, String addressAlias, String itemId){
+          String dealItemSQL = "INSERT INTO Deal (user_id, address_alias, item_id, time) VALUES (?,?,?,now());";
+          try(PreparedStatement ps = connection.prepareStatement(dealItemSQL)){
+              ps.setString(1, userId);
+              ps.setString(2, addressAlias);
+              ps.setInt(3, Integer.parseInt(itemId));
+              ps.execute();
+          }catch (SQLException se){
+              se.printStackTrace();
+          }
     }
 
     public static List<String []>  getLogListbyBuyer(String user_id){

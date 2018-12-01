@@ -166,7 +166,7 @@ public class Database {
             itemListSQL += " AND expire_time < ?";
         }
 
-        itemListSQL += ";";
+        itemListSQL += "AND (expire_time > now() OR expire_time is null);";
 
 
         try(PreparedStatement pstat = connection.prepareStatement(itemListSQL)){
@@ -557,7 +557,9 @@ public class Database {
 
     public static List<String []> FavoriteResultList(String userId){
         List<String []> favoriteresult = new ArrayList<>();
-        String FavoriteResultSQL = "SELECT deal_type, item_id, category, price, item_info, user_id, expire_time FROM Item WHERE user_id = ?";
+        String FavoriteResultSQL = "SELECT deal_type, item_id, category, price, item_info, user_id, expire_time\n" +
+                "FROM item_list\n" +
+                "WHERE (expire_time > now() OR expire_time is null) AND user_id = ?;";
         try (PreparedStatement pstat = connection.prepareStatement(FavoriteResultSQL)){
             pstat.setString(1, userId);
             ResultSet rs =  pstat.executeQuery();

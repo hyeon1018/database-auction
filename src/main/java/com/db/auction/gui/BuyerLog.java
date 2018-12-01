@@ -66,7 +66,7 @@ public class BuyerLog extends JFrame {
         //======== dialogPane ========
         {
             dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
-            dialogPane.setPreferredSize(new Dimension(370, 298));
+            dialogPane.setPreferredSize(new Dimension(600, 330));
 
             // JFormDesigner evaluation mark
             dialogPane.setBorder(new javax.swing.border.CompoundBorder(
@@ -147,7 +147,7 @@ public class BuyerLog extends JFrame {
             buttonBar.setBounds(12, 251, 344, buttonBar.getPreferredSize().height);
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
-        pack();
+        setSize(600, 330);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }

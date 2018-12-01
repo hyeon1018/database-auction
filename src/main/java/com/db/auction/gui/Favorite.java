@@ -1,14 +1,32 @@
 package com.db.auction.gui;
 
+import com.db.auction.Database;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.swing.DefaultListModel;
 
 public class Favorite {
 
-    public Favorite(){
+    public Favorite(String userId) {
+        currentUser = userId;
         initComponents();
+        setList(currentUser);
+    }
+
+    private void setList(String userId){
+        List<String> favorites = Database.getFavorite(currentUser);
+        DefaultListModel model = (DefaultListModel) favorList.getModel();
+        while(model.getSize() > 0){
+            model.removeElementAt(0);
+        }
+
+        for(String favor : favorites){
+            model.addElement(favor);
+        }
     }
 
     private void addFavorBtnActionPerformed(ActionEvent e) {
@@ -23,6 +41,8 @@ public class Favorite {
     private void favorListMouseClicked(MouseEvent e) {
         //TODO 검색 기능으로
     }
+
+    String currentUser;
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents

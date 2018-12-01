@@ -50,7 +50,7 @@ public class SellerLog extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+        // Generated using JFormDesigner Evaluation license - kangjungmo
         dialogPane = new JPanel();
         scrollPane1 = new JScrollPane();
         LogTable = new JTable();
@@ -85,7 +85,7 @@ public class SellerLog extends JFrame {
                     new Object[][] {
                     },
                     new String[] {
-                        "\ud310\ub9e4 \ub0a0\uc9dc", "\uac70\ub798\uae00 \ubc88\ud638", "\uad6c\ub9e4\uc790 ID", "\uad6c\ub9e4\uc790 \uc774\ub984", "\uad6c\ub9e4\uc790 \uc5f0\ub77d\ucc98", "\ud310\ub9e4\uae00 \ubc88\ud638", "\uac00\uaca9", "\ubc30\uc1a1\uc9c0", "\uc0c1\ud0dc"
+                        "\ud310\ub9e4 \ub0a0\uc9dc", "\uac70\ub798\ub0b4\uc5ed ID", "\uad6c\ub9e4\uc790 ID", "\uad6c\ub9e4\uc790 \uc774\ub984", "\uad6c\ub9e4\uc790 \uc5f0\ub77d\ucc98", "\ubb3c\ud488 ID", "\uac00\uaca9", "\ubc30\uc1a1\uc9c0", "\uc0c1\ud0dc"
                     }
                 ) {
                     boolean[] columnEditable = new boolean[] {
@@ -168,7 +168,7 @@ public class SellerLog extends JFrame {
     private String currentUser;
     private int deal_id, row_index;
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+    // Generated using JFormDesigner Evaluation license - kangjungmo
     private JPanel dialogPane;
     private JScrollPane scrollPane1;
     private JTable LogTable;

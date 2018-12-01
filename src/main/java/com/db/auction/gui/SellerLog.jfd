@@ -17,11 +17,11 @@ new FormModel {
 						name: "LogTable"
 						"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector, new java.util.Vector {
 							add( "판매 날짜" )
-							add( "거래글 번호" )
+							add( "거래내역 ID" )
 							add( "구매자 ID" )
 							add( "구매자 이름" )
 							add( "구매자 연락처" )
-							add( "판매글 번호" )
+							add( "물품 ID" )
 							add( "가격" )
 							add( "배송지" )
 							add( "상태" )

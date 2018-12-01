@@ -263,6 +263,18 @@ public class Database {
           return addresses;
     }
 
+    public static void updateAddress(String userId, String alias, String address){
+          String updateAddressSQL = "UPDATE Address SET address = ? WHERE user_id = ? AND address_alias = ?";
+          try(PreparedStatement ps = connection.prepareStatement(updateAddressSQL)){
+              ps.setString(1, address);
+              ps.setString(2, userId);
+              ps.setString(3, alias);
+              ps.execute();
+          }catch (SQLException se){
+              se.printStackTrace();
+          }
+    }
+
     public static List<String> getPayments(String userId){
           List<String> payments = new ArrayList<>();
           String getPaymentsSQL = "WITH payments(user_id, idf_c, idf_n) AS (SELECT * FROM Card UNION SELECT * FROM Account)\n" +
@@ -277,6 +289,48 @@ public class Database {
               se.printStackTrace();
           }
           return payments;
+    }
+
+    public static void addCard(String userId, String cardCompany, String cardNo){
+          String addCardSQL = "INSERT INTO Card VALUES(?,?,?);";
+          try(PreparedStatement ps = connection.prepareStatement(addCardSQL)){
+              ps.setString(1, userId);
+              ps.setString(2, cardCompany);
+              ps.setString(3, cardNo);
+              ps.execute();
+          }catch(SQLException se){
+              se.printStackTrace();
+          }
+    }
+
+    public static void addAccount(String userId, String Bank, String accountNo){
+        String addCardSQL = "INSERT INTO Account VALUES(?,?,?);";
+        try(PreparedStatement ps = connection.prepareStatement(addCardSQL)){
+            ps.setString(1, userId);
+            ps.setString(2, Bank);
+            ps.setString(3, accountNo);
+            ps.execute();
+        }catch(SQLException se){
+            se.printStackTrace();
+        }
+    }
+
+    public  static void deletePayment(String userId, String bank, String number){
+          String [] deletePaymentSQL = {
+                  "DELETE FROM Card WHERE user_id = ? AND card_company = ? AND card_number = ?",
+                  "DELETE FROM Account WHERE user_id = ? AND bank = ? AND account = ?"
+          };
+          for(String sql : deletePaymentSQL){
+              try(PreparedStatement ps = connection.prepareStatement(sql)){
+                  ps.setString(1, userId);
+                  ps.setString(2, bank);
+                  ps.setString(3,number);
+                  ps.execute();
+              }catch (SQLException se){
+                  se.printStackTrace();
+              }
+          }
+
     }
 
     public static String[] getUserInfo(String userId){

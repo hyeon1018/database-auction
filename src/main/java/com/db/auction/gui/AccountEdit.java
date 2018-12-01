@@ -5,6 +5,7 @@ import com.db.auction.Database;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.List;
 import javax.swing.border.*;
 import javax.xml.crypto.Data;
 
@@ -18,14 +19,28 @@ public class AccountEdit {
     }
 
     private void initData(){
-        System.out.println("????");
         String[] currentInfo = Database.getUserInfo(currentUser);
         idLabel.setText(currentInfo[0]);
         nameLabel.setText(currentInfo[1]);
         eInputAge.setText(currentInfo[2]);
         genderLabel.setText(currentInfo[3]);
         eInputPhone.setText(currentInfo[4]);
-        addrComboBox.addItem("등록된 주소들");
+        updateComboBox();
+    }
+
+    private void updateComboBox(){
+        addrComboBox.removeAllItems();
+        cardComboBox.removeAllItems();
+
+        List<String> addresses = Database.getAddresses(currentUser);
+        for(String address : addresses){
+            addrComboBox.addItem(address);
+        }
+
+        List<String> payments = Database.getPayments(currentUser);
+        for(String payment : payments){
+            cardComboBox.addItem(payment);
+        }
     }
 
     private void editButtonActionPerformed(ActionEvent e) {
@@ -33,19 +48,60 @@ public class AccountEdit {
     }
 
     private void addAddrBtnActionPerformed(ActionEvent e) {
-        // TODO 주소 추가 버튼
+        String alias = JOptionPane.showInputDialog("배송지를 관리할 이름을 입력해주세요");
+        if(alias != null) {
+            String address = JOptionPane.showInputDialog("배송지의 주소를 입력해주세요");
+            if(address != null){
+                Database.addAddress(currentUser, alias, address);
+            }
+        }
+        updateComboBox();
     }
 
-    private void delAddrBtnActionPerformed(ActionEvent e) {
-        // TODO 주소 제거 버튼
+    private void editAddrBtnActionPerformed(ActionEvent e) {
+        String addr[] = addrComboBox.getSelectedItem().toString().split("-", 2);
+        String newAddr = JOptionPane.showInputDialog("변경 할 주소를 입력해 주세요.", addr[1]);
+        if(newAddr != null && !newAddr.equals("")){
+            Database.updateAddress(currentUser, addr[0], newAddr);
+        }
     }
 
     private void addCardBtnActionPerformed(ActionEvent e) {
-        // TODO 결제 수단 추가 버튼
+        Object[] options = {"카드", "통장", "취소"};
+        int selection = JOptionPane.showOptionDialog(editDialog,
+                                    "결재 수단을 선택해주세요",
+                                    "",
+                                    JOptionPane.YES_NO_CANCEL_OPTION,
+                                    JOptionPane.QUESTION_MESSAGE,
+                                    null,
+                                    options,
+                                    options[2]);
+
+        if(selection == 0){
+            String cardCompany = JOptionPane.showInputDialog("카드 회사를 입력해주세요.");
+            if(cardCompany != null){
+                String cardNo = JOptionPane.showInputDialog("카드 번호를 입력해주세요.");
+                if(cardNo != null){
+                    Database.addCard(currentUser, cardCompany, cardNo);
+                }
+            }
+        }else if(selection == 1){
+            String bank = JOptionPane.showInputDialog("은행을 입력해주세요.");
+            if(bank != null){
+                String accountNo = JOptionPane.showInputDialog("계좌 번호를 입력해주세요.");
+                if(accountNo != null){
+                    Database.addAccount(currentUser, bank, accountNo);
+                }
+            }
+        }
+
+        updateComboBox();
     }
 
     private void delCardBtnActionPerformed(ActionEvent e) {
-        // TODO 결제 수단 제거 버튼
+        String payments[] = cardComboBox.getSelectedItem().toString().split("-", 2);
+        Database.deletePayment(currentUser, payments[0], payments[1]);
+        updateComboBox();
     }
 
     private void initComponents() {
@@ -68,14 +124,12 @@ public class AccountEdit {
         JLabel eAddrLabel = new JLabel();
         addrComboBox = new JComboBox();
         editButton = new JButton();
-        addAddrBtn = new JButton();
-        delAddrBtn = new JButton();
+        editAddrBtn = new JButton();
         JLabel eCardLabel = new JLabel();
         cardComboBox = new JComboBox();
-        addCardBtn = new JButton();
         delCardBtn = new JButton();
-        addAddrBtn2 = new JButton();
-        addAddrBtn3 = new JButton();
+        addAddrBtn = new JButton();
+        addCardBtn = new JButton();
 
         //======== editDialog ========
         {
@@ -184,17 +238,11 @@ public class AccountEdit {
                 editPanel.add(editButton);
                 editButton.setBounds(200, 385, 100, editButton.getPreferredSize().height);
 
-                //---- addAddrBtn ----
-                addAddrBtn.setText("\uc218\uc815");
-                addAddrBtn.addActionListener(e -> addAddrBtnActionPerformed(e));
-                editPanel.add(addAddrBtn);
-                addAddrBtn.setBounds(new Rectangle(new Point(345, 170), addAddrBtn.getPreferredSize()));
-
-                //---- delAddrBtn ----
-                delAddrBtn.setText("\uc0ad\uc81c");
-                delAddrBtn.addActionListener(e -> delAddrBtnActionPerformed(e));
-                editPanel.add(delAddrBtn);
-                delAddrBtn.setBounds(new Rectangle(new Point(405, 170), delAddrBtn.getPreferredSize()));
+                //---- editAddrBtn ----
+                editAddrBtn.setText("\uc218\uc815");
+                editAddrBtn.addActionListener(e -> editAddrBtnActionPerformed(e));
+                editPanel.add(editAddrBtn);
+                editAddrBtn.setBounds(400, 170, 60, 25);
 
                 //---- eCardLabel ----
                 eCardLabel.setText("\uacb0\uc81c \uc218\ub2e8");
@@ -202,31 +250,25 @@ public class AccountEdit {
                 editPanel.add(eCardLabel);
                 eCardLabel.setBounds(new Rectangle(new Point(40, 245), eCardLabel.getPreferredSize()));
                 editPanel.add(cardComboBox);
-                cardComboBox.setBounds(40, 280, 420, 25);
-
-                //---- addCardBtn ----
-                addCardBtn.setText("\uc218\uc815");
-                addCardBtn.addActionListener(e -> addCardBtnActionPerformed(e));
-                editPanel.add(addCardBtn);
-                addCardBtn.setBounds(345, 245, 57, 23);
+                cardComboBox.setBounds(40, 275, 420, 25);
 
                 //---- delCardBtn ----
                 delCardBtn.setText("\uc0ad\uc81c");
                 delCardBtn.addActionListener(e -> delCardBtnActionPerformed(e));
                 editPanel.add(delCardBtn);
-                delCardBtn.setBounds(405, 245, 57, 23);
+                delCardBtn.setBounds(405, 245, 60, 25);
 
-                //---- addAddrBtn2 ----
-                addAddrBtn2.setText("\ucd94\uac00");
-                addAddrBtn2.addActionListener(e -> addAddrBtnActionPerformed(e));
-                editPanel.add(addAddrBtn2);
-                addAddrBtn2.setBounds(285, 170, 57, 23);
+                //---- addAddrBtn ----
+                addAddrBtn.setText("\ucd94\uac00");
+                addAddrBtn.addActionListener(e -> addAddrBtnActionPerformed(e));
+                editPanel.add(addAddrBtn);
+                addAddrBtn.setBounds(340, 170, 60, 25);
 
-                //---- addAddrBtn3 ----
-                addAddrBtn3.setText("\ucd94\uac00");
-                addAddrBtn3.addActionListener(e -> addAddrBtnActionPerformed(e));
-                editPanel.add(addAddrBtn3);
-                addAddrBtn3.setBounds(new Rectangle(new Point(285, 245), addAddrBtn3.getPreferredSize()));
+                //---- addCardBtn ----
+                addCardBtn.setText("\ucd94\uac00");
+                addCardBtn.addActionListener(e -> addCardBtnActionPerformed(e));
+                editPanel.add(addCardBtn);
+                addCardBtn.setBounds(345, 245, 60, 25);
             }
             editDialogContentPane.add(editPanel, BorderLayout.CENTER);
             editDialog.setSize(500, 480);
@@ -248,12 +290,10 @@ public class AccountEdit {
     private JTextField eInputPhone;
     private JComboBox addrComboBox;
     private JButton editButton;
-    private JButton addAddrBtn;
-    private JButton delAddrBtn;
+    private JButton editAddrBtn;
     private JComboBox cardComboBox;
-    private JButton addCardBtn;
     private JButton delCardBtn;
-    private JButton addAddrBtn2;
-    private JButton addAddrBtn3;
+    private JButton addAddrBtn;
+    private JButton addCardBtn;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

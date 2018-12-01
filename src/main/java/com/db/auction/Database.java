@@ -134,13 +134,12 @@ public class Database {
         String itemListSQL = "WITH item_list (deal_type, item_id, category, price, item_info, user_id, expire_time) AS\n" +
                 "((SELECT deal_type, item_id, category, price, item_info, user_id, expire_time\n" +
                 "FROM Item\n" +
-                "WHERE deal_type = 'Sell')\n" +
+                "WHERE item_id NOT IN (SELECT DISTINCT item_id FROM Bid))\n" +
                 "UNION\n" +
                 "(SELECT deal_type, item_id, category, max_price, item_info, user_id, expire_time\n" +
                 "FROM Item Join (SELECT item_id, max(join_price) as max_price\n" +
                 "FROM Bid\n" +
-                "GROUP BY item_id) item_price USING(item_id) \n" +
-                "WHERE deal_type = 'Bid'))\n" +
+                "GROUP BY item_id) item_price USING(item_id)))\n" +
                 "SELECT *\n" +
                 "FROM item_list\n";
         itemListSQL += " WHERE price >= ?" ;
@@ -218,13 +217,12 @@ public class Database {
         String getItemInfoSQL = "WITH item_list (deal_type, item_id, category, price, delivery_fee, item_info, user_id, expire_time) AS\n" +
                 "((SELECT deal_type, item_id, category, price, delivery_fee, item_info, user_id, expire_time\n" +
                 "FROM Item\n" +
-                "WHERE deal_type = 'Sell')\n" +
+                "WHERE item_id NOT IN (SELECT DISTINCT item_id FROM Bid))\n" +
                 "UNION\n" +
                 "(SELECT deal_type, item_id, category, max_price, delivery_fee, item_info, user_id, expire_time\n" +
                 "FROM Item Join (SELECT item_id, max(join_price) as max_price\n" +
                 "FROM Bid\n" +
-                "GROUP BY item_id) item_price USING(item_id) \n" +
-                "WHERE deal_type = 'Bid'))\n" +
+                "GROUP BY item_id) item_price USING(item_id)))\n" +
                 "SELECT * \n" +
                 "FROM item_list\n" +
                 "WHERE item_id = ?;";

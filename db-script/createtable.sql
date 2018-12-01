@@ -116,7 +116,9 @@ ALTER TABLE `Card`
  ADD CONSTRAINT `Card_FK` FOREIGN KEY ( `user_id` )
  REFERENCES User (`user_id` );
 
-
+ALTER TABLE `Deal`	-- 추가함.
+DROP FOREIGN KEY deal_FK2;
+ 
 DROP TABLE `Address`;
 
 CREATE TABLE `Address`
@@ -228,7 +230,10 @@ ALTER TABLE `Deal`
  ADD CONSTRAINT `deal_FK1` FOREIGN KEY ( `item_id` )
  REFERENCES Item (`item_id` );
 
-
+ALTER TABLE `Deal`		-- 추가함.
+ ADD CONSTRAINT `deal_FK2` FOREIGN KEY ( `user_id`,`address_alias`)
+ REFERENCES Address (`user_id`,`address_alias`);
+ 
 DROP TABLE `Bid`;
 
 CREATE TABLE `Bid`

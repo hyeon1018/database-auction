@@ -22,18 +22,29 @@ insert into Category values ("취미");
 insert into Category values ("레저");
 insert into Category values ("미용");
 
--- User
-insert into User values("rlaehgus", md5("qwerty"), "김도현", "24", "Male", "01012345678");
-insert into User values("tjwldnjs", md5("123456"), "서지원", "24", "Male", "01092275415");
-insert into User values("rladmsgml", md5("000000"), "김은희", "28", "Female", "01037825853");
-insert into User values("wkdtmddnjs", md5("000001"), "장승원", "24", "Male", "01031972134");
-insert into User values("rkdwjdah", md5("000002"), "강정모", "26", "Male", "01019735218");
-insert into User values("wjddbghks", md5("000003"), "정유환", "25", "Male", "01094416793");
-insert into User values("tlstkdlaekd", md5("000004"), "신사임당", "99", "Female", "01077912131");
-insert into User values("dltn", md5("000005"), "이수", "37", "Male", "01066452115");
-insert into User values("wkdejrcjf", md5("000006"), "장덕철", "40", "Male", "01044459132");
-insert into User values("dlackdwjd", md5("000007"), "임창정", "44", "Male", "01067189975");
-insert into User values("test", md5("test"), "테스트용", "30", "Female", "01012345678");
+-- User		-- user insert data만 수정함.
+insert into User (user_id, user_pw, name, age, gender, phone_number)
+values("rlaehgus", md5("qwerty"), "김도현", "24", "Male", "01012345678");
+insert into User (user_id, user_pw, name, age, gender, phone_number)
+values("tjwldnjs", md5("123456"), "서지원", "24", "Male", "01092275415");
+insert into User (user_id, user_pw, name, age, gender, phone_number)
+values("rladmsgml", md5("000000"), "김은희", "28", "Female", "01037825853");
+insert into User (user_id, user_pw, name, age, gender, phone_number)
+values("wkdtmddnjs", md5("000001"), "장승원", "24", "Male", "01031972134");
+insert into User (user_id, user_pw, name, age, gender, phone_number)
+values("rkdwjdah", md5("000002"), "강정모", "26", "Male", "01019735218");
+insert into User (user_id, user_pw, name, age, gender, phone_number)
+values("wjddbghks", md5("000003"), "정유환", "25", "Male", "01094416793");
+insert into User (user_id, user_pw, name, age, gender, phone_number)
+values("tlstkdlaekd", md5("000004"), "신사임당", "99", "Female", "01077912131");
+insert into User (user_id, user_pw, name, age, gender, phone_number)
+values("dltn", md5("000005"), "이수", "37", "Male", "01066452115");
+insert into User (user_id, user_pw, name, age, gender, phone_number)
+values("wkdejrcjf", md5("000006"), "장덕철", "40", "Male", "01044459132");
+insert into User (user_id, user_pw, name, age, gender, phone_number)
+values("dlackdwjd", md5("000007"), "임창정", "44", "Male", "01067189975");
+insert into User (user_id, user_pw, name, age, gender, phone_number)
+values("test", md5("test"), "테스트용", "30", "Female", "01012345678");
 
 -- Address
 INSERT INTO Address (user_id, address_alias, address) VALUES('dlackdwjd', '기본배송지', '26420 강원도 원주시 백간길 80 벽산아파트');

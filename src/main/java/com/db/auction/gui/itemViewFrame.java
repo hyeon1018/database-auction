@@ -87,9 +87,14 @@ public class itemViewFrame extends JFrame {
         }
     }
 
+    private void sellerLabelMouseClicked(MouseEvent e) {
+        String target_user_id = sellerLabel.getText();
+        Database.insertFavorite(currentUser, target_user_id);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+        // Generated using JFormDesigner Evaluation license - kangjungmo
         JLabel label1 = new JLabel();
         JLabel label2 = new JLabel();
         JLabel label3 = new JLabel();
@@ -139,6 +144,13 @@ public class itemViewFrame extends JFrame {
 
         //---- sellerLabel ----
         sellerLabel.setText("text");
+        sellerLabel.setForeground(Color.blue);
+        sellerLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                sellerLabelMouseClicked(e);
+            }
+        });
         contentPane.add(sellerLabel);
         sellerLabel.setBounds(100, 30, 245, 30);
 
@@ -192,7 +204,7 @@ public class itemViewFrame extends JFrame {
     private List<ImageIcon> imageList;
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+    // Generated using JFormDesigner Evaluation license - kangjungmo
     private JScrollPane scrollPane1;
     private JTextPane itemInfoPane;
     private JLabel sellerLabel;

@@ -48,7 +48,7 @@ public class Payment {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Kim Dohyeon
+        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
         payFrame = new JDialog();
         payPanel = new JPanel();
         itemLabel = new JLabel();
@@ -66,6 +66,7 @@ public class Payment {
         {
             payFrame.setTitle("Payment");
             payFrame.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            payFrame.setResizable(false);
             Container payFrameContentPane = payFrame.getContentPane();
             payFrameContentPane.setLayout(new BorderLayout());
 
@@ -190,7 +191,7 @@ public class Payment {
     String currentItem;
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Kim Dohyeon
+    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
     private JDialog payFrame;
     private JPanel payPanel;
     private JLabel itemLabel;

@@ -7,6 +7,7 @@ new FormModel {
 			name: "this"
 			"title": "SellerDataLog"
 			"$sizePolicy": 1
+			"resizable": false
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 				name: "dialogPane"
 				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )

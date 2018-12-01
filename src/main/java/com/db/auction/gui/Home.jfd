@@ -75,7 +75,7 @@ new FormModel {
 					"horizontalAlignment": 4
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "accountLabelMouseClicked", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 500
+					"x": 495
 					"y": 30
 					"width": 114
 					"height": 25
@@ -140,9 +140,10 @@ new FormModel {
 					"text": "☆"
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "favorBtnActionPerformed", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 620
+					"x": 615
 					"y": 30
-					"width": 45
+					"width": 50
+					"height": 25
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"

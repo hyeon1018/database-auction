@@ -50,7 +50,7 @@ public class SellerLog extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - kangjungmo
+        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
         dialogPane = new JPanel();
         scrollPane1 = new JScrollPane();
         LogTable = new JTable();
@@ -60,6 +60,7 @@ public class SellerLog extends JFrame {
 
         //======== this ========
         setTitle("SellerDataLog");
+        setResizable(false);
         Container contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
@@ -168,7 +169,7 @@ public class SellerLog extends JFrame {
     private String currentUser;
     private int deal_id, row_index;
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - kangjungmo
+    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
     private JPanel dialogPane;
     private JScrollPane scrollPane1;
     private JTable LogTable;

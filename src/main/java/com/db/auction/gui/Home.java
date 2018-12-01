@@ -165,7 +165,7 @@ public class Home {
                     }
                 });
                 mainPanel.add(accountLabel);
-                accountLabel.setBounds(500, 30, 114, 25);
+                accountLabel.setBounds(495, 30, 114, 25);
 
                 //---- searchBtn ----
                 searchBtn.setText("\uac80\uc0c9");
@@ -206,7 +206,7 @@ public class Home {
                 favorBtn.setText("\u2606");
                 favorBtn.addActionListener(e -> favorBtnActionPerformed(e));
                 mainPanel.add(favorBtn);
-                favorBtn.setBounds(620, 30, 45, favorBtn.getPreferredSize().height);
+                favorBtn.setBounds(615, 30, 50, 25);
 
                 { // compute preferred size
                     Dimension preferredSize = new Dimension();

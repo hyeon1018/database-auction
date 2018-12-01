@@ -89,7 +89,7 @@ public class itemViewFrame extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Kim Dohyeon
+        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
         JLabel label1 = new JLabel();
         JLabel label2 = new JLabel();
         JLabel label3 = new JLabel();
@@ -106,6 +106,7 @@ public class itemViewFrame extends JFrame {
         submitButton = new JButton();
 
         //======== this ========
+        setResizable(false);
         Container contentPane = getContentPane();
         contentPane.setLayout(null);
 
@@ -191,7 +192,7 @@ public class itemViewFrame extends JFrame {
     private List<ImageIcon> imageList;
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Kim Dohyeon
+    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
     private JScrollPane scrollPane1;
     private JTextPane itemInfoPane;
     private JLabel sellerLabel;

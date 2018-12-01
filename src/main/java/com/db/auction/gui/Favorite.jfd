@@ -8,6 +8,8 @@ new FormModel {
 			"$sizePolicy": 1
 			"title": "Favorite"
 			"modalityType": enum java.awt.Dialog$ModalityType APPLICATION_MODAL
+			"defaultCloseOperation": 2
+			"resizable": false
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 				name: "favorPanel"
 				"preferredSize": new java.awt.Dimension( 225, 275 )

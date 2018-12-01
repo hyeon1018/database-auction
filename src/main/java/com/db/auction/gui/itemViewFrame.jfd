@@ -8,6 +8,7 @@ new FormModel {
 		} ) {
 			name: "this"
 			"$sizePolicy": 1
+			"resizable": false
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "판매자"

@@ -8,6 +8,7 @@ new FormModel {
 			"$sizePolicy": 1
 			"title": "Payment"
 			"modalityType": enum java.awt.Dialog$ModalityType APPLICATION_MODAL
+			"resizable": false
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) ) {
 				name: "payPanel"
 				add( new FormComponent( "javax.swing.JLabel" ) {

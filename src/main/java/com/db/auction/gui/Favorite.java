@@ -14,12 +14,14 @@ public class Favorite {
     public Favorite(String userId) {
         currentUser = userId;
         initComponents();
-        setList(currentUser);
+        setList();
+        favorFrame.setVisible(true);
     }
 
-    private void setList(String userId){
+    private void setList(){
         List<String> favorites = Database.getFavorite(currentUser);
-        DefaultListModel model = (DefaultListModel) favorList.getModel();
+        DefaultListModel model = new DefaultListModel();
+
         while(model.getSize() > 0){
             model.removeElementAt(0);
         }
@@ -27,6 +29,7 @@ public class Favorite {
         for(String favor : favorites){
             model.addElement(favor);
         }
+        favorList.setModel(model);
     }
 
     private void addFavorBtnActionPerformed(ActionEvent e) {
@@ -39,7 +42,7 @@ public class Favorite {
     }
 
     private void favorListMouseClicked(MouseEvent e) {
-        if(e.getClickCount() == 2) {
+        if(e.getClickCount() == 2){
             //TODO 검색 기능으로
         }
     }
@@ -60,6 +63,8 @@ public class Favorite {
         {
             favorFrame.setTitle("Favorite");
             favorFrame.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+            favorFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            favorFrame.setResizable(false);
             Container favorFrameContentPane = favorFrame.getContentPane();
             favorFrameContentPane.setLayout(new BorderLayout());
 

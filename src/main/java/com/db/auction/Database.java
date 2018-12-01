@@ -494,6 +494,16 @@ public class Database {
         }
     }
 
+    public static void setItemReached(int dealId){
+        String setItemShippedSQL = "UPDATE Deal SET state = '구매 확정' WHERE Deal_id = ?";
+        try(PreparedStatement ps = connection.prepareStatement(setItemShippedSQL)){
+            ps.setInt(1, dealId);
+            ps.execute();
+        }catch(SQLException se){
+            se.printStackTrace();
+        }
+    }
+
     public static void DeleteLogList(int deal_id){
         String DeleteLogListSQL = "DELETE FROM Deal WHERE deal_id = ?";
         try(PreparedStatement pstat = connection.prepareStatement(DeleteLogListSQL)) {

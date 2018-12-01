@@ -47,7 +47,7 @@ new FormModel {
 							add( new com.jformdesigner.model.SwingTableColumn( null, 80, 0, 80, true ) )
 							add( new com.jformdesigner.model.SwingTableColumn( null, 50, 0, 50, true ) )
 							add( new com.jformdesigner.model.SwingTableColumn( null, 80, 0, 80, true ) )
-							add( new com.jformdesigner.model.SwingTableColumn( null, 300, 0, 500, false ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 300, 0, 500, true ) )
 							add( new com.jformdesigner.model.SwingTableColumn( null, 100, 0, 100, true ) )
 							add( new com.jformdesigner.model.SwingTableColumn( null, 130, 0, 130, true ) )
 						} )

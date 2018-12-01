@@ -130,7 +130,6 @@ public class Home {
                         cm.getColumn(2).setPreferredWidth(50);
                         cm.getColumn(3).setMaxWidth(80);
                         cm.getColumn(3).setPreferredWidth(80);
-                        cm.getColumn(4).setResizable(false);
                         cm.getColumn(4).setMaxWidth(500);
                         cm.getColumn(4).setPreferredWidth(300);
                         cm.getColumn(5).setMaxWidth(100);

@@ -491,6 +491,16 @@ public class Database {
         // 판매자가 판매 내역 조회하는 Query문.
     }
 
+    public static void setItemShipped(int dealId){
+        String setItemShippedSQL = "UPDATE Deal SET state = '배송중' WHERE Deal_id = ?";
+        try(PreparedStatement ps = connection.prepareStatement(setItemShippedSQL)){
+            ps.setInt(1, dealId);
+            ps.execute();
+        }catch(SQLException se){
+            se.printStackTrace();
+        }
+    }
+
     public static void DeleteLogList(int deal_id){
         String DeleteLogListSQL = "DELETE FROM Deal WHERE deal_id = ?";
         try(PreparedStatement pstat = connection.prepareStatement(DeleteLogListSQL)) {
@@ -519,6 +529,7 @@ public class Database {
 
         return FavoriteList;
     }
+
     public static void deleteFavorite(String user_id, String target_user_id){
         String DeleteFavoriteSQL = "DELETE FROM Favorite WHERE user_id = ? AND seller_user_id = ?";
         try(PreparedStatement pstat = connection.prepareStatement((DeleteFavoriteSQL))){

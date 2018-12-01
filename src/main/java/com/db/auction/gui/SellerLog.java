@@ -5,6 +5,8 @@
 package com.db.auction.gui;
 
 import com.db.auction.Database;
+import jdk.nashorn.internal.scripts.JO;
+
 import java.util.List;
 import java.awt.*;
 import java.awt.event.*;
@@ -49,9 +51,26 @@ public class SellerLog extends JFrame {
         getTable();
     }
 
+    private void LogTableMouseClicked(MouseEvent e) {
+        if(e.getClickCount() == 2){
+            String status = (String) LogTable.getValueAt(LogTable.getSelectedRow(), 8);
+            if(status.equals("결제 완료")){
+                int selection = JOptionPane.showConfirmDialog(dialogPane,
+                                                    "물품의 배송을 시작했나요?",
+                                                    "",
+                                                    JOptionPane.YES_NO_OPTION);
+                if(selection == JOptionPane.YES_OPTION){
+                    Database.setItemShipped(Integer.parseInt(LogTable.getValueAt(LogTable.getSelectedRow(), 1).toString()));
+                }
+
+                getTable();
+            }
+        }
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+        // Generated using JFormDesigner Evaluation license - Kim Dohyeon
         dialogPane = new JPanel();
         scrollPane1 = new JScrollPane();
         LogTable = new JTable();
@@ -118,6 +137,12 @@ public class SellerLog extends JFrame {
                     cm.getColumn(8).setPreferredWidth(80);
                 }
                 LogTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                LogTable.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        LogTableMouseClicked(e);
+                    }
+                });
                 scrollPane1.setViewportView(LogTable);
             }
             dialogPane.add(scrollPane1);
@@ -170,7 +195,7 @@ public class SellerLog extends JFrame {
     private String currentUser;
     private int deal_id, row_index;
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+    // Generated using JFormDesigner Evaluation license - Kim Dohyeon
     private JPanel dialogPane;
     private JScrollPane scrollPane1;
     private JTable LogTable;

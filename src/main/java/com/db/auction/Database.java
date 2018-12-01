@@ -433,6 +433,24 @@ public class Database {
         // 판매자 및 구매자가 자신의 판매/구매 내역을 삭제하는 Query문.
     }
 
+    public static List<String> getFavorite(String user_id){
+
+          List<String> FavoriteList = new ArrayList<>();
+          String FavoriteSQL = "SELECT seller_user_id FROM Favorite WHERE user_id = ?";
+          try(PreparedStatement pstat = connection.prepareStatement(FavoriteSQL)){
+              pstat.setString(1, user_id);
+              ResultSet rs = pstat.executeQuery();
+              while(rs.next()) {
+                  String data = rs.getString(1);
+                  FavoriteList.add(data);
+              }
+          }catch(SQLException se){
+              se.printStackTrace();
+          }
+
+        return FavoriteList;
+    }
+
     // TEST_START
     public static List<String []>  getLogListTEST(String user_id){
         List<String []> LogList = new ArrayList<>();

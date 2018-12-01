@@ -93,7 +93,7 @@ new FormModel {
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 12
 					"y": 251
-					"width": 344
+					"width": 578
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"

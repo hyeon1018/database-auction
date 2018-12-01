@@ -5,13 +5,11 @@
 package com.db.auction.gui;
 
 import com.db.auction.Database;
-import jdk.nashorn.internal.scripts.JO;
 
 import java.util.List;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.GroupLayout;
 import javax.swing.border.*;
 import javax.swing.table.*;
 

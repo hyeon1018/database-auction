@@ -44,6 +44,13 @@ public class AccountEdit {
         addrComboBox = new JComboBox();
         eInputAddr = new JTextField();
         editButton = new JButton();
+        addAddrBtn = new JButton();
+        delAddrBtn = new JButton();
+        eCardLabel = new JLabel();
+        cardComboBox = new JComboBox();
+        eInputCard = new JTextField();
+        addCardBtn = new JButton();
+        delCardBtn = new JButton();
 
         //======== editDialog ========
         {
@@ -56,7 +63,8 @@ public class AccountEdit {
 
             //======== editPanel ========
             {
-                editPanel.setPreferredSize(new Dimension(500, 370));
+                editPanel.setPreferredSize(new Dimension(500, 480));
+                editPanel.setRequestFocusEnabled(false);
 
                 // JFormDesigner evaluation mark
                 editPanel.setBorder(new javax.swing.border.CompoundBorder(
@@ -151,10 +159,40 @@ public class AccountEdit {
                 editButton.setFont(new Font("\ub098\ub214\uace0\ub515", Font.BOLD, 20));
                 editButton.addActionListener(e -> editButtonActionPerformed(e));
                 editPanel.add(editButton);
-                editButton.setBounds(200, 275, 100, editButton.getPreferredSize().height);
+                editButton.setBounds(200, 385, 100, editButton.getPreferredSize().height);
+
+                //---- addAddrBtn ----
+                addAddrBtn.setText("\ucd94\uac00");
+                editPanel.add(addAddrBtn);
+                addAddrBtn.setBounds(new Rectangle(new Point(345, 170), addAddrBtn.getPreferredSize()));
+
+                //---- delAddrBtn ----
+                delAddrBtn.setText("\uc0ad\uc81c");
+                editPanel.add(delAddrBtn);
+                delAddrBtn.setBounds(new Rectangle(new Point(405, 170), delAddrBtn.getPreferredSize()));
+
+                //---- eCardLabel ----
+                eCardLabel.setText("\uacb0\uc81c \uc218\ub2e8");
+                eCardLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 18));
+                editPanel.add(eCardLabel);
+                eCardLabel.setBounds(new Rectangle(new Point(40, 275), eCardLabel.getPreferredSize()));
+                editPanel.add(cardComboBox);
+                cardComboBox.setBounds(40, 310, 420, 25);
+                editPanel.add(eInputCard);
+                eInputCard.setBounds(40, 340, 420, 25);
+
+                //---- addCardBtn ----
+                addCardBtn.setText("\ucd94\uac00");
+                editPanel.add(addCardBtn);
+                addCardBtn.setBounds(345, 285, 57, 23);
+
+                //---- delCardBtn ----
+                delCardBtn.setText("\uc0ad\uc81c");
+                editPanel.add(delCardBtn);
+                delCardBtn.setBounds(405, 285, 57, 23);
             }
             editDialogContentPane.add(editPanel, BorderLayout.CENTER);
-            editDialog.setSize(500, 370);
+            editDialog.setSize(500, 480);
             editDialog.setLocationRelativeTo(editDialog.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -180,5 +218,12 @@ public class AccountEdit {
     private JComboBox addrComboBox;
     private JTextField eInputAddr;
     private JButton editButton;
+    private JButton addAddrBtn;
+    private JButton delAddrBtn;
+    private JLabel eCardLabel;
+    private JComboBox cardComboBox;
+    private JTextField eInputCard;
+    private JButton addCardBtn;
+    private JButton delCardBtn;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

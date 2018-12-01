@@ -145,7 +145,7 @@ public class BuyerLog extends JFrame {
                     new Insets(0, 0, 0, 0), 0, 0));
             }
             dialogPane.add(buttonBar);
-            buttonBar.setBounds(12, 251, 344, buttonBar.getPreferredSize().height);
+            buttonBar.setBounds(12, 251, 578, buttonBar.getPreferredSize().height);
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
         setSize(600, 330);

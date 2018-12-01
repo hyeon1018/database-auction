@@ -1,26 +1,35 @@
 package com.db.auction.gui;
 
+import com.db.auction.Database;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
+import javax.xml.crypto.Data;
 
 public class AccountEdit {
 
-    public AccountEdit(){
+    public AccountEdit(String userId){
         initComponents();
-        idLabel.setText("기존 계정");
-        eInputPw.setText("기존 비밀번호");
-        nameLabel.setText("기존 이름");
-        eInputAge.setText("기존 나이");
-        genderLabel.setText("기존 성별");
-        eInputPhone.setText("기존 전화번호");
+        currentUser = userId;
+        initData();
+        editDialog.setVisible(true);
+    }
+
+    private void initData(){
+        System.out.println("????");
+        String[] currentInfo = Database.getUserInfo(currentUser);
+        idLabel.setText(currentInfo[0]);
+        nameLabel.setText(currentInfo[1]);
+        eInputAge.setText(currentInfo[2]);
+        genderLabel.setText(currentInfo[3]);
+        eInputPhone.setText(currentInfo[4]);
         addrComboBox.addItem("등록된 주소들");
-        eInputAddr.setText("등록된 주소들 선택한 내용 가져오거나 신규 입력");
     }
 
     private void editButtonActionPerformed(ActionEvent e) {
-        // TODO 수정 진행
+        Database.updateUserInfo(currentUser, Integer.parseInt(eInputAge.getText()), eInputPhone.getText(), String.valueOf(eInputPw.getPassword()));
     }
 
     private void addAddrBtnActionPerformed(ActionEvent e) {
@@ -41,32 +50,32 @@ public class AccountEdit {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+        // Generated using JFormDesigner Evaluation license - Kim Dohyeon
         editDialog = new JDialog();
-        editPanel = new JPanel();
-        eIdLabel = new JLabel();
+        JPanel editPanel = new JPanel();
+        JLabel eIdLabel = new JLabel();
         idLabel = new JLabel();
-        ePwLabel = new JLabel();
+        JLabel ePwLabel = new JLabel();
         eInputPw = new JPasswordField();
-        eNameLabel = new JLabel();
+        JLabel eNameLabel = new JLabel();
         nameLabel = new JLabel();
-        cAgeLabel = new JLabel();
+        JLabel cAgeLabel = new JLabel();
         eInputAge = new JTextField();
-        eGenderLabel = new JLabel();
+        JLabel eGenderLabel = new JLabel();
         genderLabel = new JLabel();
-        cPhoneLabel = new JLabel();
+        JLabel cPhoneLabel = new JLabel();
         eInputPhone = new JTextField();
-        eAddrLabel = new JLabel();
+        JLabel eAddrLabel = new JLabel();
         addrComboBox = new JComboBox();
-        eInputAddr = new JTextField();
         editButton = new JButton();
         addAddrBtn = new JButton();
         delAddrBtn = new JButton();
-        eCardLabel = new JLabel();
+        JLabel eCardLabel = new JLabel();
         cardComboBox = new JComboBox();
-        eInputCard = new JTextField();
         addCardBtn = new JButton();
         delCardBtn = new JButton();
+        addAddrBtn2 = new JButton();
+        addAddrBtn3 = new JButton();
 
         //======== editDialog ========
         {
@@ -101,7 +110,7 @@ public class AccountEdit {
                 idLabel.setText("id");
                 idLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.PLAIN, 20));
                 editPanel.add(idLabel);
-                idLabel.setBounds(new Rectangle(new Point(95, 30), idLabel.getPreferredSize()));
+                idLabel.setBounds(95, 30, 105, idLabel.getPreferredSize().height);
 
                 //---- ePwLabel ----
                 ePwLabel.setText("PW");
@@ -124,7 +133,7 @@ public class AccountEdit {
                 nameLabel.setText("name");
                 nameLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.PLAIN, 20));
                 editPanel.add(nameLabel);
-                nameLabel.setBounds(new Rectangle(new Point(95, 75), nameLabel.getPreferredSize()));
+                nameLabel.setBounds(95, 75, 105, nameLabel.getPreferredSize().height);
 
                 //---- cAgeLabel ----
                 cAgeLabel.setText("\ub098\uc774");
@@ -135,7 +144,7 @@ public class AccountEdit {
                 //---- eInputAge ----
                 eInputAge.setFont(new Font("\uad74\ub9bc", Font.PLAIN, 18));
                 editPanel.add(eInputAge);
-                eInputAge.setBounds(300, 75, 50, 30);
+                eInputAge.setBounds(300, 75, 120, 30);
 
                 //---- eGenderLabel ----
                 eGenderLabel.setText("\uc131\ubcc4");
@@ -147,7 +156,7 @@ public class AccountEdit {
                 genderLabel.setText("gender");
                 genderLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.PLAIN, 20));
                 editPanel.add(genderLabel);
-                genderLabel.setBounds(new Rectangle(new Point(95, 120), genderLabel.getPreferredSize()));
+                genderLabel.setBounds(95, 120, 110, genderLabel.getPreferredSize().height);
 
                 //---- cPhoneLabel ----
                 cPhoneLabel.setText("\uc804\ud654\ubc88\ud638");
@@ -167,8 +176,6 @@ public class AccountEdit {
                 eAddrLabel.setBounds(new Rectangle(new Point(40, 165), eAddrLabel.getPreferredSize()));
                 editPanel.add(addrComboBox);
                 addrComboBox.setBounds(40, 200, 420, 25);
-                editPanel.add(eInputAddr);
-                eInputAddr.setBounds(40, 230, 420, 25);
 
                 //---- editButton ----
                 editButton.setText("\uc218\uc815");
@@ -178,7 +185,7 @@ public class AccountEdit {
                 editButton.setBounds(200, 385, 100, editButton.getPreferredSize().height);
 
                 //---- addAddrBtn ----
-                addAddrBtn.setText("\ucd94\uac00");
+                addAddrBtn.setText("\uc218\uc815");
                 addAddrBtn.addActionListener(e -> addAddrBtnActionPerformed(e));
                 editPanel.add(addAddrBtn);
                 addAddrBtn.setBounds(new Rectangle(new Point(345, 170), addAddrBtn.getPreferredSize()));
@@ -193,23 +200,33 @@ public class AccountEdit {
                 eCardLabel.setText("\uacb0\uc81c \uc218\ub2e8");
                 eCardLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 18));
                 editPanel.add(eCardLabel);
-                eCardLabel.setBounds(new Rectangle(new Point(40, 275), eCardLabel.getPreferredSize()));
+                eCardLabel.setBounds(new Rectangle(new Point(40, 245), eCardLabel.getPreferredSize()));
                 editPanel.add(cardComboBox);
-                cardComboBox.setBounds(40, 310, 420, 25);
-                editPanel.add(eInputCard);
-                eInputCard.setBounds(40, 340, 420, 25);
+                cardComboBox.setBounds(40, 280, 420, 25);
 
                 //---- addCardBtn ----
-                addCardBtn.setText("\ucd94\uac00");
+                addCardBtn.setText("\uc218\uc815");
                 addCardBtn.addActionListener(e -> addCardBtnActionPerformed(e));
                 editPanel.add(addCardBtn);
-                addCardBtn.setBounds(345, 285, 57, 23);
+                addCardBtn.setBounds(345, 245, 57, 23);
 
                 //---- delCardBtn ----
                 delCardBtn.setText("\uc0ad\uc81c");
                 delCardBtn.addActionListener(e -> delCardBtnActionPerformed(e));
                 editPanel.add(delCardBtn);
-                delCardBtn.setBounds(405, 285, 57, 23);
+                delCardBtn.setBounds(405, 245, 57, 23);
+
+                //---- addAddrBtn2 ----
+                addAddrBtn2.setText("\ucd94\uac00");
+                addAddrBtn2.addActionListener(e -> addAddrBtnActionPerformed(e));
+                editPanel.add(addAddrBtn2);
+                addAddrBtn2.setBounds(285, 170, 57, 23);
+
+                //---- addAddrBtn3 ----
+                addAddrBtn3.setText("\ucd94\uac00");
+                addAddrBtn3.addActionListener(e -> addAddrBtnActionPerformed(e));
+                editPanel.add(addAddrBtn3);
+                addAddrBtn3.setBounds(new Rectangle(new Point(285, 245), addAddrBtn3.getPreferredSize()));
             }
             editDialogContentPane.add(editPanel, BorderLayout.CENTER);
             editDialog.setSize(500, 480);
@@ -218,32 +235,25 @@ public class AccountEdit {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
+    private String currentUser;
+
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+    // Generated using JFormDesigner Evaluation license - Kim Dohyeon
     private JDialog editDialog;
-    private JPanel editPanel;
-    private JLabel eIdLabel;
     private JLabel idLabel;
-    private JLabel ePwLabel;
     private JPasswordField eInputPw;
-    private JLabel eNameLabel;
     private JLabel nameLabel;
-    private JLabel cAgeLabel;
     private JTextField eInputAge;
-    private JLabel eGenderLabel;
     private JLabel genderLabel;
-    private JLabel cPhoneLabel;
     private JTextField eInputPhone;
-    private JLabel eAddrLabel;
     private JComboBox addrComboBox;
-    private JTextField eInputAddr;
     private JButton editButton;
     private JButton addAddrBtn;
     private JButton delAddrBtn;
-    private JLabel eCardLabel;
     private JComboBox cardComboBox;
-    private JTextField eInputCard;
     private JButton addCardBtn;
     private JButton delCardBtn;
+    private JButton addAddrBtn2;
+    private JButton addAddrBtn3;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

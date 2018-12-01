@@ -37,7 +37,7 @@ public class Home {
     }
 
     private void accountLabelMouseClicked(MouseEvent e) {
-        // TODO 정보 수정 창으로 연결
+        new AccountEdit(currentUser);
     }
 
     private void searchBtnActionPerformed(ActionEvent e) {

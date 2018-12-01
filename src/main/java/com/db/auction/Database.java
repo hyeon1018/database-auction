@@ -279,6 +279,43 @@ public class Database {
           return payments;
     }
 
+    public static String[] getUserInfo(String userId){
+          String getUserInfoSQL = "SELECT  user_id, name, age, gender, phone_number FROM User WHERE user_id = ?";
+          String [] data = new String[5];
+          try(PreparedStatement ps = connection.prepareStatement(getUserInfoSQL)){
+              ps.setString(1, userId);
+              ResultSet rs = ps.executeQuery();
+              if(rs.first()){
+                  data[0] = rs.getString(1);
+                  data[1] = rs.getString(2);
+                  data[2] = String.valueOf(rs.getInt(3));
+                  data[3] = rs.getString(4);
+                  data[4] = rs.getString(5);
+              }
+          }catch(SQLException se){
+
+          }
+          return data;
+    }
+
+    public static void updateUserInfo(String userId, int age, String phoneNumber, String password){
+          String updateUserInfoSQL = "UPDATE User SET age = ?, phone_number = ?" +
+                                        (password.equals("") ? "" : ", user_pw = md5(?)") +
+                                        " WHERE user_id = ?";
+          try(PreparedStatement ps = connection.prepareStatement(updateUserInfoSQL)){
+                int i = 1;
+                ps.setInt(i++, age);
+                ps.setString(i++, phoneNumber);
+                if(!password.equals("")){
+                    ps.setString(i++, password);
+                }
+                ps.setString(i++,userId);
+                ps.execute();
+          }catch(SQLException se){
+              se.printStackTrace();
+          }
+    }
+
     public static List<String> getImageDirs(String itemId){
         List<String> imageDirs = new ArrayList<>();
         String getImageDirsSQL = "SELECT dir FROM Image WHERE item_id = ?";

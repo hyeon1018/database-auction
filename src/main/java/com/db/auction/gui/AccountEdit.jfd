@@ -16,10 +16,16 @@ new FormModel {
 				name: "editPanel"
 				"preferredSize": new java.awt.Dimension( 500, 480 )
 				"requestFocusEnabled": false
+				auxiliary() {
+					"JavaCodeGenerator.variableLocal": true
+				}
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "eIdLabel"
 					"text": "ID"
 					"font": new java.awt.Font( "나눔고딕", 1, 20 )
+					auxiliary() {
+						"JavaCodeGenerator.variableLocal": true
+					}
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 40
 					"y": 30
@@ -31,11 +37,15 @@ new FormModel {
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 95
 					"y": 30
+					"width": 105
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "ePwLabel"
 					"text": "PW"
 					"font": new java.awt.Font( "나눔고딕", 1, 20 )
+					auxiliary() {
+						"JavaCodeGenerator.variableLocal": true
+					}
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 245
 					"y": 30
@@ -53,6 +63,9 @@ new FormModel {
 					name: "eNameLabel"
 					"text": "이름"
 					"font": new java.awt.Font( "나눔고딕", 1, 20 )
+					auxiliary() {
+						"JavaCodeGenerator.variableLocal": true
+					}
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 40
 					"y": 75
@@ -64,11 +77,15 @@ new FormModel {
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 95
 					"y": 75
+					"width": 105
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "cAgeLabel"
 					"text": "나이"
 					"font": new java.awt.Font( "나눔고딕", 1, 20 )
+					auxiliary() {
+						"JavaCodeGenerator.variableLocal": true
+					}
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 245
 					"y": 75
@@ -79,13 +96,16 @@ new FormModel {
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 300
 					"y": 75
-					"width": 50
+					"width": 120
 					"height": 30
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "eGenderLabel"
 					"text": "성별"
 					"font": new java.awt.Font( "나눔고딕", 1, 20 )
+					auxiliary() {
+						"JavaCodeGenerator.variableLocal": true
+					}
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 40
 					"y": 120
@@ -97,11 +117,15 @@ new FormModel {
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 95
 					"y": 120
+					"width": 110
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "cPhoneLabel"
 					"text": "전화번호"
 					"font": new java.awt.Font( "나눔고딕", 1, 20 )
+					auxiliary() {
+						"JavaCodeGenerator.variableLocal": true
+					}
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 210
 					"y": 120
@@ -119,6 +143,9 @@ new FormModel {
 					name: "eAddrLabel"
 					"text": "주소"
 					"font": new java.awt.Font( "나눔고딕", 1, 20 )
+					auxiliary() {
+						"JavaCodeGenerator.variableLocal": true
+					}
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 40
 					"y": 165
@@ -130,14 +157,6 @@ new FormModel {
 					"height": 25
 					"x": 40
 					"y": 200
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "eInputAddr"
-				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"width": 420
-					"height": 25
-					"x": 40
-					"y": 230
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "editButton"
@@ -151,7 +170,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "addAddrBtn"
-					"text": "추가"
+					"text": "수정"
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addAddrBtnActionPerformed", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 345
@@ -169,35 +188,30 @@ new FormModel {
 					name: "eCardLabel"
 					"text": "결제 수단"
 					"font": new java.awt.Font( "맑은 고딕", 1, 18 )
+					auxiliary() {
+						"JavaCodeGenerator.variableLocal": true
+					}
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 40
-					"y": 275
+					"y": 245
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
 					name: "cardComboBox"
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 40
-					"y": 310
-					"width": 420
-					"height": 25
-				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "eInputCard"
-				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 40
-					"y": 340
+					"y": 280
 					"width": 420
 					"height": 25
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "addCardBtn"
-					"text": "추가"
+					"text": "수정"
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addCardBtnActionPerformed", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"width": 57
 					"height": 23
 					"x": 345
-					"y": 285
+					"y": 245
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "delCardBtn"
@@ -207,7 +221,25 @@ new FormModel {
 					"width": 57
 					"height": 23
 					"x": 405
-					"y": 285
+					"y": 245
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "addAddrBtn2"
+					"text": "추가"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addAddrBtnActionPerformed", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"width": 57
+					"height": 23
+					"x": 285
+					"y": 170
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "addAddrBtn3"
+					"text": "추가"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "addAddrBtnActionPerformed", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 285
+					"y": 245
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"

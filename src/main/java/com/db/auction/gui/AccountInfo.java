@@ -34,11 +34,6 @@ public class AccountInfo {
         }
     }
 
-    private void regDialogWindowClosing(WindowEvent e) {
-        regDialog.dispose();
-        e.getWindow().dispose();
-    }
-
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
@@ -66,14 +61,9 @@ public class AccountInfo {
         //======== regDialog ========
         {
             regDialog.setTitle("Register");
-            regDialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+            regDialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             regDialog.setResizable(false);
-            regDialog.addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosing(WindowEvent e) {
-                    regDialogWindowClosing(e);
-                }
-            });
+            regDialog.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
             Container regDialogContentPane = regDialog.getContentPane();
             regDialogContentPane.setLayout(new BorderLayout());
 

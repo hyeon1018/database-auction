@@ -109,6 +109,8 @@ public class itemViewFrame extends JFrame {
         prevImageButton = new JButton();
         nextImageButton = new JButton();
         submitButton = new JButton();
+        label5 = new JLabel();
+        label6 = new JLabel();
 
         //======== this ========
         setResizable(false);
@@ -192,6 +194,16 @@ public class itemViewFrame extends JFrame {
         contentPane.add(submitButton);
         submitButton.setBounds(270, 465, 97, 30);
 
+        //---- label5 ----
+        label5.setText("\ud3c9\uc810: ");
+        contentPane.add(label5);
+        label5.setBounds(260, 10, 40, 25);
+
+        //---- label6 ----
+        label6.setText("text");
+        contentPane.add(label6);
+        label6.setBounds(295, 10, 70, 25);
+
         contentPane.setPreferredSize(new Dimension(400, 550));
         setSize(400, 550);
         setLocationRelativeTo(getOwner());
@@ -215,5 +227,7 @@ public class itemViewFrame extends JFrame {
     private JButton prevImageButton;
     private JButton nextImageButton;
     private JButton submitButton;
+    private JLabel label5;
+    private JLabel label6;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

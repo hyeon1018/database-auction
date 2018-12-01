@@ -69,7 +69,7 @@ public class Home {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+        // Generated using JFormDesigner Evaluation license - kangjungmo
         mainMenu = new JFrame();
         mainPanel = new JPanel();
         listScroll = new JScrollPane();
@@ -112,13 +112,14 @@ public class Home {
                     itemTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
                     itemTable.setModel(new DefaultTableModel(
                         new Object[][] {
+                            {null, null, null, null, null, null, null, null},
                         },
                         new String[] {
-                            "\uc720\ud615", "\ubb3c\ud488 ID", "\ubd84\ub958", "\uac00\uaca9", "\ubb3c\ud488 \uc815\ubcf4", "\uc0ac\uc6a9\uc790", "\ub9c8\uac10\uc77c"
+                            "\uc720\ud615", "\ubb3c\ud488 ID", "\ubd84\ub958", "\uac00\uaca9", "\ubb3c\ud488 \uc815\ubcf4", "\uc0ac\uc6a9\uc790", "\ub9c8\uac10\uc77c", "\ud3c9\uc810"
                         }
                     ) {
                         boolean[] columnEditable = new boolean[] {
-                            false, false, false, false, false, false, false
+                            false, false, false, false, false, false, false, false
                         };
                         @Override
                         public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -141,6 +142,8 @@ public class Home {
                         cm.getColumn(5).setPreferredWidth(100);
                         cm.getColumn(6).setMaxWidth(130);
                         cm.getColumn(6).setPreferredWidth(130);
+                        cm.getColumn(7).setMaxWidth(60);
+                        cm.getColumn(7).setPreferredWidth(60);
                     }
                     itemTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                     listScroll.setViewportView(itemTable);
@@ -232,7 +235,7 @@ public class Home {
     String currentUser;
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+    // Generated using JFormDesigner Evaluation license - kangjungmo
     private JFrame mainMenu;
     private JPanel mainPanel;
     private JScrollPane listScroll;

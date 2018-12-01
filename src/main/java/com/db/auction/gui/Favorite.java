@@ -32,10 +32,6 @@ public class Favorite {
         favorList.setModel(model);
     }
 
-    private void addFavorBtnActionPerformed(ActionEvent e) {
-        // TODO 즐찾 유저 추가
-    }
-
     private void delFavorBtnActionPerformed(ActionEvent e) {
         //favorList.getSelectedValue().toString();
         // TODO 즐찾 유저 삭제
@@ -58,7 +54,6 @@ public class Favorite {
         favorPanel = new JPanel();
         favorScroll = new JScrollPane();
         favorList = new JList();
-        addFavorBtn = new JButton();
         delFavorBtn = new JButton();
 
         //======== favorFrame ========
@@ -99,19 +94,12 @@ public class Favorite {
                 favorPanel.add(favorScroll);
                 favorScroll.setBounds(25, 20, 190, 175);
 
-                //---- addFavorBtn ----
-                addFavorBtn.setText("\ucd94\uac00");
-                addFavorBtn.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.PLAIN, 12));
-                addFavorBtn.addActionListener(e -> addFavorBtnActionPerformed(e));
-                favorPanel.add(addFavorBtn);
-                addFavorBtn.setBounds(60, 210, 60, 25);
-
                 //---- delFavorBtn ----
                 delFavorBtn.setText("\uc0ad\uc81c");
                 delFavorBtn.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.PLAIN, 12));
                 delFavorBtn.addActionListener(e -> delFavorBtnActionPerformed(e));
                 favorPanel.add(delFavorBtn);
-                delFavorBtn.setBounds(125, 210, 60, 25);
+                delFavorBtn.setBounds(90, 210, 60, 25);
             }
             favorFrameContentPane.add(favorPanel, BorderLayout.CENTER);
             favorFrame.setSize(245, 300);
@@ -126,7 +114,6 @@ public class Favorite {
     private JPanel favorPanel;
     private JScrollPane favorScroll;
     private JList favorList;
-    private JButton addFavorBtn;
     private JButton delFavorBtn;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

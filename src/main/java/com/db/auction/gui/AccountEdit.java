@@ -56,7 +56,7 @@ public class AccountEdit {
 
             //======== editPanel ========
             {
-                editPanel.setPreferredSize(new Dimension(500, 320));
+                editPanel.setPreferredSize(new Dimension(500, 370));
 
                 // JFormDesigner evaluation mark
                 editPanel.setBorder(new javax.swing.border.CompoundBorder(
@@ -142,19 +142,19 @@ public class AccountEdit {
                 editPanel.add(eAddrLabel);
                 eAddrLabel.setBounds(new Rectangle(new Point(40, 165), eAddrLabel.getPreferredSize()));
                 editPanel.add(addrComboBox);
-                addrComboBox.setBounds(40, 210, 420, 25);
+                addrComboBox.setBounds(40, 200, 420, 25);
                 editPanel.add(eInputAddr);
-                eInputAddr.setBounds(40, 245, 420, 25);
+                eInputAddr.setBounds(40, 230, 420, 25);
 
                 //---- editButton ----
                 editButton.setText("\uc218\uc815");
                 editButton.setFont(new Font("\ub098\ub214\uace0\ub515", Font.BOLD, 20));
                 editButton.addActionListener(e -> editButtonActionPerformed(e));
                 editPanel.add(editButton);
-                editButton.setBounds(200, 290, 100, editButton.getPreferredSize().height);
+                editButton.setBounds(200, 275, 100, editButton.getPreferredSize().height);
             }
             editDialogContentPane.add(editPanel, BorderLayout.CENTER);
-            editDialog.setSize(500, 380);
+            editDialog.setSize(500, 370);
             editDialog.setLocationRelativeTo(editDialog.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents

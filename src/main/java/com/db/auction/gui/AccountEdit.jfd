@@ -14,7 +14,7 @@ new FormModel {
 				"autoSize": false
 			} ) {
 				name: "editPanel"
-				"preferredSize": new java.awt.Dimension( 500, 320 )
+				"preferredSize": new java.awt.Dimension( 500, 370 )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "eIdLabel"
 					"text": "ID"
@@ -128,7 +128,7 @@ new FormModel {
 					"width": 420
 					"height": 25
 					"x": 40
-					"y": 210
+					"y": 200
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "eInputAddr"
@@ -136,7 +136,7 @@ new FormModel {
 					"width": 420
 					"height": 25
 					"x": 40
-					"y": 245
+					"y": 230
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "editButton"
@@ -145,14 +145,14 @@ new FormModel {
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "editButtonActionPerformed", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 200
-					"y": 290
+					"y": 275
 					"width": 100
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"size": new java.awt.Dimension( 500, 380 )
+			"size": new java.awt.Dimension( 500, 370 )
 			"location": new java.awt.Point( 0, 0 )
 		} )
 	}

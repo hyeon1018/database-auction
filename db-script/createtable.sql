@@ -58,7 +58,8 @@ CREATE TABLE `Favorite`
     `seller_user_id`    VARCHAR(20) NOT NULL
  COMMENT 'seller_user_id',
     `user_id`    VARCHAR(20) NOT NULL
- COMMENT 'user_id'
+ COMMENT 'user_id',
+ CONSTRAINT `not_equal` CHECK (`seller_user_id` != `user_id`)
 )
  COMMENT = 'Favorite';
 

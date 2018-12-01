@@ -546,6 +546,7 @@ public class Database {
         }
         return favoriteresult;
     }
+
     // TEST_START
     public static List<String []>  getLogListTEST(String user_id){
         List<String []> LogList = new ArrayList<>();

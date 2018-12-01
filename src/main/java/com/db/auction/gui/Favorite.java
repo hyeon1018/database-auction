@@ -32,20 +32,19 @@ public class Favorite {
         favorList.setModel(model);
     }
 
-    private void addFavorBtnActionPerformed(ActionEvent e) {
-        // TODO 즐찾 유저 추가
-    }
-
     private void delFavorBtnActionPerformed(ActionEvent e) {
-        //favorList.getSelectedValue().toString();
-        // TODO 즐찾 유저 삭제
+        String target_user_id = (String) favorList.getSelectedValue();
+        Database.deleteFavorite(currentUser, target_user_id);
+        setList();
     }
 
     private void favorListMouseClicked(MouseEvent e) {
-        if(e.getClickCount() == 2){
-            //favorList.getSelectedValue().toString();
+        String target_user_id = (String) favorList.getSelectedValue();
+        if(e.getClickCount() == 2) {
+            List <String []> favoriteResult = Database.FavoriteResultList(target_user_id);
+            new SearchResult(currentUser, favoriteResult);
+            favorFrame.dispose();
 
-            //TODO 검색 기능으로
         }
     }
 

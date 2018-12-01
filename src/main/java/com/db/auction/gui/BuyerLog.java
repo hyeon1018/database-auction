@@ -50,9 +50,8 @@ public class BuyerLog extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - kangjungmo
+        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
         dialogPane = new JPanel();
-        contentPanel = new JPanel();
         scrollPane1 = new JScrollPane();
         LogTable = new JTable();
         buttonBar = new JPanel();
@@ -60,13 +59,14 @@ public class BuyerLog extends JFrame {
         deleteLogButton = new JButton();
 
         //======== this ========
-        setTitle("BuyerDataLog");
+        setTitle("Buyer Data Log");
         Container contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
         //======== dialogPane ========
         {
             dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
+            dialogPane.setPreferredSize(new Dimension(370, 298));
 
             // JFormDesigner evaluation mark
             dialogPane.setBorder(new javax.swing.border.CompoundBorder(
@@ -75,51 +75,52 @@ public class BuyerLog extends JFrame {
                     javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
                     java.awt.Color.red), dialogPane.getBorder())); dialogPane.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
-            dialogPane.setLayout(new BorderLayout());
+            dialogPane.setLayout(null);
 
-            //======== contentPanel ========
+            //======== scrollPane1 ========
             {
 
-                //======== scrollPane1 ========
-                {
-
-                    //---- LogTable ----
-                    LogTable.setModel(new DefaultTableModel(
-                        new Object[][] {
-                        },
-                        new String[] {
-                            "\ub0a0\uc9dc", "\uad6c\ub9e4\uae00 \ubc88\ud638", "\ud310\ub9e4\uc790 ID", "\ud310\ub9e4\uc790 \uc774\ub984", "\ud310\ub9e4\uc790 \uc5f0\ub77d\ucc98", "\ud310\ub9e4\uae00 \ubc88\ud638", "\uac00\uaca9", "\ubc30\uc1a1\uc9c0", "\uc0c1\ud0dc"
-                        }
-                    ));
-                    {
-                        TableColumnModel cm = LogTable.getColumnModel();
-                        cm.getColumn(0).setPreferredWidth(200);
-                        cm.getColumn(1).setPreferredWidth(120);
-                        cm.getColumn(2).setPreferredWidth(120);
-                        cm.getColumn(3).setPreferredWidth(120);
-                        cm.getColumn(4).setPreferredWidth(150);
-                        cm.getColumn(5).setPreferredWidth(120);
-                        cm.getColumn(6).setPreferredWidth(100);
-                        cm.getColumn(7).setPreferredWidth(500);
-                        cm.getColumn(8).setPreferredWidth(120);
+                //---- LogTable ----
+                LogTable.setModel(new DefaultTableModel(
+                    new Object[][] {
+                    },
+                    new String[] {
+                        "\uad6c\ub9e4 \ub0a0\uc9dc", "\uad6c\ub9e4\uae00 \ubc88\ud638", "\ud310\ub9e4\uc790 ID", "\ud310\ub9e4\uc790 \uc774\ub984", "\ud310\ub9e4\uc790 \uc5f0\ub77d\ucc98", "\ud310\ub9e4\uae00 \ubc88\ud638", "\uac00\uaca9", "\ubc30\uc1a1\uc9c0", "\uc0c1\ud0dc"
                     }
-                    scrollPane1.setViewportView(LogTable);
+                ) {
+                    boolean[] columnEditable = new boolean[] {
+                        false, false, false, false, false, false, false, false, false
+                    };
+                    @Override
+                    public boolean isCellEditable(int rowIndex, int columnIndex) {
+                        return columnEditable[columnIndex];
+                    }
+                });
+                {
+                    TableColumnModel cm = LogTable.getColumnModel();
+                    cm.getColumn(0).setMaxWidth(130);
+                    cm.getColumn(0).setPreferredWidth(130);
+                    cm.getColumn(1).setPreferredWidth(100);
+                    cm.getColumn(2).setMaxWidth(150);
+                    cm.getColumn(2).setPreferredWidth(100);
+                    cm.getColumn(3).setMaxWidth(150);
+                    cm.getColumn(3).setPreferredWidth(100);
+                    cm.getColumn(4).setMaxWidth(110);
+                    cm.getColumn(4).setPreferredWidth(110);
+                    cm.getColumn(5).setPreferredWidth(100);
+                    cm.getColumn(6).setMaxWidth(100);
+                    cm.getColumn(6).setPreferredWidth(80);
+                    cm.getColumn(7).setMaxWidth(500);
+                    cm.getColumn(7).setPreferredWidth(350);
+                    cm.getColumn(8).setMaxWidth(80);
+                    cm.getColumn(8).setPreferredWidth(80);
                 }
-
-                GroupLayout contentPanelLayout = new GroupLayout(contentPanel);
-                contentPanel.setLayout(contentPanelLayout);
-                contentPanelLayout.setHorizontalGroup(
-                    contentPanelLayout.createParallelGroup()
-                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 714, Short.MAX_VALUE)
-                );
-                contentPanelLayout.setVerticalGroup(
-                    contentPanelLayout.createParallelGroup()
-                        .addGroup(contentPanelLayout.createSequentialGroup()
-                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                            .addContainerGap())
-                );
+                LogTable.setEnabled(false);
+                LogTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                scrollPane1.setViewportView(LogTable);
             }
-            dialogPane.add(contentPanel, BorderLayout.CENTER);
+            dialogPane.add(scrollPane1);
+            scrollPane1.setBounds(10, 10, 580, 240);
 
             //======== buttonBar ========
             {
@@ -142,7 +143,8 @@ public class BuyerLog extends JFrame {
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 0, 0), 0, 0));
             }
-            dialogPane.add(buttonBar, BorderLayout.SOUTH);
+            dialogPane.add(buttonBar);
+            buttonBar.setBounds(12, 251, 344, buttonBar.getPreferredSize().height);
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
         pack();
@@ -153,9 +155,8 @@ public class BuyerLog extends JFrame {
     private String currentUser;
     private int row_index, deal_id;
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - kangjungmo
+    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
     private JPanel dialogPane;
-    private JPanel contentPanel;
     private JScrollPane scrollPane1;
     private JTable LogTable;
     private JPanel buttonBar;

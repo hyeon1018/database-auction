@@ -5,64 +5,66 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
 			name: "this"
-			"title": "BuyerDataLog"
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			"title": "Buyer Data Log"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) {
+				"autoSize": false
+			} ) {
 				name: "dialogPane"
 				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )
-				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {comp scrollPane1::l::714:x}"
-					"$verticalGroup": "par l {seq l {comp scrollPane1::::226:x, space :::p}}"
-				} ) {
-					name: "contentPanel"
-					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-						name: "scrollPane1"
-						add( new FormComponent( "javax.swing.JTable" ) {
-							name: "LogTable"
-							"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector, new java.util.Vector {
-								add( "날짜" )
-								add( "구매글 번호" )
-								add( "판매자 ID" )
-								add( "판매자 이름" )
-								add( "판매자 연락처" )
-								add( "판매글 번호" )
-								add( "가격" )
-								add( "배송지" )
-								add( "상태" )
-							}, new java.util.Vector {
-								add( null )
-								add( null )
-								add( null )
-								add( null )
-								add( null )
-								add( null )
-								add( null )
-								add( null )
-								add( null )
-							}, new java.util.Vector {
-								add( true )
-								add( true )
-								add( true )
-								add( true )
-								add( true )
-								add( true )
-								add( true )
-								add( true )
-								add( true )
-							}, new java.util.Vector {
-								add( new com.jformdesigner.model.SwingTableColumn( null, 200, 0, 0, true ) )
-								add( new com.jformdesigner.model.SwingTableColumn( null, 120, 0, 0, true ) )
-								add( new com.jformdesigner.model.SwingTableColumn( null, 120, 0, 0, true ) )
-								add( new com.jformdesigner.model.SwingTableColumn( null, 120, 0, 0, true ) )
-								add( new com.jformdesigner.model.SwingTableColumn( null, 150, 0, 0, true ) )
-								add( new com.jformdesigner.model.SwingTableColumn( null, 120, 0, 0, true ) )
-								add( new com.jformdesigner.model.SwingTableColumn( null, 100, 0, 0, true ) )
-								add( new com.jformdesigner.model.SwingTableColumn( null, 500, 0, 0, true ) )
-								add( new com.jformdesigner.model.SwingTableColumn( null, 120, 0, 0, true ) )
-							} )
+				"preferredSize": new java.awt.Dimension( 370, 298 )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "LogTable"
+						"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector, new java.util.Vector {
+							add( "구매 날짜" )
+							add( "구매글 번호" )
+							add( "판매자 ID" )
+							add( "판매자 이름" )
+							add( "판매자 연락처" )
+							add( "판매글 번호" )
+							add( "가격" )
+							add( "배송지" )
+							add( "상태" )
+						}, new java.util.Vector {
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+							add( null )
+						}, new java.util.Vector {
+							add( false )
+							add( false )
+							add( false )
+							add( false )
+							add( false )
+							add( false )
+							add( false )
+							add( false )
+							add( false )
+						}, new java.util.Vector {
+							add( new com.jformdesigner.model.SwingTableColumn( null, 130, 0, 130, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 100, 0, 0, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 100, 0, 150, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 100, 0, 150, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 110, 0, 110, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 100, 0, 0, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 80, 0, 100, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 350, 0, 500, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 80, 0, 80, true ) )
 						} )
+						"enabled": false
+						"autoResizeMode": 0
 					} )
-				}, new FormLayoutConstraints( class java.lang.String ) {
-					"value": "Center"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 10
+					"y": 10
+					"width": 580
+					"height": 240
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
 					"$columnSpecs": "0:1.0, 80, 80"
@@ -87,15 +89,17 @@ new FormModel {
 						"gridx": 2
 						"gridy": 0
 					} )
-				}, new FormLayoutConstraints( class java.lang.String ) {
-					"value": "South"
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 12
+					"y": 251
+					"width": 344
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 740, 330 )
+			"location": new java.awt.Point( 5, 0 )
+			"size": new java.awt.Dimension( 600, 330 )
 		} )
 	}
 }

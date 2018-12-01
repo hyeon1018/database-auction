@@ -6,12 +6,10 @@ package com.db.auction.gui;
 
 import java.awt.event.*;
 import com.db.auction.Database;
-import sun.rmi.runtime.Log;
 
 import java.awt.*;
 import java.util.List;
 import javax.swing.*;
-import javax.swing.GroupLayout;
 import javax.swing.border.*;
 import javax.swing.table.*;
 

@@ -1,3 +1,5 @@
+DROP VIEW item_list;
+
 ALTER TABLE `Address`
 DROP FOREIGN KEY address_FK;
 
@@ -27,7 +29,8 @@ DROP TABLE `User`;
 CREATE TABLE `User`
 (
     `user_id`    VARCHAR(20) NOT NULL
- COMMENT 'user_id',
+ COMMENT 'user_id'
+ CHECK(`user_id` REGEXP '^[a-zA-z0-9]+$'),
     `user_pw`    VARCHAR(40)
  COMMENT 'user_pw',
     `name`    VARCHAR(25)
@@ -39,7 +42,9 @@ CREATE TABLE `User`
  COMMENT 'gender'
  CHECK (`gender` in ("Male", "Female")),
     `phone_number`    VARCHAR(20) NOT NULL
- COMMENT 'phone_number'
+ COMMENT 'phone_number',
+    `is_active` BOOLEAN DEFAULT 1
+ COMMENT 'is_active'
 )
  COMMENT = 'User';
 
@@ -53,7 +58,8 @@ CREATE TABLE `Favorite`
     `seller_user_id`    VARCHAR(20) NOT NULL
  COMMENT 'seller_user_id',
     `user_id`    VARCHAR(20) NOT NULL
- COMMENT 'user_id'
+ COMMENT 'user_id',
+ CONSTRAINT `not_equal` CHECK (`seller_user_id` != `user_id`)
 )
  COMMENT = 'Favorite';
 
@@ -176,10 +182,6 @@ CREATE TABLE `Item`
  COMMENT 'delivery_fee',
     `item_info`    VARCHAR(2000)
  COMMENT 'item_info',
-    `total_item_point`    NUMERIC(2,1)
- COMMENT 'total_item_point',
-    `report_count`    DECIMAL(12)
- COMMENT 'report_count',
     `expire_time`    DATETIME
  COMMENT 'expire_time',
  CONSTRAINT `expire_time_check` CHECK (
@@ -272,3 +274,16 @@ ALTER TABLE `Image`
  ADD CONSTRAINT `image_FK` FOREIGN KEY ( `item_id` )
  REFERENCES Item (`item_id` );
 
+CREATE VIEW item_list AS
+SELECT deal_type, item_id, category, price, delivery_fee, item_info, user_id, expire_time
+FROM Item
+WHERE item_id NOT IN (SELECT DISTINCT item_id FROM Bid)
+UNION
+SELECT deal_type, item_id, category, max_price, delivery_fee, item_info, user_id, expire_time
+FROM Item Join (SELECT item_id, max(join_price) as max_price
+				FROM Bid
+				GROUP BY item_id) item_price USING(item_id);
+
+SELECT Item.user_id, avg(item_point)
+FROM Deal JOIN Item USING(item_id)
+GROUP BY Item.user_id;

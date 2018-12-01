@@ -32,7 +32,7 @@ public class Home {
         }
         List<String []> itemList = Database.searchItemList("", "", 0, 0, "", "", null);
         for(String[] item : itemList){
-            String [] row = {item[0], item[1], item[2], item[3], item[5], item[6], item[7]};
+            String [] row = {item[0], item[1], item[2], item[3], item[5], item[6], item[7], item[8]};
             model.addRow(row);
         }
     }

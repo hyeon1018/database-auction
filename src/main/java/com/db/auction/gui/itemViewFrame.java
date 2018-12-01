@@ -36,6 +36,7 @@ public class itemViewFrame extends JFrame {
         priceLabel.setText(iteminfo[3]);
         shippingFeeLabel.setText(iteminfo[4]);
         itemInfoPane.setText(iteminfo[5]);
+        sellerRateLabel.setText(iteminfo[8]);
 
         List<String> imageDirs = Database.getImageDirs(currentItem);
         imageList = new ArrayList<>();
@@ -94,7 +95,7 @@ public class itemViewFrame extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - kangjungmo
+        // Generated using JFormDesigner Evaluation license - Kim Dohyeon
         JLabel label1 = new JLabel();
         JLabel label2 = new JLabel();
         JLabel label3 = new JLabel();
@@ -109,8 +110,8 @@ public class itemViewFrame extends JFrame {
         prevImageButton = new JButton();
         nextImageButton = new JButton();
         submitButton = new JButton();
-        label5 = new JLabel();
-        label6 = new JLabel();
+        JLabel label5 = new JLabel();
+        sellerRateLabel = new JLabel();
 
         //======== this ========
         setResizable(false);
@@ -199,10 +200,10 @@ public class itemViewFrame extends JFrame {
         contentPane.add(label5);
         label5.setBounds(260, 10, 40, 25);
 
-        //---- label6 ----
-        label6.setText("text");
-        contentPane.add(label6);
-        label6.setBounds(295, 10, 70, 25);
+        //---- sellerRateLabel ----
+        sellerRateLabel.setText("0");
+        contentPane.add(sellerRateLabel);
+        sellerRateLabel.setBounds(295, 10, 70, 25);
 
         contentPane.setPreferredSize(new Dimension(400, 550));
         setSize(400, 550);
@@ -216,7 +217,7 @@ public class itemViewFrame extends JFrame {
     private List<ImageIcon> imageList;
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - kangjungmo
+    // Generated using JFormDesigner Evaluation license - Kim Dohyeon
     private JScrollPane scrollPane1;
     private JTextPane itemInfoPane;
     private JLabel sellerLabel;
@@ -227,7 +228,6 @@ public class itemViewFrame extends JFrame {
     private JButton prevImageButton;
     private JButton nextImageButton;
     private JButton submitButton;
-    private JLabel label5;
-    private JLabel label6;
+    private JLabel sellerRateLabel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

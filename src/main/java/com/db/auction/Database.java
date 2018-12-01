@@ -131,8 +131,8 @@ public class Database {
     public static List<String []> searchItemList(String deal_type, String category, int minPrice, int maxPrice, String keyword, String user, Date expired){
 
         List<String []> itemList = new ArrayList<>();
-        String itemListSQL = "SELECT *\n" +
-                "FROM item_list\n";
+        String itemListSQL = "SELECT deal_type, item_id, category, price, delivery_fee, item_info, user_id, expire_time, seller_rate\n" +
+                "FROM item_list LEFT OUTER JOIN (SELECT Item.user_id, avg(item_point) as seller_rate FROM Deal JOIN Item USING(item_id) GROUP BY Item.user_id) rate USING(user_id)\n";
         itemListSQL += " WHERE price >= ?" ;
 
 
@@ -182,7 +182,7 @@ public class Database {
 
             ResultSet rs = pstat.executeQuery();
             while(rs.next()){
-                String[] data = new String[8];
+                String[] data = new String[9];
                 data[0] = rs.getString(1);
                 data[1] = String.valueOf(rs.getInt(2));
                 data[2] = rs.getString(3);
@@ -191,6 +191,7 @@ public class Database {
                 data[5] = rs.getString(6);
                 data[6] = rs.getString(7);
                 data[7] = (rs.getDate(8) != null ? rs.getDate(8).toString():"");
+                data[8] = String.valueOf(rs.getFloat(9));
                 itemList.add(data);
             }
         }catch (SQLException se){
@@ -205,18 +206,9 @@ public class Database {
      * @return String[] with deal_type, item_id, category, price, delivery_fee, item_info, user_id, expire_time
      */
       public static String [] getItemInfo(String itemId){
-        String [] data = new String [8];
-        String getItemInfoSQL = "WITH item_list (deal_type, item_id, category, price, delivery_fee, item_info, user_id, expire_time) AS\n" +
-                "((SELECT deal_type, item_id, category, price, delivery_fee, item_info, user_id, expire_time\n" +
-                "FROM Item\n" +
-                "WHERE item_id NOT IN (SELECT DISTINCT item_id FROM Bid))\n" +
-                "UNION\n" +
-                "(SELECT deal_type, item_id, category, max_price, delivery_fee, item_info, user_id, expire_time\n" +
-                "FROM Item Join (SELECT item_id, max(join_price) as max_price\n" +
-                "FROM Bid\n" +
-                "GROUP BY item_id) item_price USING(item_id)))\n" +
-                "SELECT * \n" +
-                "FROM item_list\n" +
+        String [] data = new String [9];
+        String getItemInfoSQL = "SELECT deal_type, item_id, category, price, delivery_fee, item_info, user_id, expire_time, seller_rate\n" +
+                "FROM item_list LEFT OUTER JOIN (SELECT Item.user_id, avg(item_point) as seller_rate FROM Deal JOIN Item USING(item_id) GROUP BY Item.user_id) rate USING(user_id)\n" +
                 "WHERE item_id = ?;";
         try(PreparedStatement pstat = connection.prepareStatement(getItemInfoSQL)){
             pstat.setInt(1, Integer.parseInt(itemId));
@@ -230,6 +222,7 @@ public class Database {
                 data[5] = rs.getString(6);
                 data[6] = rs.getString(7);
                 data[7] = (rs.getDate(8) != null ? rs.getDate(8).toString() : null);
+                data[8] = String.valueOf(rs.getFloat(9));
             }
         }catch (SQLException se){
             se.printStackTrace();

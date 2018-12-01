@@ -23,6 +23,22 @@ public class AccountEdit {
         // TODO 수정 진행
     }
 
+    private void addAddrBtnActionPerformed(ActionEvent e) {
+        // TODO 주소 추가 버튼
+    }
+
+    private void delAddrBtnActionPerformed(ActionEvent e) {
+        // TODO 주소 제거 버튼
+    }
+
+    private void addCardBtnActionPerformed(ActionEvent e) {
+        // TODO 결제 수단 추가 버튼
+    }
+
+    private void delCardBtnActionPerformed(ActionEvent e) {
+        // TODO 결제 수단 제거 버튼
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
@@ -163,11 +179,13 @@ public class AccountEdit {
 
                 //---- addAddrBtn ----
                 addAddrBtn.setText("\ucd94\uac00");
+                addAddrBtn.addActionListener(e -> addAddrBtnActionPerformed(e));
                 editPanel.add(addAddrBtn);
                 addAddrBtn.setBounds(new Rectangle(new Point(345, 170), addAddrBtn.getPreferredSize()));
 
                 //---- delAddrBtn ----
                 delAddrBtn.setText("\uc0ad\uc81c");
+                delAddrBtn.addActionListener(e -> delAddrBtnActionPerformed(e));
                 editPanel.add(delAddrBtn);
                 delAddrBtn.setBounds(new Rectangle(new Point(405, 170), delAddrBtn.getPreferredSize()));
 
@@ -183,11 +201,13 @@ public class AccountEdit {
 
                 //---- addCardBtn ----
                 addCardBtn.setText("\ucd94\uac00");
+                addCardBtn.addActionListener(e -> addCardBtnActionPerformed(e));
                 editPanel.add(addCardBtn);
                 addCardBtn.setBounds(345, 285, 57, 23);
 
                 //---- delCardBtn ----
                 delCardBtn.setText("\uc0ad\uc81c");
+                delCardBtn.addActionListener(e -> delCardBtnActionPerformed(e));
                 editPanel.add(delCardBtn);
                 delCardBtn.setBounds(405, 285, 57, 23);
             }

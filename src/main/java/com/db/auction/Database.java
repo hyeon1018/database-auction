@@ -131,16 +131,7 @@ public class Database {
     public static List<String []> searchItemList(String deal_type, String category, int minPrice, int maxPrice, String keyword, String user, Date expired){
 
         List<String []> itemList = new ArrayList<>();
-        String itemListSQL = "WITH item_list (deal_type, item_id, category, price, item_info, user_id, expire_time) AS\n" +
-                "((SELECT deal_type, item_id, category, price, item_info, user_id, expire_time\n" +
-                "FROM Item\n" +
-                "WHERE item_id NOT IN (SELECT DISTINCT item_id FROM Bid))\n" +
-                "UNION\n" +
-                "(SELECT deal_type, item_id, category, max_price, item_info, user_id, expire_time\n" +
-                "FROM Item Join (SELECT item_id, max(join_price) as max_price\n" +
-                "FROM Bid\n" +
-                "GROUP BY item_id) item_price USING(item_id)))\n" +
-                "SELECT *\n" +
+        String itemListSQL = "SELECT *\n" +
                 "FROM item_list\n";
         itemListSQL += " WHERE price >= ?" ;
 
@@ -191,14 +182,15 @@ public class Database {
 
             ResultSet rs = pstat.executeQuery();
             while(rs.next()){
-                String[] data = new String[7];
+                String[] data = new String[8];
                 data[0] = rs.getString(1);
                 data[1] = String.valueOf(rs.getInt(2));
                 data[2] = rs.getString(3);
                 data[3] = String.valueOf(rs.getInt(4));
-                data[4] = rs.getString(5);
+                data[4] = String.valueOf(rs.getInt(5));
                 data[5] = rs.getString(6);
-                data[6] = (rs.getDate(7) != null ? rs.getDate(7).toString():"");
+                data[6] = rs.getString(7);
+                data[7] = (rs.getDate(8) != null ? rs.getDate(8).toString():"");
                 itemList.add(data);
             }
         }catch (SQLException se){
@@ -394,6 +386,31 @@ public class Database {
         }catch (SQLException se){
             se.printStackTrace();
         }
+    }
+
+    public static List<String[]> getWinningBidItem(String userId){
+          String getWinningBidItemSQL = "SELECT Item.user_id, Item.item_id, join_price\n" +
+                                        "FROM Bid JOIN Item USING(item_id)\n" +
+                                        "WHERE join_price >= ALL (SELECT join_price FROM Bid)\n" +
+                                        "AND item_id NOT IN (SELECT item_id FROM Deal)\n" +
+                                        "AND expire_time < now()\n" +
+                                        "AND Bid.user_id = ?";
+          List<String[]> winningBids = new ArrayList<>();
+          try(PreparedStatement ps = connection.prepareStatement(getWinningBidItemSQL)){
+              ps.setString(1, userId);
+              ResultSet rs = ps.executeQuery();
+              while(rs.next()){
+                  String[] data = new String[3];
+                  data[0] = rs.getString(1);
+                  data[1] = rs.getString(2);
+                  data[2] = String.valueOf(rs.getInt(3));
+                  winningBids.add(data);
+              }
+
+          }catch (SQLException se){
+              se.printStackTrace();
+        }
+          return winningBids;
     }
 
     public static void dealItem(String userId, String addressAlias, String itemId){

@@ -6,6 +6,8 @@ package com.db.auction.gui;
 
 import java.awt.event.*;
 import com.db.auction.Database;
+import sun.rmi.runtime.Log;
+
 import java.awt.*;
 import java.util.List;
 import javax.swing.*;
@@ -32,11 +34,21 @@ public class BuyerLog extends JFrame {
         while (logModel.getRowCount() > 0) {
            logModel.removeRow(0);
         }
+
+        List<String []> winningBids = Database.getWinningBidItem(currentUser);
+        for(String[] winningBid : winningBids){
+            System.out.println(winningBid[1]);
+            String [] row = {"", "", winningBid[0], "", "", winningBid[1], winningBid[2], "", "낙찰됨"};
+            logModel.addRow(row);
+        }
+
         List <String []> LogList = Database.getLogListbyBuyer(currentUser);
         for(String[] log : LogList){
             logModel.addRow(log);
         }
     }
+
+
 
     private void deleteLogButtonActionPerformed(ActionEvent e) {
         DefaultTableModel logModel = (DefaultTableModel) LogTable.getModel();
@@ -49,9 +61,18 @@ public class BuyerLog extends JFrame {
         getTable();
     }
 
+    private void LogTableMouseClicked(MouseEvent e) {
+        if(e.getClickCount() == 2){
+            String status = (String) LogTable.getValueAt(LogTable.getSelectedRow(), 8);
+            if(status.equals("낙찰됨")){
+                new Payment(currentUser, LogTable.getValueAt(LogTable.getSelectedRow(),5).toString());
+            }
+        }
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - kangjungmo
+        // Generated using JFormDesigner Evaluation license - Kim Dohyeon
         dialogPane = new JPanel();
         scrollPane1 = new JScrollPane();
         LogTable = new JTable();
@@ -116,8 +137,14 @@ public class BuyerLog extends JFrame {
                     cm.getColumn(8).setMaxWidth(80);
                     cm.getColumn(8).setPreferredWidth(80);
                 }
-                LogTable.setEnabled(false);
                 LogTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                LogTable.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+                LogTable.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        LogTableMouseClicked(e);
+                    }
+                });
                 scrollPane1.setViewportView(LogTable);
             }
             dialogPane.add(scrollPane1);
@@ -156,7 +183,7 @@ public class BuyerLog extends JFrame {
     private String currentUser;
     private int row_index, deal_id;
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - kangjungmo
+    // Generated using JFormDesigner Evaluation license - Kim Dohyeon
     private JPanel dialogPane;
     private JScrollPane scrollPane1;
     private JTable LogTable;

@@ -63,6 +63,10 @@ public class Home {
         }
     }
 
+    private void favorBtnActionPerformed(ActionEvent e) {
+        new Favorite(currentUser);
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
@@ -77,6 +81,7 @@ public class Home {
         buyListBtn = new JButton();
         regItemBtn = new JButton();
         refreshBtn = new JButton();
+        favorBtn = new JButton();
 
         //======== mainMenu ========
         {
@@ -147,7 +152,7 @@ public class Home {
                 titleLabel.setText("Auction DB System");
                 titleLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 24));
                 mainPanel.add(titleLabel);
-                titleLabel.setBounds(new Rectangle(new Point(35, 25), titleLabel.getPreferredSize()));
+                titleLabel.setBounds(35, 25, 220, titleLabel.getPreferredSize().height);
 
                 //---- accountLabel ----
                 accountLabel.setText("ID");
@@ -160,7 +165,7 @@ public class Home {
                     }
                 });
                 mainPanel.add(accountLabel);
-                accountLabel.setBounds(505, 30, 159, 25);
+                accountLabel.setBounds(500, 30, 114, 25);
 
                 //---- searchBtn ----
                 searchBtn.setText("\uac80\uc0c9");
@@ -196,6 +201,12 @@ public class Home {
                 refreshBtn.addActionListener(e -> refreshBtnActionPerformed(e));
                 mainPanel.add(refreshBtn);
                 refreshBtn.setBounds(565, 80, 100, 40);
+
+                //---- favorBtn ----
+                favorBtn.setText("\u2606");
+                favorBtn.addActionListener(e -> favorBtnActionPerformed(e));
+                mainPanel.add(favorBtn);
+                favorBtn.setBounds(620, 30, 45, favorBtn.getPreferredSize().height);
 
                 { // compute preferred size
                     Dimension preferredSize = new Dimension();
@@ -233,5 +244,6 @@ public class Home {
     private JButton buyListBtn;
     private JButton regItemBtn;
     private JButton refreshBtn;
+    private JButton favorBtn;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 }

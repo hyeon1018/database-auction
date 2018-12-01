@@ -66,6 +66,7 @@ new FormModel {
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 35
 					"y": 25
+					"width": 220
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "accountLabel"
@@ -74,9 +75,9 @@ new FormModel {
 					"horizontalAlignment": 4
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "accountLabelMouseClicked", true ) )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
-					"x": 505
+					"x": 500
 					"y": 30
-					"width": 159
+					"width": 114
 					"height": 25
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
@@ -133,6 +134,15 @@ new FormModel {
 					"y": 80
 					"width": 100
 					"height": 40
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "favorBtn"
+					"text": "☆"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "favorBtnActionPerformed", true ) )
+				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
+					"x": 620
+					"y": 30
+					"width": 45
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"

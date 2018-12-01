@@ -39,7 +39,9 @@ public class Favorite {
     }
 
     private void favorListMouseClicked(MouseEvent e) {
-        //TODO 검색 기능으로
+        if(e.getClickCount() == 2) {
+            //TODO 검색 기능으로
+        }
     }
 
     String currentUser;

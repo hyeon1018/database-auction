@@ -43,6 +43,8 @@ public class Favorite {
 
     private void favorListMouseClicked(MouseEvent e) {
         if(e.getClickCount() == 2){
+            //favorList.getSelectedValue().toString();
+
             //TODO 검색 기능으로
         }
     }
@@ -70,7 +72,7 @@ public class Favorite {
 
             //======== favorPanel ========
             {
-                favorPanel.setPreferredSize(new Dimension(225, 275));
+                favorPanel.setPreferredSize(new Dimension(245, 290));
 
                 // JFormDesigner evaluation mark
                 favorPanel.setBorder(new javax.swing.border.CompoundBorder(
@@ -95,38 +97,24 @@ public class Favorite {
                     favorScroll.setViewportView(favorList);
                 }
                 favorPanel.add(favorScroll);
-                favorScroll.setBounds(15, 15, 195, 175);
+                favorScroll.setBounds(25, 20, 190, 175);
 
                 //---- addFavorBtn ----
                 addFavorBtn.setText("\ucd94\uac00");
                 addFavorBtn.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.PLAIN, 12));
                 addFavorBtn.addActionListener(e -> addFavorBtnActionPerformed(e));
                 favorPanel.add(addFavorBtn);
-                addFavorBtn.setBounds(50, 200, 60, 25);
+                addFavorBtn.setBounds(60, 210, 60, 25);
 
                 //---- delFavorBtn ----
                 delFavorBtn.setText("\uc0ad\uc81c");
                 delFavorBtn.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.PLAIN, 12));
                 delFavorBtn.addActionListener(e -> delFavorBtnActionPerformed(e));
                 favorPanel.add(delFavorBtn);
-                delFavorBtn.setBounds(115, 200, 60, 25);
-
-                { // compute preferred size
-                    Dimension preferredSize = new Dimension();
-                    for(int i = 0; i < favorPanel.getComponentCount(); i++) {
-                        Rectangle bounds = favorPanel.getComponent(i).getBounds();
-                        preferredSize.width = Math.max(bounds.x + bounds.width, preferredSize.width);
-                        preferredSize.height = Math.max(bounds.y + bounds.height, preferredSize.height);
-                    }
-                    Insets insets = favorPanel.getInsets();
-                    preferredSize.width += insets.right;
-                    preferredSize.height += insets.bottom;
-                    favorPanel.setMinimumSize(preferredSize);
-                    favorPanel.setPreferredSize(preferredSize);
-                }
+                delFavorBtn.setBounds(125, 210, 60, 25);
             }
             favorFrameContentPane.add(favorPanel, BorderLayout.CENTER);
-            favorFrame.setSize(225, 275);
+            favorFrame.setSize(245, 300);
             favorFrame.setLocationRelativeTo(favorFrame.getOwner());
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents

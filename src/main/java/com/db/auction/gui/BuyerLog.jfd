@@ -7,6 +7,7 @@ new FormModel {
 			name: "this"
 			"title": "Buyer Data Log"
 			"$sizePolicy": 1
+			"resizable": false
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class com.jformdesigner.runtime.NullLayout ) {
 				"autoSize": false
 			} ) {
@@ -65,11 +66,11 @@ new FormModel {
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 10
 					"y": 10
-					"width": 580
+					"width": 575
 					"height": 240
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
-					"$columnSpecs": "0:1.0, 80, 80"
+					"$columnSpecs": "388:1.0, 80, 80"
 					"$rowSpecs": "0"
 					"$hGap": 5
 					"$vGap": 5
@@ -94,7 +95,7 @@ new FormModel {
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 12
 					"y": 251
-					"width": 578
+					"width": 573
 				} )
 			}, new FormLayoutConstraints( class java.lang.String ) {
 				"value": "Center"

@@ -93,6 +93,7 @@ public class BuyerLog extends JFrame {
 
         //======== this ========
         setTitle("Buyer Data Log");
+        setResizable(false);
         Container contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
 
@@ -159,13 +160,13 @@ public class BuyerLog extends JFrame {
                 scrollPane1.setViewportView(LogTable);
             }
             dialogPane.add(scrollPane1);
-            scrollPane1.setBounds(10, 10, 580, 240);
+            scrollPane1.setBounds(10, 10, 575, 240);
 
             //======== buttonBar ========
             {
                 buttonBar.setBorder(new EmptyBorder(12, 0, 0, 0));
                 buttonBar.setLayout(new GridBagLayout());
-                ((GridBagLayout)buttonBar.getLayout()).columnWidths = new int[] {0, 85, 80};
+                ((GridBagLayout)buttonBar.getLayout()).columnWidths = new int[] {393, 85, 80};
                 ((GridBagLayout)buttonBar.getLayout()).columnWeights = new double[] {1.0, 0.0, 0.0};
 
                 //---- getLogButton ----
@@ -183,7 +184,7 @@ public class BuyerLog extends JFrame {
                     new Insets(0, 0, 0, 0), 0, 0));
             }
             dialogPane.add(buttonBar);
-            buttonBar.setBounds(12, 251, 578, buttonBar.getPreferredSize().height);
+            buttonBar.setBounds(12, 251, 573, buttonBar.getPreferredSize().height);
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
         setSize(600, 330);

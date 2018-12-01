@@ -124,19 +124,21 @@ public class Home {
                         TableColumnModel cm = itemTable.getColumnModel();
                         cm.getColumn(0).setMaxWidth(40);
                         cm.getColumn(0).setPreferredWidth(40);
-                        cm.getColumn(1).setMaxWidth(60);
-                        cm.getColumn(1).setPreferredWidth(60);
-                        cm.getColumn(2).setMaxWidth(30);
-                        cm.getColumn(2).setPreferredWidth(30);
-                        cm.getColumn(3).setMaxWidth(70);
-                        cm.getColumn(3).setPreferredWidth(70);
-                        cm.getColumn(4).setMaxWidth(1000);
-                        cm.getColumn(4).setPreferredWidth(100);
-                        cm.getColumn(5).setMaxWidth(80);
-                        cm.getColumn(5).setPreferredWidth(80);
-                        cm.getColumn(6).setMaxWidth(70);
-                        cm.getColumn(6).setPreferredWidth(70);
+                        cm.getColumn(1).setMaxWidth(80);
+                        cm.getColumn(1).setPreferredWidth(80);
+                        cm.getColumn(2).setMaxWidth(50);
+                        cm.getColumn(2).setPreferredWidth(50);
+                        cm.getColumn(3).setMaxWidth(80);
+                        cm.getColumn(3).setPreferredWidth(80);
+                        cm.getColumn(4).setResizable(false);
+                        cm.getColumn(4).setMaxWidth(500);
+                        cm.getColumn(4).setPreferredWidth(300);
+                        cm.getColumn(5).setMaxWidth(100);
+                        cm.getColumn(5).setPreferredWidth(100);
+                        cm.getColumn(6).setMaxWidth(130);
+                        cm.getColumn(6).setPreferredWidth(130);
                     }
+                    itemTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
                     listScroll.setViewportView(itemTable);
                 }
                 mainPanel.add(listScroll);

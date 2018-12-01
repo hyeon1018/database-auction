@@ -44,13 +44,14 @@ new FormModel {
 							add( false )
 						}, new java.util.Vector {
 							add( new com.jformdesigner.model.SwingTableColumn( null, 40, 0, 40, true ) )
-							add( new com.jformdesigner.model.SwingTableColumn( null, 60, 0, 60, true ) )
-							add( new com.jformdesigner.model.SwingTableColumn( null, 30, 0, 30, true ) )
-							add( new com.jformdesigner.model.SwingTableColumn( null, 70, 0, 70, true ) )
-							add( new com.jformdesigner.model.SwingTableColumn( null, 100, 0, 1000, true ) )
 							add( new com.jformdesigner.model.SwingTableColumn( null, 80, 0, 80, true ) )
-							add( new com.jformdesigner.model.SwingTableColumn( null, 70, 0, 70, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 50, 0, 50, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 80, 0, 80, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 300, 0, 500, false ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 100, 0, 100, true ) )
+							add( new com.jformdesigner.model.SwingTableColumn( null, 130, 0, 130, true ) )
 						} )
+						"autoResizeMode": 0
 					} )
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 35

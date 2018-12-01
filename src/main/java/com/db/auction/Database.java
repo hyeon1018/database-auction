@@ -502,7 +502,50 @@ public class Database {
 
         return FavoriteList;
     }
+    public static void deleteFavorite(String user_id, String target_user_id){
+        String DeleteFavoriteSQL = "DELETE FROM Favorite WHERE user_id = ? AND seller_user_id = ?";
+        try(PreparedStatement pstat = connection.prepareStatement((DeleteFavoriteSQL))){
+            pstat.setString(1, user_id);
+            pstat.setString(2, target_user_id);
+            pstat.execute();
+        }catch (SQLException se){
+            se.printStackTrace();
+        }
+    }
 
+    public static void insertFavorite(String user_id, String target_user_id){
+        String InsertFavoriteSQL = "INSERT INTO Favorite VALUES (?,?);";
+        try(PreparedStatement pstat = connection.prepareStatement((InsertFavoriteSQL))){
+            pstat.setString(1, target_user_id);
+            pstat.setString(2, user_id);
+            pstat.execute();
+        }catch (SQLException se){
+            se.printStackTrace();
+        }
+    }
+
+    public static List<String []> FavoriteResultList(String userId){
+        List<String []> favoriteresult = new ArrayList<>();
+        String FavoriteResultSQL = "SELECT deal_type, item_id, category, price, item_info, user_id, expire_time FROM Item WHERE user_id = ?";
+        try (PreparedStatement pstat = connection.prepareStatement(FavoriteResultSQL)){
+            pstat.setString(1, userId);
+            ResultSet rs =  pstat.executeQuery();
+            while(rs.next()) {
+                String[] data = new String[7];
+                data[0] = rs.getString(1);
+                data[1] = String.valueOf(rs.getInt(2));
+                data[2] = rs.getString(3);
+                data[3] = String.valueOf(rs.getInt(4));
+                data[4] = rs.getString(5);
+                data[5] = rs.getString(6);
+                data[6] = (rs.getDate(7) != null ? rs.getDate(7).toString() : "");
+                favoriteresult.add(data);
+            }
+        }catch (SQLException se){
+            se.printStackTrace();
+        }
+        return favoriteresult;
+    }
     // TEST_START
     public static List<String []>  getLogListTEST(String user_id){
         List<String []> LogList = new ArrayList<>();

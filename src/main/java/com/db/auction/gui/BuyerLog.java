@@ -46,6 +46,7 @@ public class BuyerLog extends JFrame {
             Database.DeleteLogList((deal_id));
             logModel.removeRow(row_index);
         }
+        getTable();
     }
 
     private void initComponents() {
@@ -83,7 +84,6 @@ public class BuyerLog extends JFrame {
                 //---- LogTable ----
                 LogTable.setModel(new DefaultTableModel(
                     new Object[][] {
-                        {null, null, null, null, null, null, null, null, null},
                     },
                     new String[] {
                         "\uad6c\ub9e4 \ub0a0\uc9dc", "\uac70\ub798\ub0b4\uc5ed ID", "\ud310\ub9e4\uc790 ID", "\ud310\ub9e4\uc790 \uc774\ub984", "\ud310\ub9e4\uc790 \uc5f0\ub77d\ucc98", "\ubb3c\ud488 ID", "\uac00\uaca9", "\ubc30\uc1a1\uc9c0", "\uc0c1\ud0dc"

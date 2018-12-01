@@ -66,7 +66,7 @@ public class BuyerLog extends JFrame {
                 new Payment(currentUser, LogTable.getValueAt(LogTable.getSelectedRow(),5).toString());
             }
             else if(status.equals("배송중")){
-                ///
+
                 int selection = JOptionPane.showConfirmDialog(dialogPane,
                         "물품의 배송이 완료되었나요?",
                         "",
@@ -74,16 +74,18 @@ public class BuyerLog extends JFrame {
                 if(selection == JOptionPane.YES_OPTION){
                     Database.setItemReached(Integer.parseInt(LogTable.getValueAt(LogTable.getSelectedRow(), 1).toString()));
                 }
-
+                new GradePoint(Integer.parseInt(LogTable.getValueAt(LogTable.getSelectedRow(), 1).toString()));
                 getTable();
-                ///
+            }
+            else{
+
             }
         }
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Kim Dohyeon
+        // Generated using JFormDesigner Evaluation license - kangjungmo
         dialogPane = new JPanel();
         scrollPane1 = new JScrollPane();
         LogTable = new JTable();
@@ -195,7 +197,7 @@ public class BuyerLog extends JFrame {
     private String currentUser;
     private int row_index, deal_id;
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Kim Dohyeon
+    // Generated using JFormDesigner Evaluation license - kangjungmo
     private JPanel dialogPane;
     private JScrollPane scrollPane1;
     private JTable LogTable;

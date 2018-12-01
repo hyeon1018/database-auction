@@ -1,0 +1,89 @@
+JFDML JFormDesigner: "6.0.4.1.172" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "this"
+			"title": "Grade"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+				name: "dialogPane"
+				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq t {space :p:17:p, comp radioButton1:::p::p, space :p:45:p, comp radioButton2:::p::p, space :p:45:p, comp radioButton3:::p::p, space ::45:x, comp radioButton4:::p::p, space :p:42:p, comp radioButton5:::p::p, space :p:30:p}, seq t {space ::65:x, comp label1:::p:250:p, space :p:59:p}}"
+					"$verticalGroup": "par l {seq l {space :::x, comp label1:::p:62:p, space s:::p, par b {comp radioButton1::b:p::p, comp radioButton2::b:p::p, comp radioButton3::b:p:36:p, comp radioButton4::b:p::p, comp radioButton5::b:p::p}, space :p:15:p}}"
+				} ) {
+					name: "contentPanel"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label1"
+						"text": "구매하신 상품에 대한 평점을 결정해주세요."
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton1"
+						"text": "1"
+						"$buttonGroup": new FormReference( "buttonGroup1" )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton2"
+						"text": "2"
+						"$buttonGroup": new FormReference( "buttonGroup1" )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton3"
+						"text": "3"
+						"$buttonGroup": new FormReference( "buttonGroup1" )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton4"
+						"text": "4"
+						"$buttonGroup": new FormReference( "buttonGroup1" )
+					} )
+					add( new FormComponent( "javax.swing.JRadioButton" ) {
+						name: "radioButton5"
+						"text": "5"
+						"$buttonGroup": new FormReference( "buttonGroup1" )
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "Center"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.GridBagLayout ) {
+					"$columnSpecs": "0:1.0, 80, 80"
+					"$rowSpecs": "0"
+					"$hGap": 5
+					"$vGap": 5
+				} ) {
+					name: "buttonBar"
+					"border": new javax.swing.border.EmptyBorder( 12, 0, 0, 0 )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "commitButton"
+						"text": "참여"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "commitButtonActionPerformed", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 1
+						"gridy": 0
+					} )
+					add( new FormComponent( "javax.swing.JButton" ) {
+						name: "cancelButton"
+						"text": "거절"
+						addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "cancelButtonActionPerformed", true ) )
+					}, new FormLayoutConstraints( class com.jformdesigner.runtime.GridBagConstraintsEx ) {
+						"gridx": 2
+						"gridy": 0
+					} )
+				}, new FormLayoutConstraints( class java.lang.String ) {
+					"value": "South"
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 35, 80 )
+			"size": new java.awt.Dimension( 400, 235 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup1"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 331 )
+		} )
+	}
+}

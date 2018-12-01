@@ -515,6 +515,17 @@ public class Database {
         // 판매자 및 구매자가 자신의 판매/구매 내역을 삭제하는 Query문.
     }
 
+    public static void UpdatePoint(int deal_id, int point){
+          String UpdatePoinrSQL = "UPDATE Deal SET item_point = ? WHERE deal_id = ?;";
+          try(PreparedStatement pstat = connection.prepareStatement((UpdatePoinrSQL))) {
+              pstat.setInt(1, point);
+              pstat.setInt(2, deal_id);
+              pstat.execute();
+          }catch (SQLException se){
+              se.printStackTrace();
+          }
+    }
+
     public static List<String> getFavorite(String user_id){
 
           List<String> FavoriteList = new ArrayList<>();

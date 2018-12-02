@@ -25,7 +25,8 @@ public class SearchResult {
             model.removeRow(0);
         }
         for(String[] item : result){
-            model.addRow(item);
+            String[] row = {item[0], item[1], item[2], item[3], item[5], item[6], item[7]};
+            model.addRow(row);
         }
 
         resultFrame.setVisible(true);

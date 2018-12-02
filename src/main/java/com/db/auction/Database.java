@@ -565,29 +565,4 @@ public class Database {
             se.printStackTrace();
         }
     }
-
-    public static List<String []> FavoriteResultList(String userId){
-        List<String []> favoriteresult = new ArrayList<>();
-        String FavoriteResultSQL = "SELECT deal_type, item_id, category, price, item_info, user_id, expire_time\n" +
-                "FROM item_list\n" +
-                "WHERE (expire_time > now() OR expire_time is null) AND user_id = ?;";
-        try (PreparedStatement pstat = connection.prepareStatement(FavoriteResultSQL)){
-            pstat.setString(1, userId);
-            ResultSet rs =  pstat.executeQuery();
-            while(rs.next()) {
-                String[] data = new String[7];
-                data[0] = rs.getString(1);
-                data[1] = String.valueOf(rs.getInt(2));
-                data[2] = rs.getString(3);
-                data[3] = String.valueOf(rs.getInt(4));
-                data[4] = rs.getString(5);
-                data[5] = rs.getString(6);
-                data[6] = (rs.getDate(7) != null ? rs.getDate(7).toString() : "");
-                favoriteresult.add(data);
-            }
-        }catch (SQLException se){
-            se.printStackTrace();
-        }
-        return favoriteresult;
-    }
 }

@@ -66,15 +66,14 @@ public class BuyerLog extends JFrame {
                 new Payment(currentUser, LogTable.getValueAt(LogTable.getSelectedRow(),5).toString());
             }
             else if(status.equals("배송중")){
-
                 int selection = JOptionPane.showConfirmDialog(dialogPane,
                         "물품의 배송이 완료되었나요?",
                         "",
                         JOptionPane.YES_NO_OPTION);
                 if(selection == JOptionPane.YES_OPTION){
                     Database.setItemReached(Integer.parseInt(LogTable.getValueAt(LogTable.getSelectedRow(), 1).toString()));
+                    new GradePoint(Integer.parseInt(LogTable.getValueAt(LogTable.getSelectedRow(), 1).toString()));
                 }
-                new GradePoint(Integer.parseInt(LogTable.getValueAt(LogTable.getSelectedRow(), 1).toString()));
                 getTable();
             }
             else{

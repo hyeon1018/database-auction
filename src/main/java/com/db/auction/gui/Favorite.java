@@ -41,7 +41,7 @@ public class Favorite {
     private void favorListMouseClicked(MouseEvent e) {
         String target_user_id = (String) favorList.getSelectedValue();
         if(e.getClickCount() == 2) {
-            List <String []> favoriteResult = Database.FavoriteResultList(target_user_id);
+            List <String []> favoriteResult = Database.searchItemList("", "", 0, 0, "", target_user_id, null);
             new SearchResult(currentUser, favoriteResult);
             favorFrame.dispose();
 

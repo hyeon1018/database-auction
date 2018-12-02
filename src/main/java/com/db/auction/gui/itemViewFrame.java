@@ -91,6 +91,7 @@ public class itemViewFrame extends JFrame {
     private void sellerLabelMouseClicked(MouseEvent e) {
         String target_user_id = sellerLabel.getText();
         Database.insertFavorite(currentUser, target_user_id);
+        JOptionPane.showMessageDialog(sellerLabel, "사용자 즐겨찾기 등록 완료", "Message", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void initComponents() {
@@ -193,7 +194,7 @@ public class itemViewFrame extends JFrame {
         nextImageButton.setBounds(75, 465, 45, 30);
 
         //---- submitButton ----
-        submitButton.setText("submit");
+        submitButton.setText("\uad6c\ub9e4");
         submitButton.addActionListener(e -> submitButtonActionPerformed(e));
         contentPane.add(submitButton);
         submitButton.setBounds(270, 465, 97, 30);

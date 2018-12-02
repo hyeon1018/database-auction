@@ -149,6 +149,7 @@ INSERT INTO Image (item_id, dir) VALUES(39, 'flyswatter.jpg');
 INSERT INTO Image (item_id, dir) VALUES(44, 'handmirror.jpg');
 INSERT INTO Image (item_id, dir) VALUES(42, 'knitkit.jpg');
 INSERT INTO Image (item_id, dir) VALUES(34, 'macbook.jpg');
+INSERT INTO Image (item_id, dir) VALUES(35, 'macbook2.jpg');
 INSERT INTO Image (item_id, dir) VALUES(35, 'macbook.jpg');
 INSERT INTO Image (item_id, dir) VALUES(41, 'mimidoll.jpg');
 INSERT INTO Image (item_id, dir) VALUES(37, 'oldmanandthesea.jpg');

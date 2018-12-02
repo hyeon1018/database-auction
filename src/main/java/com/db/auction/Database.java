@@ -384,7 +384,7 @@ public class Database {
     public static List<String[]> getWinningBidItem(String userId){
           String getWinningBidItemSQL = "SELECT Item.user_id, Item.item_id, join_price\n" +
                                         "FROM Bid JOIN Item USING(item_id)\n" +
-                                        "WHERE join_price >= ALL (SELECT join_price FROM Bid)\n" +
+                                        "WHERE join_price >= ALL (SELECT join_price FROM Bid WHERE Bid.item_id = Item.item_id)\n" +
                                         "AND item_id NOT IN (SELECT item_id FROM Deal)\n" +
                                         "AND expire_time < now()\n" +
                                         "AND Bid.user_id = ?";

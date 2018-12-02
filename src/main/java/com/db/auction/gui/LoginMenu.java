@@ -38,7 +38,7 @@ public class LoginMenu {
         if(Database.isValidUser(inputId.getText(), String.valueOf(inputPw.getPassword()))){
             new Home(inputId.getText());
         }else{
-            JOptionPane.showMessageDialog(mainFrame, "Wrong User", "Login", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(mainFrame, "Wrong ID or PW", "Login", JOptionPane.ERROR_MESSAGE);
         }
     }
 

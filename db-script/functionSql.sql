@@ -154,7 +154,7 @@ VALUES ("39", "function", 100000, now());
 -- 낙찰 물품 조회
 SELECT Item.user_id, Item.item_id, join_price
 FROM Bid JOIN Item USING (item_id)
-WHERE join_price >= ALL (SELECT join_price FROM Bid)
+WHERE join_price >= ALL (SELECT join_price FROM Bid WHERE Bid.item_id = Item.item_id)
 AND item_id NOT IN (SELECT item_id FROM Deal)
 AND expire_time < now()
 AND Bid.user_id = "function";

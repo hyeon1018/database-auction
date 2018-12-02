@@ -115,30 +115,31 @@ INSERT INTO Card (user_id, card_company, card_number) VALUES('test', '신한카�
 
 
 -- Item
-INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, total_item_point, report_count, expire_time)
-VALUES(34, 'rlaehgus', '가전', 1000000, 'Sell', '0', '맥북 프로 i7', NULL, NULL, NULL);
-INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, total_item_point, report_count, expire_time)
-VALUES(35, 'rlaehgus', '가전', 500000, 'Bid', '0', '맥북 프로 i7', NULL, NULL, '2018-11-30 12:56:52.000');
-INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, total_item_point, report_count, expire_time)
-VALUES(36, 'rladmsgml', '가구', 150000, 'Bid', '0', '듀오백 의자 DK 2500GI', NULL, NULL, '2018-12-05 12:56:52.000');
-INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, total_item_point, report_count, expire_time)
-VALUES(37, 'tjwldnjs', '도서', 9000, 'Sell', '0', '노인과 바다', NULL, NULL, NULL);
-INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, total_item_point, report_count, expire_time)
-VALUES(38, 'wkdtmddnjs', '의류', 130000, 'Bid', '0', '유니클로 라이더자켓 95M', NULL, NULL, '2018-12-05 12:56:52.000');
-INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, total_item_point, report_count, expire_time)
-VALUES(39, 'rkdwjdah', '잡화', 5000, 'Bid', '0', '전기 파리채', NULL, NULL, '2018-12-05 12:56:52.000');
-INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, total_item_point, report_count, expire_time)
-VALUES(40, 'wjddbghks', '식품', 50000, 'Sell', '0', '상주전통곶감 2kg', NULL, NULL, NULL);
-INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, total_item_point, report_count, expire_time)
-VALUES(41, 'tlstkdlaekd', '완구', 35000, 'Sell', '0', '요술공주 미미인형', NULL, NULL, NULL);
-INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, total_item_point, report_count, expire_time)
-VALUES(42, 'dltn', '취미', 17000, 'Sell', '0', '초보자용 뜨개질세트', NULL, NULL, NULL);
-INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, total_item_point, report_count, expire_time)
-VALUES(43, 'wkdejrcjf', '레저', 6200000, 'Sell', '0', '트렉 산악자전거 REMEDY', NULL, NULL, NULL);
-INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, total_item_point, report_count, expire_time)
-VALUES(44, 'dlackdwjd', '미용', 5000, 'Bid', '0', '양면 손거울', NULL, NULL, '2018-11-30 12:56:52.000');
-INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, total_item_point, report_count, expire_time)
-VALUES(45, 'test', '잡화', 50000, 'Sell', '5000', '격파용 벽돌 금이 있어서 잘 부숴짐', NULL, NULL, NULL);
+INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, expire_time)
+VALUES(34, 'rlaehgus', '가전', 1000000, 'Sell', '3000',  '맥북 프로 i7',  NULL);
+INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, expire_time)
+VALUES(35, 'rlaehgus', '가전', 500000, 'Bid', '0', '맥북 프로 i7', '2018-11-30 12:56:52.000');
+INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, expire_time)
+VALUES(36, 'rladmsgml', '가구', 150000, 'Bid', '0', '듀오백 의자 DK 2500GI', '2018-12-05 12:56:52.000');
+INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, expire_time)
+VALUES(37, 'tjwldnjs', '도서', 9000, 'Sell', '0', '노인과 바다',  NULL);
+INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, expire_time)
+VALUES(38, 'wkdtmddnjs', '의류', 130000, 'Bid', '0', '유니클로 라이더자켓 95M', '2018-12-05 12:56:52.000');
+INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, expire_time)
+VALUES(39, 'rkdwjdah', '잡화', 5000, 'Bid', '0', '전기 파리채', '2018-12-05 12:56:52.000');
+INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, expire_time)
+VALUES(40, 'wjddbghks', '식품', 50000, 'Sell', '0', '상주전통곶감 2kg', NULL);
+INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, expire_time)
+VALUES(41, 'tlstkdlaekd', '완구', 35000, 'Sell', '0', '요술공주 미미인형', NULL);
+INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, expire_time)
+VALUES(42, 'dltn', '취미', 17000, 'Sell', '0', '초보자용 뜨개질세트', NULL);
+INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, expire_time)
+VALUES(43, 'wkdejrcjf', '레저', 6200000, 'Sell', '0', '트렉 산악자전거 REMEDY', NULL);
+INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, expire_time)
+VALUES(44, 'dlackdwjd', '미용', 5000, 'Bid', '0', '양면 손거울', '2018-11-30 12:56:52.000');
+INSERT INTO auction.Item (item_id, user_id, category, price, deal_type, delivery_fee, item_info, expire_time)
+VALUES(45, 'test', '잡화', 50000, 'Sell', '5000', '격파용 벽돌 금이 있어서 잘 부숴짐', NULL);
+
 
 
 
@@ -171,12 +172,11 @@ INSERT INTO Bid (item_id, user_id, join_time, join_price) VALUES(35, 'test', '20
 
 
 -- Deal
-INSERT INTO Deal (deal_id, user_id, address_alias, item_id, item_point, `time`, state) VALUES(11, 'rladmsgml', '집', 34, NULL, '2018-12-01 17:42:20.000', '결제 완료');
-INSERT INTO Deal (deal_id, user_id, address_alias, item_id, item_point, `time`, state) VALUES(12, 'rlaehgus', '집', 34, NULL, '2018-12-01 17:42:34.000', '구매 확정');
-INSERT INTO Deal (deal_id, user_id, address_alias, item_id, item_point, `time`, state) VALUES(13, 'rlaehgus', '집', 34, NULL, '2018-12-01 17:48:55.000', '구매 확정');
+INSERT INTO Deal (deal_id, user_id, address_alias, item_id, item_point, `time`, state) VALUES(11, 'rladmsgml', '기본배송지', 34, NULL, '2018-12-01 17:42:20.000', '결제 완료');
+INSERT INTO Deal (deal_id, user_id, address_alias, item_id, item_point, `time`, state) VALUES(12, 'rlaehgus', '기본배송지', 34, NULL, '2018-12-01 17:42:34.000', '구매 확정');
+INSERT INTO Deal (deal_id, user_id, address_alias, item_id, item_point, `time`, state) VALUES(13, 'rlaehgus', '기본배송지', 34, NULL, '2018-12-01 17:48:55.000', '구매 확정');
 INSERT INTO Deal (deal_id, user_id, address_alias, item_id, item_point, `time`, state) VALUES(14, 'rlaehgus', '기본배송지', 34, NULL, '2018-12-01 18:06:47.000', '구매 확정');
-INSERT INTO Deal (deal_id, user_id, address_alias, item_id, item_point, `time`, state) VALUES(15, 'test', '근무지', 40, NULL, '2018-12-01 18:17:22.000', '결제 완료');
+INSERT INTO Deal (deal_id, user_id, address_alias, item_id, item_point, `time`, state) VALUES(15, 'test', '기본배송지', 40, NULL, '2018-12-01 18:17:22.000', '결제 완료');
 INSERT INTO Deal (deal_id, user_id, address_alias, item_id, item_point, `time`, state) VALUES(16, 'test', '근무지', 42, NULL, '2018-12-01 18:17:27.000', '배송중');
 INSERT INTO Deal (deal_id, user_id, address_alias, item_id, item_point, `time`, state) VALUES(17, 'rlaehgus', '기본배송지', 45, NULL, '2018-12-01 18:19:17.000', '결제 완료');
 INSERT INTO Deal (deal_id, user_id, address_alias, item_id, item_point, `time`, state) VALUES(18, 'test', '근무지', 43, NULL, '2018-12-01 18:19:40.000', '구매 확정');
-

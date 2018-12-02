@@ -51,7 +51,7 @@ public class Database {
     }
 
     public static void regiesterUser(String userId, String userPw, String name, int age, String gender, String phoneNumber){
-        String registerSQL ="INSERT INTO User VALUES (?, md5(?), ?, ?, ?, ?);";
+        String registerSQL ="INSERT INTO (user_id, user_pw, name, age, gender, phone_number) User VALUES (?, md5(?), ?, ?, ?, ?);";
         try(PreparedStatement pstat = connection.prepareStatement(registerSQL)){
             pstat.setString(1, userId);
             pstat.setString(2, userPw);
@@ -590,35 +590,4 @@ public class Database {
         }
         return favoriteresult;
     }
-
-    // TEST_START
-    public static List<String []>  getLogListTEST(String user_id){
-        List<String []> LogList = new ArrayList<>();
-        String LogListTestSQL = "SELECT item_id, price, user_id, name, phone_number, address, address_alias, gender, age " +
-                "FROM Item JOIN (User JOIN Address USING(user_id)) USING(user_id) " +
-                "WHERE user_id = ?";
-        try(PreparedStatement pstat = connection.prepareStatement(LogListTestSQL)){
-            pstat.setString(1, user_id);
-            ResultSet rs = pstat.executeQuery();
-            while(rs.next()) {
-                String[] data = new String[9];
-                data[0] = String.valueOf(rs.getInt(1));
-                data[1] = String.valueOf(rs.getInt(2));
-                data[2] = rs.getString(3);
-                data[3] = rs.getString(4);
-                data[4] = rs.getString(5);
-                data[5] = rs.getString(6);
-                data[6] = rs.getString(7);
-                data[7] = rs.getString(8);
-                data[8] = String.valueOf(rs.getInt(9));
-                LogList.add(data);
-            }
-        }catch (SQLException se){
-            se.printStackTrace();
-        }
-
-        return LogList;
-    }
-//TEST_END
-
 }

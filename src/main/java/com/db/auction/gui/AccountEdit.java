@@ -45,6 +45,7 @@ public class AccountEdit {
 
     private void editButtonActionPerformed(ActionEvent e) {
         Database.updateUserInfo(currentUser, Integer.parseInt(eInputAge.getText()), eInputPhone.getText(), String.valueOf(eInputPw.getPassword()));
+        editDialog.dispose();
     }
 
     private void addAddrBtnActionPerformed(ActionEvent e) {

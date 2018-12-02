@@ -95,7 +95,7 @@ public class itemViewFrame extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Kim Dohyeon
+        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
         JLabel label1 = new JLabel();
         JLabel label2 = new JLabel();
         JLabel label3 = new JLabel();
@@ -140,13 +140,16 @@ public class itemViewFrame extends JFrame {
 
         //======== scrollPane1 ========
         {
+
+            //---- itemInfoPane ----
+            itemInfoPane.setEditable(false);
             scrollPane1.setViewportView(itemInfoPane);
         }
         contentPane.add(scrollPane1);
         scrollPane1.setBounds(30, 155, 335, 150);
 
         //---- sellerLabel ----
-        sellerLabel.setText("text");
+        sellerLabel.setText("id");
         sellerLabel.setForeground(Color.blue);
         sellerLabel.addMouseListener(new MouseAdapter() {
             @Override
@@ -158,22 +161,22 @@ public class itemViewFrame extends JFrame {
         sellerLabel.setBounds(100, 30, 245, 30);
 
         //---- dealTypeLabel ----
-        dealTypeLabel.setText("text");
+        dealTypeLabel.setText("type");
         contentPane.add(dealTypeLabel);
         dealTypeLabel.setBounds(100, 60, 245, 30);
 
         //---- priceLabel ----
-        priceLabel.setText("text");
+        priceLabel.setText("price");
         contentPane.add(priceLabel);
         priceLabel.setBounds(100, 90, 245, 30);
 
         //---- shippingFeeLabel ----
-        shippingFeeLabel.setText("text");
+        shippingFeeLabel.setText("fee");
         contentPane.add(shippingFeeLabel);
         shippingFeeLabel.setBounds(100, 120, 245, 30);
 
         //---- imageLabel ----
-        imageLabel.setText("text");
+        imageLabel.setText("no image");
         contentPane.add(imageLabel);
         imageLabel.setBounds(30, 305, 335, 150);
 
@@ -190,7 +193,7 @@ public class itemViewFrame extends JFrame {
         nextImageButton.setBounds(75, 465, 45, 30);
 
         //---- submitButton ----
-        submitButton.setText("action");
+        submitButton.setText("submit");
         submitButton.addActionListener(e -> submitButtonActionPerformed(e));
         contentPane.add(submitButton);
         submitButton.setBounds(270, 465, 97, 30);
@@ -217,7 +220,7 @@ public class itemViewFrame extends JFrame {
     private List<ImageIcon> imageList;
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Kim Dohyeon
+    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
     private JScrollPane scrollPane1;
     private JTextPane itemInfoPane;
     private JLabel sellerLabel;

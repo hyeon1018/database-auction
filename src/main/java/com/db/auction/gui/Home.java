@@ -70,7 +70,7 @@ public class Home {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - kangjungmo
+        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
         mainMenu = new JFrame();
         mainPanel = new JPanel();
         listScroll = new JScrollPane();
@@ -179,7 +179,7 @@ public class Home {
                 searchBtn.setBounds(35, 80, 100, 40);
 
                 //---- sellListBtn ----
-                sellListBtn.setText("\ud310\ub9e4 \ubaa9\ub85d");
+                sellListBtn.setText("\ud310\ub9e4 \uc774\ub825");
                 sellListBtn.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 15));
                 sellListBtn.addActionListener(e -> sellListBtnActionPerformed(e));
                 mainPanel.add(sellListBtn);
@@ -236,7 +236,7 @@ public class Home {
     String currentUser;
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - kangjungmo
+    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
     private JFrame mainMenu;
     private JPanel mainPanel;
     private JScrollPane listScroll;

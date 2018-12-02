@@ -6,8 +6,8 @@ VALUES("function", md5('function'), "기능SQL", 29, "Male", "01158391823");
 -- 로그인
 SELECT COUNT(user_id)
 FROM `User`
-WHERE user_id = "function1"
-AND user_pw = md5("password")
+WHERE user_id = "function"
+AND user_pw = md5("function")
 
 -- 사용자 정보 조회
 SELECT  user_id, name, age, gender, phone_number
@@ -82,9 +82,9 @@ FROM item_list LEFT OUTER JOIN (
 WHERE price >= 0 -- 최저가 지정
 AND price >= 0 -- 최고가 지정
 AND deal_type = "Bid" -- 거래 방식 지정
-AND category = "가전" -- 물품 카테고리 지정
-AND item_info LIKE "%키워드%" -- 키워드로 검색
-AND user_id = "dltn" -- 판매자 아이디로 검색
+AND category = "가구" -- 물품 카테고리 지정
+AND item_info LIKE "%%" -- 키워드로 검색
+AND user_id = "rladmsgml" -- 판매자 아이디로 검색
 AND expire_time < "2018-12-18" -- 경매의 경우 마감일 기준으로 검색
 AND (expire_time > now() OR expire_time is null); -- 마감되지 않은 제품만 목록에 띄움
 
@@ -134,7 +134,7 @@ FROM item_deal JOIN user_address USING(user_id, address_alias)
 -- 물품 거래 상태 변경
 UPDATE Deal
 SET state = '배송중' -- 거래 상태 = (결재 완료, 배송중, 구매 확정)
-WHERE Deal_id = 0 -- 거래 번호.
+WHERE Deal_id = 11 -- 거래 번호.
 
 -- 거래 목록 삭제
 DELETE FROM Deal
@@ -143,13 +143,13 @@ WHERE deal_id = 12; -- 삭제할 거래 번호.
 -- 거래 별점 평가
 UPDATE Deal
 SET item_point = 3.0
-WHERE deal_id = 20;
+WHERE deal_id = 13;
 
 
 -- ** 경매
 -- 경매 입찰
 INSERT INTO Bid
-VALUES ("39", "function", 100000, now());
+VALUES ("39", "function", now(), 100000);
 
 -- 낙찰 물품 조회
 SELECT Item.user_id, Item.item_id, join_price
@@ -157,7 +157,7 @@ FROM Bid JOIN Item USING (item_id)
 WHERE join_price >= ALL (SELECT join_price FROM Bid WHERE Bid.item_id = Item.item_id)
 AND item_id NOT IN (SELECT item_id FROM Deal)
 AND expire_time < now()
-AND Bid.user_id = "function";
+AND Bid.user_id = "test";
 
 
 -- ** 즐겨찾기

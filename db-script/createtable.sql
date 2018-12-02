@@ -42,9 +42,7 @@ CREATE TABLE `User`
  COMMENT 'gender'
  CHECK (`gender` in ("Male", "Female")),
     `phone_number`    VARCHAR(20) NOT NULL
- COMMENT 'phone_number',
-    `is_active` BOOLEAN DEFAULT 1
- COMMENT 'is_active'
+ COMMENT 'phone_number'
 )
  COMMENT = 'User';
 

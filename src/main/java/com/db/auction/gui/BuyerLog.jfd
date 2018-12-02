@@ -13,7 +13,7 @@ new FormModel {
 			} ) {
 				name: "dialogPane"
 				"border": new javax.swing.border.EmptyBorder( 12, 12, 12, 12 )
-				"preferredSize": new java.awt.Dimension( 600, 330 )
+				"preferredSize": new java.awt.Dimension( 600, 350 )
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane1"
 					add( new FormComponent( "javax.swing.JTable" ) {
@@ -102,7 +102,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 5, 0 )
-			"size": new java.awt.Dimension( 600, 330 )
+			"size": new java.awt.Dimension( 600, 350 )
 		} )
 	}
 }

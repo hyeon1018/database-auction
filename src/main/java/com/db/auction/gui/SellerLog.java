@@ -68,7 +68,7 @@ public class SellerLog extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Kim Dohyeon
+        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
         dialogPane = new JPanel();
         scrollPane1 = new JScrollPane();
         LogTable = new JTable();
@@ -85,7 +85,7 @@ public class SellerLog extends JFrame {
         //======== dialogPane ========
         {
             dialogPane.setBorder(new EmptyBorder(12, 12, 12, 12));
-            dialogPane.setPreferredSize(new Dimension(600, 330));
+            dialogPane.setPreferredSize(new Dimension(600, 350));
 
             // JFormDesigner evaluation mark
             dialogPane.setBorder(new javax.swing.border.CompoundBorder(
@@ -185,7 +185,7 @@ public class SellerLog extends JFrame {
             }
         }
         contentPane.add(dialogPane, BorderLayout.CENTER);
-        setSize(600, 330);
+        setSize(600, 350);
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -193,7 +193,7 @@ public class SellerLog extends JFrame {
     private String currentUser;
     private int deal_id, row_index;
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Kim Dohyeon
+    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
     private JPanel dialogPane;
     private JScrollPane scrollPane1;
     private JTable LogTable;

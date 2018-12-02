@@ -1,64 +1,64 @@
--- **È¸¿ø Á¤º¸ °ü¸®
--- È¸¿ø °¡ÀÔ
+-- **íšŒì› ì •ë³´ ê´€ë¦¬
+-- íšŒì› ê°€ì…
 INSERT INTO User (user_id, user_pw, name, age, gender, phone_number)
-VALUES("function", md5('function'), "±â´ÉSQL", 29, "Male", "01158391823");
+VALUES("function", md5('function'), "ê¸°ëŠ¥SQL", 29, "Male", "01158391823");
 
--- ·Î±×ÀÎ
+-- ë¡œê·¸ì¸
 SELECT COUNT(user_id)
 FROM `User`
-WHERE user_id = "function"
-AND user_pw = md5("function")
+WHERE user_id = "function1"
+AND user_pw = md5("password")
 
--- »ç¿ëÀÚ Á¤º¸ Á¶È¸
+-- ì‚¬ìš©ì ì •ë³´ ì¡°íšŒ
 SELECT  user_id, name, age, gender, phone_number
 FROM User
 WHERE user_id = "function";
 
--- »ç¿ëÀÚ Á¤º¸ º¯°æ
+-- ì‚¬ìš©ì ì •ë³´ ë³€ê²½
 UPDATE User
 Set age = "30",
-	phone_number = "010584123154",
+	phone_number = "01012345678",
 	user_pw = md5('function2')
 WHERE user_id = "function";
 
--- *ÁÖ¼Ò °ü¸®
--- ÁÖ¼Ò Ãß°¡
+-- *ì£¼ì†Œ ê´€ë¦¬
+-- ì£¼ì†Œ ì¶”ê°€
 INSERT INTO Address
-VALUES ("function", "±âº»¹è¼ÛÁö", "functionÀÇ ÁÖ¼Ò")
+VALUES ("function", "ê¸°ë³¸ë°°ì†¡ì§€", "functionì˜ ì£¼ì†Œ")
 
--- ÁÖ¼Ò º¯°æ
+-- ì£¼ì†Œ ë³€ê²½
 UPDATE Address
-SET address = "functionÀÇ »õ ÁÖ¼Ò"
+SET address = "functionì˜ ìƒˆ ì£¼ì†Œ"
 WHERE user_id = "function"
-AND address_alias = "±âº»¹è¼ÛÁö";
+AND address_alias = "ê¸°ë³¸ë°°ì†¡ì§€";
 
--- ÁÖ¼Ò Á¶È¸
+-- ì£¼ì†Œ ì¡°íšŒ
 SELECT address_alias, Address
 FROM Address
 WHERE user_id = "function";
 
--- *°áÀç¼ö´Ü °ü¸®
--- Ä«µå Ãß°¡
+-- *ê²°ì¬ìˆ˜ë‹¨ ê´€ë¦¬
+-- ì¹´ë“œ ì¶”ê°€
 INSERT INTO Card
-VALUES ("function", "½ÅÇÑÄ«µå", "1234517890123456");
+VALUES ("function", "ì‹ í•œì¹´ë“œ", "1234517890123456");
 
--- Ä«µå Á¦°Å
+-- ì¹´ë“œ ì œê±°
 DELETE FROM Card
 WHERE user_id = "function"
-AND card_company = "½ÅÇÑÄ«µå"
+AND card_company = "ì‹ í•œì¹´ë“œ"
 AND card_number = "1234517890123456";
 
--- ÅëÀå Ãß°¡
+-- í†µì¥ ì¶”ê°€
 INSERT INTO Account
-VALUES ("function", "½ÅÇÑÀºÇà", "1104161843234");
+VALUES ("function", "ì‹ í•œì€í–‰", "1104161843234");
 
--- ÅëÀå Á¦°Å
+-- í†µì¥ ì œê±°
 DELETE FROM Account
-WHERE user_id = "function";
-AND bank = "½ÅÇÑÀºÇà"
-AND account = "1104161843234"
+WHERE user_id = "function"
+AND bank = "ì‹ í•œì€í–‰"
+AND account = "1104161843234";
 
--- °áÀç¼ö´Ü Á¶È¸
+-- ê²°ì¬ìˆ˜ë‹¨ ì¡°íšŒ
 WITH payments(user_id, company, id_no) AS
 	(SELECT * FROM Card
 	UNION
@@ -68,90 +68,90 @@ FROM payments
 WHERE user_id = "function";
 
 
--- ** ¹°Ç° °ü¸®
--- Ä«Å×°í¸® ¸ñ·Ï Á¶È¸
+-- ** ë¬¼í’ˆ ê´€ë¦¬
+-- ì¹´í…Œê³ ë¦¬ ëª©ë¡ ì¡°íšŒ
 SELECT category
 FROM Category;
 
--- ¹°Ç° ¸ñ·Ï Á¶È¸ ¹× °Ë»ö
+-- ë¬¼í’ˆ ëª©ë¡ ì¡°íšŒ ë° ê²€ìƒ‰
 SELECT deal_type, item_id, category, price, delivery_fee, item_info, user_id, expire_time, seller_rate
 FROM item_list LEFT OUTER JOIN (
 	SELECT Item.user_id, avg(item_point) as seller_rate
 	FROM Deal JOIN Item USING(item_id)
 	GROUP BY Item.user_id) rate USING(user_id)
-WHERE price >= 0 -- ÃÖÀú°¡ ÁöÁ¤
-AND price >= 0 -- ÃÖ°í°¡ ÁöÁ¤
-AND deal_type = "Bid" -- °Å·¡ ¹æ½Ä ÁöÁ¤
-AND category = "°¡Àü" -- ¹°Ç° Ä«Å×°í¸® ÁöÁ¤
-AND item_info LIKE "%Å°¿öµå%" -- Å°¿öµå·Î °Ë»ö
-AND user_id = "dltn" -- ÆÇ¸ÅÀÚ ¾ÆÀÌµğ·Î °Ë»ö
-AND expire_time < "2018-12-18" -- °æ¸ÅÀÇ °æ¿ì ¸¶°¨ÀÏ ±âÁØÀ¸·Î °Ë»ö
-AND (expire_time > now() OR expire_time is null); -- ¸¶°¨µÇÁö ¾ÊÀº Á¦Ç°¸¸ ¸ñ·Ï¿¡ ¶ç¿ò
+WHERE price >= 0 -- ìµœì €ê°€ ì§€ì •
+AND price >= 0 -- ìµœê³ ê°€ ì§€ì •
+AND deal_type = "Bid" -- ê±°ë˜ ë°©ì‹ ì§€ì •
+AND category = "ê°€ì „" -- ë¬¼í’ˆ ì¹´í…Œê³ ë¦¬ ì§€ì •
+AND item_info LIKE "%í‚¤ì›Œë“œ%" -- í‚¤ì›Œë“œë¡œ ê²€ìƒ‰
+AND user_id = "dltn" -- íŒë§¤ì ì•„ì´ë””ë¡œ ê²€ìƒ‰
+AND expire_time < "2018-12-18" -- ê²½ë§¤ì˜ ê²½ìš° ë§ˆê°ì¼ ê¸°ì¤€ìœ¼ë¡œ ê²€ìƒ‰
+AND (expire_time > now() OR expire_time is null); -- ë§ˆê°ë˜ì§€ ì•Šì€ ì œí’ˆë§Œ ëª©ë¡ì— ë„ì›€
 
--- ¹°Ç° Á¤º¸ Á¶È¸
+-- ë¬¼í’ˆ ì •ë³´ ì¡°íšŒ
 SELECT deal_type, item_id, category, price, delivery_fee, item_info, user_id, expire_time, seller_rate
 FROM item_list LEFT OUTER JOIN (
 	SELECT Item.user_id, avg(item_point) as seller_rate
 	FROM Deal JOIN Item USING(item_id)
 	GROUP BY Item.user_id) rate USING(user_id)
-WHERE item_id = "34"; -- Á¶È¸ÇÏ·Á´Â ¹°Ç°ÀÇ ¹øÈ£
+WHERE item_id = "34"; -- ì¡°íšŒí•˜ë ¤ëŠ” ë¬¼í’ˆì˜ ë²ˆí˜¸
 
--- ¹°Ç° ÀÌ¹ÌÁö Á¶È¸
+-- ë¬¼í’ˆ ì´ë¯¸ì§€ ì¡°íšŒ
 SELECT dir
 FROM Image
 WHERE item_id = "34";
 
--- ¹°Ç° µî·Ï
+-- ë¬¼í’ˆ ë“±ë¡
 INSERT INTO Item(user_id, category, price, deal_type, delivery_fee, item_info, expire_time)
-VALUES("function", "°¡Àü", 10000, "Sell", 1000, "Àß ÀÛµ¿ÇÏ´Â ½ºÇÇÄ¿", NULL);
--- Bid ÀÇ °æ¿ì¿¡´Â expire_tiemÀ» DATE_ADD(NOW(), INTERVAL 7 DAY)¸¦ ÀÌ¿ëÇÏ¿© 7ÀÏ ÈÄ·Î ¼³Á¤ÇÑ´Ù.
+VALUES("function", "ê°€ì „", 10000, "Sell", 1000, "ì˜ ì‘ë™í•˜ëŠ” ìŠ¤í”¼ì»¤", NULL);
+-- Bid ì˜ ê²½ìš°ì—ëŠ” expire_tiemì„ DATE_ADD(NOW(), INTERVAL 7 DAY)ë¥¼ ì´ìš©í•˜ì—¬ 7ì¼ í›„ë¡œ ì„¤ì •í•œë‹¤.
 
--- ÀÌ¹ÌÁö µî·Ï
+-- ì´ë¯¸ì§€ ë“±ë¡
 INSERT INTO Image
 VALUES (LAST_INSERT_ID(), "speaker.jpg");
 
 
--- **¹°Ç° °Å·¡
--- ¹°Ç° ±¸¸Å
+-- **ë¬¼í’ˆ ê±°ë˜
+-- ë¬¼í’ˆ êµ¬ë§¤
 INSERT INTO Deal (user_id, address_alias, item_id, time)
-VALUES ("function","±âº»¹è¼ÛÁö","34",now());
+VALUES ("function","ê¸°ë³¸ë°°ì†¡ì§€","34",now());
 
--- ±¸¸Å ¸ñ·Ï Á¶È¸
-WITH my_address AS(SELECT address, address_alias FROM Address WHERE user_id = "function"),
-	my_deal AS (SELECT time, item_id, state, address_alias, deal_id FROM Deal WHERE user_id = "function"),
+-- êµ¬ë§¤ ëª©ë¡ ì¡°íšŒ
+WITH my_address AS(SELECT address, address_alias FROM Address WHERE user_id = "test"),
+	my_deal AS (SELECT time, item_id, state, address_alias, deal_id FROM Deal WHERE user_id = "test"),
 	item_dealer AS (SELECT item_id, user_id, name, phone_number, price FROM Item JOIN User USING (user_id))
 SELECT time, deal_id, user_id, name, phone_number, item_id, price, address, state
 FROM item_dealer JOIN (my_deal JOIN my_address USING (address_alias)) USING (item_id);
 
--- ÆÇ¸Å ¸ñ·Ï Á¶È¸
+-- íŒë§¤ ëª©ë¡ ì¡°íšŒ
 WITH item_deal (time, user_id, item_id, item_price, address_alias, state, deal_id) AS (
 		SELECT time, Deal.user_id, item_id, price, address_alias, state, deal_id
-		FROM Deal Join Item USING (item_id) WHERE Item.user_id = "function"),
+		FROM Deal Join Item USING (item_id) WHERE Item.user_id = "test"),
 	user_address AS (SELECT user_id, name, phone_number, address, address_alias FROM Address JOIN User USING(user_id))
 SELECT time, deal_id, user_id, name, phone_number, item_id, item_price, address, state
 FROM item_deal JOIN user_address USING(user_id, address_alias)
 
--- ¹°Ç° °Å·¡ »óÅÂ º¯°æ
+-- ë¬¼í’ˆ ê±°ë˜ ìƒíƒœ ë³€ê²½
 UPDATE Deal
-SET state = '¹è¼ÛÁß' -- °Å·¡ »óÅÂ = (°áÀç ¿Ï·á, ¹è¼ÛÁß, ±¸¸Å È®Á¤)
-WHERE Deal_id = 0 -- °Å·¡ ¹øÈ£.
+SET state = 'ë°°ì†¡ì¤‘' -- ê±°ë˜ ìƒíƒœ = (ê²°ì¬ ì™„ë£Œ, ë°°ì†¡ì¤‘, êµ¬ë§¤ í™•ì •)
+WHERE Deal_id = 0 -- ê±°ë˜ ë²ˆí˜¸.
 
--- °Å·¡ ¸ñ·Ï »èÁ¦
+-- ê±°ë˜ ëª©ë¡ ì‚­ì œ
 DELETE FROM Deal
-WHERE deal_id = 0 -- »èÁ¦ÇÒ °Å·¡ ¹øÈ£.
+WHERE deal_id = 12; -- ì‚­ì œí•  ê±°ë˜ ë²ˆí˜¸.
 
--- °Å·¡ º°Á¡ Æò°¡
+-- ê±°ë˜ ë³„ì  í‰ê°€
 UPDATE Deal
 SET item_point = 3.0
-WHERE deal_id = 17;
+WHERE deal_id = 20;
 
 
--- ** °æ¸Å
--- °æ¸Å ÀÔÂû
+-- ** ê²½ë§¤
+-- ê²½ë§¤ ì…ì°°
 INSERT INTO Bid
 VALUES ("39", "function", 100000, now());
 
--- ³«Âû ¹°Ç° Á¶È¸
+-- ë‚™ì°° ë¬¼í’ˆ ì¡°íšŒ
 SELECT Item.user_id, Item.item_id, join_price
 FROM Bid JOIN Item USING (item_id)
 WHERE join_price >= ALL (SELECT join_price FROM Bid)
@@ -160,18 +160,18 @@ AND expire_time < now()
 AND Bid.user_id = "function";
 
 
--- ** Áñ°ÜÃ£±â
--- Áñ°ÜÃ£±â ¸ñ·Ï Á¶È¸
+-- ** ì¦ê²¨ì°¾ê¸°
+-- ì¦ê²¨ì°¾ê¸° ëª©ë¡ ì¡°íšŒ
 SELECT seller_user_id
 FROM Favorite
 WHERE user_id = "function";
 
--- Áñ°ÜÃ£±â »èÁ¦
+-- ì¦ê²¨ì°¾ê¸° ì‚­ì œ
 DELETE FROM Favorite
 WHERE user_id = "function"
 AND seller_user_id = "dltn";
 
--- Áñ°Ü Ã£±â Ãß°¡
+-- ì¦ê²¨ ì°¾ê¸° ì¶”ê°€
 INSERT INTO Favorite
 VALUES ("dltn", "function");
 

@@ -70,7 +70,7 @@ public class Home {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
-        // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+        // Generated using JFormDesigner Evaluation license - Kim Dohyeon
         mainMenu = new JFrame();
         mainPanel = new JPanel();
         listScroll = new JScrollPane();
@@ -156,7 +156,7 @@ public class Home {
                 titleLabel.setText("Auction DB System");
                 titleLabel.setFont(new Font("\ub9d1\uc740 \uace0\ub515", Font.BOLD, 24));
                 mainPanel.add(titleLabel);
-                titleLabel.setBounds(35, 25, 220, titleLabel.getPreferredSize().height);
+                titleLabel.setBounds(35, 25, 335, titleLabel.getPreferredSize().height);
 
                 //---- accountLabel ----
                 accountLabel.setText("ID");
@@ -236,7 +236,7 @@ public class Home {
     String currentUser;
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
-    // Generated using JFormDesigner Evaluation license - Yu Hwan Jung
+    // Generated using JFormDesigner Evaluation license - Kim Dohyeon
     private JFrame mainMenu;
     private JPanel mainPanel;
     private JScrollPane listScroll;

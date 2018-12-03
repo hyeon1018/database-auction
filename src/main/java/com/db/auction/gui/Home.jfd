@@ -81,7 +81,7 @@ new FormModel {
 				}, new FormLayoutConstraints( class com.jformdesigner.runtime.NullConstraints ) {
 					"x": 35
 					"y": 25
-					"width": 220
+					"width": 335
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "accountLabel"

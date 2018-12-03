@@ -51,7 +51,7 @@ public class Database {
     }
 
     public static void regiesterUser(String userId, String userPw, String name, int age, String gender, String phoneNumber){
-        String registerSQL ="INSERT INTO (user_id, user_pw, name, age, gender, phone_number) User VALUES (?, md5(?), ?, ?, ?, ?);";
+        String registerSQL ="INSERT INTO User(user_id, user_pw, name, age, gender, phone_number) VALUES (?, md5(?), ?, ?, ?, ?);";
         try(PreparedStatement pstat = connection.prepareStatement(registerSQL)){
             pstat.setString(1, userId);
             pstat.setString(2, userPw);
